@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
+-->
+
+<connection>   
+    <server>localhost</server>
+    <database>cafe_java</database>     
+</connection>
+
+<user>
+    <user id = "guest">
+        <usernmae></usernmae>
+        <password></password>
+    </user>
+    
+    <user id = "employee">
+        <usernmae></usernmae>
+        <password></password>
+    </user>
+    
+    <user id = "manager">
+        <usernmae></usernmae>
+        <password></password>
+    </user>
+</user>
+
+<language>
+    <language id = "selected">vi-vn</language>
+    <language id = "vi-vn">vi-vn.xml</language>
+    <language id = "en-us">en-us.xml</language>
+</language>

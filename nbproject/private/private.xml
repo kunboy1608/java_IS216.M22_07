@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/models/DataContext.java</file>
+            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/config/config.xml</file>
             <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/boot/RunApp.java</file>
-            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/controller/KhachHangController.java</file>
-            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/models/KhachHangModel.java</file>
+            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/handle/LanguageHandle.java</file>
+            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/handle/ImageHandle.java</file>
+            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/config/lang/vi-vn.xml</file>
+            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/handle/CryptoHandle.java</file>
+            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/handle/CompareHandle.java</file>
+            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/config/lang/en-us.xml</file>
         </group>
     </open-files>
 </project-private>
