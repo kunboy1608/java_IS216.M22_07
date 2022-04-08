@@ -4,50 +4,60 @@
  */
 package com.models;
 
-import java.util.Date;
-
 /**
  *
  * @author kunbo
  */
 public class KhachHangModel {
-    private String MaNV;
-    private Date NgayVaoLam;
-    private String CCD;
-    
-    public KhachHangModel(){
+
+    private int MaKH;
+    private String TenKH;
+    private String SDT;
+    private int TongDiem;
+
+    public KhachHangModel() {
         
     }
 
-    public KhachHangModel(String MaNV, Date NgayVaoLam, String CCD) {
-        this.MaNV = MaNV;
-        this.NgayVaoLam = NgayVaoLam;
-        this.CCD = CCD;
+    public KhachHangModel(int MaKH, String TenKH, String SDT, int TongDiem) {
+        this.MaKH = MaKH;
+        this.TenKH = TenKH;
+        this.SDT = SDT;
+        this.TongDiem = TongDiem;
     }
 
-    public String getMaNV() {
-        return MaNV;
+    public int getMaKH() {
+        return MaKH;
     }
 
-    public void setMaNV(String MaNV) {
-        this.MaNV = MaNV;
+    public void setMaKH(int MaKH) {
+        this.MaKH = MaKH;
     }
 
-    public Date getNgayVaoLam() {
-        return NgayVaoLam;
+    public String getTenKH() {
+        return TenKH;
     }
 
-    public void setNgayVaoLam(Date NgayVaoLam) {
-        this.NgayVaoLam = NgayVaoLam;
+    public void setTenKH(String TenKH) {
+        this.TenKH = TenKH;
     }
 
-    public String getCCD() {
-        return CCD;
+    public String getSDT() {
+        return SDT;
     }
 
-    public void setCCD(String CCD) {
-        this.CCD = CCD;
+    public void setSDT(String SDT) {
+        this.SDT = SDT;
     }
+
+    public int getTongDiem() {
+        return TongDiem;
+    }
+
+    public void setTongDiem(int TongDiem) {
+        this.TongDiem = TongDiem;
+    }
+
     
     
 }
