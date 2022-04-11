@@ -14,7 +14,7 @@ public class DataContext {
 
     // Tuong tu voi cac model khac
     private LinkedList<KhachHangModel> KhachHangs;
-
+    
     private final static DataContext _instance = new DataContext();
 
     private DataContext() {
@@ -23,9 +23,5 @@ public class DataContext {
     public static DataContext getInstance() {
         return _instance;
     }
-
-    public void ass() {
-        System.out.println("aaaa");
-    }
-
+    
 }
