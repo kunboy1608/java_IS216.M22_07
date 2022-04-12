@@ -11,15 +11,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
     </connection>
     <user>
         <user id = "guest">
-            <usernmae></usernmae>
+            <username></username>
             <password></password>
         </user>
         <user id = "employee">
-            <usernmae></usernmae>
+            <username></username>
             <password></password>
         </user>
         <user id = "manager">
-            <usernmae>sa</usernmae>
+            <username>sa</username>
             <password>Matkhau1</password>
         </user>
     </user>

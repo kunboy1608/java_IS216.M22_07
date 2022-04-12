@@ -16,17 +16,19 @@ public class ConnectionHandle {
     private static final ConnectionHandle _instance = new ConnectionHandle();
     private Connection con;
     private String[] sInfo;
+    private String[] user;
 
     private ConnectionHandle() {
         sInfo = ConfigurationLoader.getInstance().getServerInfo();
     }
 
     public void Connect() {
+        loadManagerUser();
         String connectionUrl
                 = "jdbc:sqlserver://" + sInfo[0] + ":" + sInfo[2] + ";"
                 + "database=" + sInfo[1] + ";"
-                + "user=sa;"
-                + "password=Matkhau1;"
+                + "user=" + user[0] + ";"
+                + "password=" + user[1] + ";"
                 + "encrypt=true;"
                 + "trustServerCertificate=true;"
                 + "loginTimeout=5;";
@@ -43,6 +45,18 @@ public class ConnectionHandle {
             Connect();
         }
         return con;
+    }
+
+    public void loadGuestUser() {
+        user = ConfigurationLoader.getInstance().getUserInfo(1);
+    }
+
+    public void loadEmployeeUser() {
+        user = ConfigurationLoader.getInstance().getUserInfo(2);
+    }
+
+    public void loadManagerUser() {
+        user = ConfigurationLoader.getInstance().getUserInfo(3);
     }
 
     public static ConnectionHandle getInstance() {

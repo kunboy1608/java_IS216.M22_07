@@ -25,7 +25,4 @@ public class CTHDModel {
     public void setSoLuong(String SoLuong) {
         this.SoLuong = SoLuong;
     }
-    public static void main(String[] args) {
-        
-    }
 }

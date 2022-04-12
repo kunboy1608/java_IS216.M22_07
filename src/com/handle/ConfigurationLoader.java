@@ -14,6 +14,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
@@ -75,6 +76,16 @@ public class ConfigurationLoader {
         info[1] = doc.getElementsByTagName("connection").item(2).getTextContent();
         info[2] = doc.getElementsByTagName("connection").item(3).getTextContent();
         return info;
+    }
+
+    public String[] getUserInfo(int index) {
+        String[] str = new String[2];
+
+        Element nl = (Element) doc.getElementsByTagName("user").item(index);
+        str[0] = nl.getElementsByTagName("username").item(0).getTextContent();
+        str[1] = nl.getElementsByTagName("password").item(0).getTextContent();
+                
+        return str;
     }
 
     public static ConfigurationLoader getInstance() {
