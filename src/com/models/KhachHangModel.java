@@ -12,16 +12,19 @@ public class KhachHangModel {
 
     private int MaKH;
     private String TenKH;
+    private Boolean GioiTinh;
     private String SDT;
     private int TongDiem;
 
     public KhachHangModel() {
-        
     }
 
-    public KhachHangModel(int MaKH, String TenKH, String SDT, int TongDiem) {
+    
+
+    public KhachHangModel(int MaKH, String TenKH, Boolean GioiTinh, String SDT, int TongDiem) {
         this.MaKH = MaKH;
         this.TenKH = TenKH;
+        this.GioiTinh = GioiTinh;
         this.SDT = SDT;
         this.TongDiem = TongDiem;
     }
@@ -42,6 +45,14 @@ public class KhachHangModel {
         this.TenKH = TenKH;
     }
 
+    public Boolean getGioiTinh() {
+        return GioiTinh;
+    }
+
+    public void setGioiTinh(Boolean GioiTinh) {
+        this.GioiTinh = GioiTinh;
+    }
+
     public String getSDT() {
         return SDT;
     }
@@ -58,6 +69,7 @@ public class KhachHangModel {
         this.TongDiem = TongDiem;
     }
 
+ 
     
     
 }

@@ -12,8 +12,8 @@ import java.util.Date;
  * @author dang
  */
 public class GiamGiaModel {
-    private String MaGiamGia;
-    private String GiaTri;
+    private int MaGiamGia;
+    private int GiaTri;
     private Double ToiDa;
     private Date NgayBatDau;
     private Date NgayKetThuc;
@@ -21,7 +21,7 @@ public class GiamGiaModel {
     public GiamGiaModel() {
     }
 
-    public GiamGiaModel(String MaGiamGia, String GiaTri, Double ToiDa, Date NgayBatDau, Date NgayKetThuc) {
+    public GiamGiaModel(int MaGiamGia, int GiaTri, Double ToiDa, Date NgayBatDau, Date NgayKetThuc) {
         this.MaGiamGia = MaGiamGia;
         this.GiaTri = GiaTri;
         this.ToiDa = ToiDa;
@@ -29,19 +29,19 @@ public class GiamGiaModel {
         this.NgayKetThuc = NgayKetThuc;
     }
 
-    public String getMaGiamGia() {
+    public int getMaGiamGia() {
         return MaGiamGia;
     }
 
-    public void setMaGiamGia(String MaGiamGia) {
+    public void setMaGiamGia(int MaGiamGia) {
         this.MaGiamGia = MaGiamGia;
     }
 
-    public String getGiaTri() {
+    public int getGiaTri() {
         return GiaTri;
     }
 
-    public void setGiaTri(String GiaTri) {
+    public void setGiaTri(int GiaTri) {
         this.GiaTri = GiaTri;
     }
 

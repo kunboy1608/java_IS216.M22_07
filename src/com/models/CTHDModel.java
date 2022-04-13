@@ -9,23 +9,31 @@ package com.models;
  * @author dang
  */
 public class CTHDModel {
-    private String SoLuong;
+    private int SoLuong;
+    private double Gia;
 
     public CTHDModel() {
     }
 
-    public CTHDModel(String SoLuong) {
+    public CTHDModel(int SoLuong, double Gia) {
         this.SoLuong = SoLuong;
+        this.Gia = Gia;
     }
 
-    public String getSoLuong() {
+    public int getSoLuong() {
         return SoLuong;
     }
 
-    public void setSoLuong(String SoLuong) {
+    public void setSoLuong(int SoLuong) {
         this.SoLuong = SoLuong;
     }
-    public static void main(String[] args) {
-        
+    public double getGia() {
+        return Gia;
     }
+
+    public void setGia(double Gia) {
+        this.Gia = Gia;
+    }
+  
+    
 }

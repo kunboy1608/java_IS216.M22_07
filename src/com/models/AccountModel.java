@@ -13,12 +13,12 @@ public class AccountModel {
     private String UserName;
     private String Password;
     private Boolean IsLocked;
-    private int Type;
+    private Byte Type;
 
     public AccountModel() {
     }
 
-    public AccountModel(String UserName, String Password, Boolean IsLocked, int Type) {
+    public AccountModel(String UserName, String Password, Boolean IsLocked, Byte Type) {
         this.UserName = UserName;
         this.Password = Password;
         this.IsLocked = IsLocked;
@@ -53,7 +53,7 @@ public class AccountModel {
         return Type;
     }
 
-    public void setType(int Type) {
+    public void setType(Byte Type) {
         this.Type = Type;
     }
 

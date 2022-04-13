@@ -12,25 +12,25 @@ import java.util.Date;
  * @author dang
  */
 public class HoaDonKhachHangModel {
-    private String MaHD;
+    private int MaGiamGia;
     private Date NgayLap;
-    private Double TongTien;
+    private double TongTien;
 
     public HoaDonKhachHangModel() {
     }
 
-    public HoaDonKhachHangModel(String MaHD, Date NgayLap, Double TongTien) {
-        this.MaHD = MaHD;
+    public HoaDonKhachHangModel(int MaGiamGia, Date NgayLap, double TongTien) {
+        this.MaGiamGia = MaGiamGia;
         this.NgayLap = NgayLap;
         this.TongTien = TongTien;
     }
 
-    public String getMaHD() {
-        return MaHD;
+    public int getMaGiamGia() {
+        return MaGiamGia;
     }
 
-    public void setMaHD(String MaHD) {
-        this.MaHD = MaHD;
+    public void setMaGiamGia(int MaGiamGia) {
+        this.MaGiamGia = MaGiamGia;
     }
 
     public Date getNgayLap() {
@@ -41,12 +41,13 @@ public class HoaDonKhachHangModel {
         this.NgayLap = NgayLap;
     }
 
-    public Double getTongTien() {
+    public double getTongTien() {
         return TongTien;
     }
 
-    public void setTongTien(Double TongTien) {
+    public void setTongTien(double TongTien) {
         this.TongTien = TongTien;
     }
-    
+
+   
 }
