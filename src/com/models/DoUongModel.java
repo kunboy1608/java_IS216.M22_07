@@ -4,33 +4,35 @@
  */
 package com.models;
 
+import java.awt.Image;
+
 /**
  *
  * @author dang
  */
 public class DoUongModel {
-  private String MaDU;
+  private int MaDU;
   private String TenDU;
-  private double Tong;
-  private String HinhAnh;
+  private double Gia;
+  private Image HinhAnh;
   private String GhiChu;
 
     public DoUongModel() {
     }
 
-    public DoUongModel(String MaDU, String TenDU, double Tong, String HinhAnh, String GhiChu) {
+    public DoUongModel(int MaDU, String TenDU, double Gia, Image HinhAnh, String GhiChu) {
         this.MaDU = MaDU;
         this.TenDU = TenDU;
-        this.Tong = Tong;
+        this.Gia = Gia;
         this.HinhAnh = HinhAnh;
         this.GhiChu = GhiChu;
     }
 
-    public String getMaDU() {
+    public int getMaDU() {
         return MaDU;
     }
 
-    public void setMaDU(String MaDU) {
+    public void setMaDU(int MaDU) {
         this.MaDU = MaDU;
     }
 
@@ -42,19 +44,19 @@ public class DoUongModel {
         this.TenDU = TenDU;
     }
 
-    public double getTong() {
-        return Tong;
+    public double getGia() {
+        return Gia;
     }
 
-    public void setTong(double Tong) {
-        this.Tong = Tong;
+    public void setGia(double Gia) {
+        this.Gia = Gia;
     }
 
-    public String getHinhAnh() {
+    public Image getHinhAnh() {
         return HinhAnh;
     }
 
-    public void setHinhAnh(String HinhAnh) {
+    public void setHinhAnh(Image HinhAnh) {
         this.HinhAnh = HinhAnh;
     }
 

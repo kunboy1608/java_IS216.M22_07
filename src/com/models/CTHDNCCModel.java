@@ -9,27 +9,17 @@ package com.models;
  * @author DO THAO QUYEN
  */
 public class CTHDNCCModel {
-    private int MaHDNCC;
     private int MANL;
-    private int SoLuong;
-    private double Gia;
+    private int MaHDNCC;
+    private double Tong;
 
     public CTHDNCCModel() {
     }
 
-    public CTHDNCCModel(int MaHDNCC, int MANL, int SoLuong, double Gia) {
-        this.MaHDNCC = MaHDNCC;
+    public CTHDNCCModel(int MANL, int MaHDNCC, double Tong) {
         this.MANL = MANL;
-        this.SoLuong = SoLuong;
-        this.Gia = Gia;
-    }
-
-    public int getMaHDNCC() {
-        return MaHDNCC;
-    }
-
-    public void setMaHDNCC(int MaHDNCC) {
         this.MaHDNCC = MaHDNCC;
+        this.Tong = Tong;
     }
 
     public int getMANL() {
@@ -40,21 +30,20 @@ public class CTHDNCCModel {
         this.MANL = MANL;
     }
 
-    public int getSoLuong() {
-        return SoLuong;
+    public int getMaHDNCC() {
+        return MaHDNCC;
     }
 
-    public void setSoLuong(int SoLuong) {
-        this.SoLuong = SoLuong;
+    public void setMaHDNCC(int MaHDNCC) {
+        this.MaHDNCC = MaHDNCC;
     }
 
-    public double getGia() {
-        return Gia;
+    public double getTong() {
+        return Tong;
     }
 
-    public void setGia(double Gia) {
-        this.Gia = Gia;
+    public void setTong(double Tong) {
+        this.Tong = Tong;
     }
-
     
 }
