@@ -13,19 +13,15 @@ import java.util.Date;
 public class NhanVienModel {
     private int MaNV;
     private int MaCN;
-    private String TenNV;
-    private boolean GioiTinh;
     private Date NgayVL;
     private String CCCD;
 
     public NhanVienModel() {
     }
 
-    public NhanVienModel(int MaNV, int MaCN, String TenNV, boolean GioiTinh, Date NgayVL, String CCCD) {
+    public NhanVienModel(int MaNV, int MaCN, Date NgayVL, String CCCD) {
         this.MaNV = MaNV;
         this.MaCN = MaCN;
-        this.TenNV = TenNV;
-        this.GioiTinh = GioiTinh;
         this.NgayVL = NgayVL;
         this.CCCD = CCCD;
     }
@@ -46,22 +42,6 @@ public class NhanVienModel {
         this.MaCN = MaCN;
     }
 
-    public String getTenNV() {
-        return TenNV;
-    }
-
-    public void setTenNV(String TenNV) {
-        this.TenNV = TenNV;
-    }
-
-    public boolean isGioiTinh() {
-        return GioiTinh;
-    }
-
-    public void setGioiTinh(boolean GioiTinh) {
-        this.GioiTinh = GioiTinh;
-    }
-
     public Date getNgayVL() {
         return NgayVL;
     }
@@ -77,4 +57,5 @@ public class NhanVienModel {
     public void setCCCD(String CCCD) {
         this.CCCD = CCCD;
     }
+    
 }
