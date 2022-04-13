@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2017                    */
-/* Created on:     4/13/2022 4:18:39 PM                         */
+/* Created on:     4/13/2022 8:04:24 PM                         */
 /*==============================================================*/
 
 
@@ -115,7 +115,7 @@ go
 /* Table: CTHD                                                  */
 /*==============================================================*/
 create table CTHD (
-   MAHD                 int                  not null,
+   MAHD                 int                  identity,
    MADU                 int                  not null,
    SOLUONG              int                  null,
    GIA                  money                null,
@@ -127,11 +127,11 @@ go
 /* Table: CTHDNCC                                               */
 /*==============================================================*/
 create table CTHDNCC (
-   MANL                 int                  identity,
-   MAHDNCC              int                  not null,
+   MAHDNCC              int                  identity,
+   MANL                 int                  not null,
    SOLUONG              int                  null,
    GIA                  money                null,
-   constraint PK_CTHDNCC primary key (MANL, MAHDNCC)
+   constraint PK_CTHDNCC primary key (MAHDNCC)
 )
 go
 
@@ -165,13 +165,13 @@ go
 /* Table: HOADONKHACHHANG                                       */
 /*==============================================================*/
 create table HOADONKHACHHANG (
-   MAHD                 int                  identity,
-   MAGIAMGIA            int                  not null,
+   MAGIAMGIA            int                  identity,
+   MAHD                 int                  not null,
    MANV                 int                  null,
    MAKH                 int                  null,
    NGAYLAP              datetime             null,
    TONGTIEN             money                null,
-   constraint PK_HOADONKHACHHANG primary key (MAHD)
+   constraint PK_HOADONKHACHHANG primary key (MAGIAMGIA, MAHD)
 )
 go
 
@@ -197,6 +197,7 @@ go
 create table KHACHHANG (
    MAKH                 int                  identity,
    TENKH                nvarchar(255)        null,
+   GIOITINH             bit                  null,
    SDT                  char(11)             null,
    TONGDIEM             int                  null,
    constraint PK_KHACHHANG primary key (MAKH)
@@ -232,6 +233,8 @@ go
 create table NHANVIEN (
    MANV                 int                  identity,
    MACN                 int                  null,
+   TENNV                nvarchar(256)        null,
+   GIOITINH             bit                  null,
    NGAYVL               datetime             null,
    CCCD                 char(13)             null,
    constraint PK_NHANVIEN primary key (MANV)
