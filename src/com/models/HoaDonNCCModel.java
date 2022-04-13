@@ -11,9 +11,9 @@ import java.util.Date;
  * @author DO THAO QUYEN
  */
 public class HoaDonNCCModel {
+    private int MaHDNCC;
     private int MaNV;
     private int MaNCC;
-    private int MaHDNCC;
     private Date NgayLap;
     private Date NgayThanhToan;
     private double TongTien;
@@ -23,15 +23,23 @@ public class HoaDonNCCModel {
     public HoaDonNCCModel() {
     }
 
-    public HoaDonNCCModel(int MaNV, int MaNCC, int MaHDNCC, Date NgayLap, Date NgayThanhToan, double TongTien, double No, String GhiChu) {
+    public HoaDonNCCModel(int MaHDNCC, int MaNV, int MaNCC, Date NgayLap, Date NgayThanhToan, double TongTien, double No, String GhiChu) {
+        this.MaHDNCC = MaHDNCC;
         this.MaNV = MaNV;
         this.MaNCC = MaNCC;
-        this.MaHDNCC = MaHDNCC;
         this.NgayLap = NgayLap;
         this.NgayThanhToan = NgayThanhToan;
         this.TongTien = TongTien;
         this.No = No;
         this.GhiChu = GhiChu;
+    }
+
+    public int getMaHDNCC() {
+        return MaHDNCC;
+    }
+
+    public void setMaHDNCC(int MaHDNCC) {
+        this.MaHDNCC = MaHDNCC;
     }
 
     public int getMaNV() {
@@ -48,14 +56,6 @@ public class HoaDonNCCModel {
 
     public void setMaNCC(int MaNCC) {
         this.MaNCC = MaNCC;
-    }
-
-    public int getMaHDNCC() {
-        return MaHDNCC;
-    }
-
-    public void setMaHDNCC(int MaHDNCC) {
-        this.MaHDNCC = MaHDNCC;
     }
 
     public Date getNgayLap() {
@@ -97,6 +97,4 @@ public class HoaDonNCCModel {
     public void setGhiChu(String GhiChu) {
         this.GhiChu = GhiChu;
     }
-    
-    
 }
