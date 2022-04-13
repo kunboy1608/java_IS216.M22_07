@@ -55,6 +55,4 @@ public class NhaCungCapModel {
     public void setSDT(String SDT) {
         this.SDT = SDT;
     }
-    
-    
 }
