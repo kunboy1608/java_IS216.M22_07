@@ -4,31 +4,20 @@
  */
 package com.handle;
 
-import org.w3c.dom.Document;
-
 /**
  *
  * @author kunbo
  */
 public class LanguageHandle {
 
-    private static final LanguageHandle _instance = new LanguageHandle();
-    private Document doc;
+    private final LanguageHandle _instance = new LanguageHandle();
 
     private LanguageHandle() {
-        LoadLangue();
+
     }
 
-    public void LoadLangue() {
-        doc = ConfigurationLoader.getInstance().getLanguageConfiguration();
-    }
-
-    public String getValue(String tag, int index) {
-        return doc.getElementsByTagName(tag).item(index).getTextContent();
-    }
-
-    public static LanguageHandle getInstance() {
+    public LanguageHandle getInstance() {
         return _instance;
     }
-
+    
 }
