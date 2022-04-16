@@ -11,8 +11,8 @@ import java.util.LinkedList;
  * @author kunbo
  */
 public class DataContext {
-    
-//    private AccountModel account;
+
+    private LinkedList<AccountModel> Accounts;
     private LinkedList<CTHDModel> CTHDs;
     private LinkedList<CTHDNCCModel> CTHDNCCs;
     private LinkedList<ChiNhanhModel> ChiNhanhs;
@@ -24,7 +24,7 @@ public class DataContext {
     private LinkedList<NguyenLieuModel> NguyenLieus;
     private LinkedList<NhaCungCapModel> NhaCungCaps;
     private LinkedList<NhanVienModel> NhanViens;
-    
+
     private final static DataContext _instance = new DataContext();
 
     private DataContext() {
@@ -32,6 +32,14 @@ public class DataContext {
 
     public static DataContext getInstance() {
         return _instance;
+    }
+
+    public LinkedList<AccountModel> getAccounts() {
+        return Accounts;
+    }
+
+    public void setAccounts(LinkedList<AccountModel> Accounts) {
+        this.Accounts = Accounts;
     }
 
     public LinkedList<CTHDModel> getCTHDs() {
@@ -121,5 +129,5 @@ public class DataContext {
     public void setNhanViens(LinkedList<NhanVienModel> NhanViens) {
         this.NhanViens = NhanViens;
     }
-    
+
 }
