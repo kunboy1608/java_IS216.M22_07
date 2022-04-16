@@ -68,4 +68,21 @@ public class NhanVienController {
         }
         return false;
     }
+
+    public boolean XoaNhanVien(int id) {
+        try {
+            String sql = "DELETE FROM NHANVIEN WHERE MaNV = ";
+
+            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareCall(sql);
+
+            ps.setString(id, sql);
+
+            if (ps.executeUpdate() != 1) {
+                return false;
+            }
+        } catch (SQLException e) {
+            return false;
+        }
+        return false;
+    }
 }
