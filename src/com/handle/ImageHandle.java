@@ -22,18 +22,22 @@ import javax.imageio.ImageIO;
  */
 public class ImageHandle {
 
-    private final ImageHandle _instance = new ImageHandle();
+    private final static ImageHandle _instance = new ImageHandle();
 
     private ImageHandle() {
     }
 
-    public ImageHandle getInstance() {
+    public static ImageHandle getInstance() {
         return _instance;
     }
 
     public Image resize(Image originalImage, int targetWidth, int targetHeight) {
         Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH);
         return resultingImage;
+    }
+
+    public Image resize(BufferedImage originalBufferedImage, int targetWidth, int targetHeight) {
+        return resize((Image) originalBufferedImage, targetWidth, targetHeight);
     }
 
     public byte[] toByteArray(Image img, String type) {

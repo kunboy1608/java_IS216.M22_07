@@ -4,7 +4,10 @@
  */
 package com.boot;
 
+import com.controller.KhachHangController;
 import com.handle.ConnectionHandle;
+import com.models.KhachHangModel;
+import com.view.frame.LoginFrame;
 
 /**
  *
@@ -12,8 +15,19 @@ import com.handle.ConnectionHandle;
  */
 public class RunApp {
 
+    private static void configSystem() {
+        if (System.getProperty("os.name").contains("Windows")) {
+            System.setProperty("prism.allowhidpi", "false");
+        }
+    }
+
     public static void main(String[] args) {
-        ConnectionHandle.getInstance().getConnection();
-        
+//        configSystem();
+//        new LoginFrame().setVisible(true);
+
+        KhachHangModel kh = new KhachHangModel(0, "Quyen Dang", false, "0987654321", 100);
+
+        new KhachHangController().SuaKhachHang(1, kh);
+
     }
 }

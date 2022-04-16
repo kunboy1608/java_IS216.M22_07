@@ -4,7 +4,9 @@
  */
 package com.view.frame;
 
-import com.handle.ConnectionHandle;
+import com.view.panel.LoginPanel;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 
 /**
@@ -13,13 +15,28 @@ import javax.swing.JFrame;
  */
 public class LoginFrame extends JFrame {
 
+    public static final int HEIGHT = 480;
+    public static final int WIDTH = 848;
+
+    BufferedImage bi;
+    Graphics2D g2;
+
     public void initComponent() {
-        setSize(1080, 720);
+        setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        ConnectionHandle.getInstance().getConnection();
+        setLocationRelativeTo(null);
+//        setResizable(false);
+        var lp = new LoginPanel();
+        add(lp);
+        setVisible(true);
+        if (lp.getGraphics() == null) {
+            System.out.println("ddrr");
+        }
+//        System.out.println("tao xong doi tuong");
     }
 
     public LoginFrame() {
         initComponent();
     }
+
 }
