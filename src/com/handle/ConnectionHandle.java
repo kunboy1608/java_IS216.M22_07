@@ -22,7 +22,7 @@ public class ConnectionHandle {
         sInfo = ConfigurationLoader.getInstance().getServerInfo();
     }
 
-    public void Connect() {
+    private void Connect() {
         loadManagerUser();
         String connectionUrl
                 = "jdbc:sqlserver://" + sInfo[0] + ":" + sInfo[2] + ";"

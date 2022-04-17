@@ -32,7 +32,6 @@ public class PlaceHolder implements FocusListener {
         if (txtField.getText().equals(text)) {
             txtField.setText("");
         }
-        txtField.setForeground(Color.BLUE);
     }
 
     @Override
@@ -40,7 +39,6 @@ public class PlaceHolder implements FocusListener {
         if (txtField.getText().isEmpty()) {
             txtField.setText(text);
         }
-        txtField.setForeground(Color.BLUE);
     }
 
 }
