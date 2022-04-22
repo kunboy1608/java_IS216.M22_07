@@ -5,22 +5,21 @@
             <url>src/com/view/panel/LoginPanel.java</url>
             <bookmark id="1">
                 <name/>
-                <line>82</line>
+                <line>87</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/media/hoangdp/Data/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/boot/RunApp.java</file>
-            <file>file:/media/hoangdp/Data/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/net/Client.java</file>
-            <file>file:/media/hoangdp/Data/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/LoginFrame.java</file>
-            <file>file:/media/hoangdp/Data/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/handle/LanguageHandle.java</file>
-            <file>file:/media/hoangdp/Data/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/config/config.xml</file>
-            <file>file:/media/hoangdp/Data/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/config/lang/vi-vn.xml</file>
-            <file>file:/media/hoangdp/Data/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/net/Server.java</file>
-            <file>file:/media/hoangdp/Data/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/panel/LoginPanel.java</file>
-            <file>file:/media/hoangdp/Data/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/config/lang/en-us.xml</file>
+            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/config/lang/en-us.xml</file>
+            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/handle/ConfigurationLoader.java</file>
+            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/boot/RunApp.java</file>
+            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/controller/AccountController.java</file>
+            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/handle/ConnectionHandle.java</file>
+            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/handle/LanguageHandle.java</file>
+            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/panel/LoginPanel.java</file>
+            <file>file:/E:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/config/config.xml</file>
         </group>
     </open-files>
 </project-private>

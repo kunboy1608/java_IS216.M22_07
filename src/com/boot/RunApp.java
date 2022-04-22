@@ -12,7 +12,17 @@ import com.view.frame.LoginFrame;
  */
 public class RunApp {
 
+    private static void configSystem() {
+        if (System.getProperty("os.name").contains("Windows")) {
+            System.setProperty("sun.java2d.uiScale", "1.0");
+            System.setProperty("-Dprism.allowhidpi", "false");
+            System.out.println("Configure Succefully");
+        }
+    }
+
     public static void main(String[] args) {
+        configSystem();
         new LoginFrame().setVisible(true);
+
     }
 }
