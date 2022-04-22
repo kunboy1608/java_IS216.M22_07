@@ -12,7 +12,6 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 
 /**
@@ -37,8 +36,8 @@ public class RoundedButton extends JLabel {
         setOpaque(false);
 
         setHorizontalAlignment(CENTER);
-
-        tranfColor = new Color(0f, 0.8f, 0f, 0.8f);
+        
+        tranfColor = new Color(1f, 1f, 1f, 0.5f);
 
         addMouseListener(new MouseListener() {
             @Override

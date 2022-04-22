@@ -5,6 +5,7 @@
 package com.handle;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 /**
  *
@@ -23,8 +24,18 @@ public class LanguageHandle {
         doc = ConfigurationLoader.getInstance().getLanguageConfiguration();
     }
 
-    public String getValue(String tag, int index) {
-        return doc.getElementsByTagName(tag).item(index).getTextContent();
+    public void ChangeLanguage() {
+
+    }
+
+    public String getValue(String tag, String id) {
+        for (int i = 0; i < doc.getElementsByTagName(tag).getLength(); i++) {
+            Element e = (Element) doc.getElementsByTagName(tag).item(i);
+            if (e.getAttribute("id").equals(id)) {
+                return e.getTextContent();
+            }
+        }
+        return "null";
     }
 
     public static LanguageHandle getInstance() {

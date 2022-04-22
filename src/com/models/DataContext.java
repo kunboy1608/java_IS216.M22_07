@@ -24,7 +24,7 @@ public class DataContext {
     private LinkedList<NguyenLieuModel> NguyenLieus;
     private LinkedList<NhaCungCapModel> NhaCungCaps;
     private LinkedList<NhanVienModel> NhanViens;
-
+    private UserModel user;
     private final static DataContext _instance = new DataContext();
 
     private DataContext() {
@@ -128,6 +128,14 @@ public class DataContext {
 
     public void setNhanViens(LinkedList<NhanVienModel> NhanViens) {
         this.NhanViens = NhanViens;
+    }
+
+    public UserModel getUser() {
+        return user;
+    }
+
+    public void setUser(UserModel user) {
+        this.user = user;
     }
 
 }

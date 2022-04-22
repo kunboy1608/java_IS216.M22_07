@@ -4,10 +4,9 @@
  */
 package com.view.frame;
 
+import com.handle.LanguageHandle;
 import com.view.panel.LoginPanel;
 import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 
 /**
@@ -16,19 +15,26 @@ import javax.swing.JFrame;
  */
 public class LoginFrame extends JFrame {
 
-    private static final int HEIGHT = 562;
-    private static final int WIDTH = 1000;
-
     public void initComponent() {
+        setTitle(TITLE);
         setSize(WIDTH, HEIGHT);
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        add(new LoginPanel());        
+        add(new LoginPanel());
+    }
+
+    private void loadText() {
+        TITLE = LanguageHandle.getInstance().getValue("Login", "TITLE");
     }
 
     public LoginFrame() {
+        loadText();
         initComponent();
     }
+
+    private static final int HEIGHT = 562;
+    private static final int WIDTH = 1000;
+    private String TITLE;
 
 }

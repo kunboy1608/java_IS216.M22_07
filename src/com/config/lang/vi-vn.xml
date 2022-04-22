@@ -6,7 +6,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
 
 
 
-<root>
-    
-</root>
+<language>
+    <Login>
+        <Login id="TITLE">Đăng nhập - COFFE EXPRESS</Login>
+        <Login id="USERNAME">Tài khoản</Login>
+        <Login id="ERROR_MESSAGE">Thông tin đăng nhập không chính xác hoặc bị khóa</Login>
+        <Login id="LOGIN">Đăng nhập</Login>
+        <Login id="CHANGE_LANGUAGE">Restart to apply new language</Login>        
+    </Login>
+</language>
 

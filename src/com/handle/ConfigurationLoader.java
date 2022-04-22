@@ -14,7 +14,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
@@ -83,9 +82,16 @@ public class ConfigurationLoader {
 
         Element nl = (Element) doc.getElementsByTagName("user").item(index);
         str[0] = nl.getElementsByTagName("username").item(0).getTextContent();
-        str[1] = nl.getElementsByTagName("password").item(0).getTextContent();
-                
+        str[1] = CryptoHandle.EncodeMD5(nl.getElementsByTagName("password").item(0).getTextContent());
+
         return str;
+    }
+
+    public String[] getHostInfo() {
+        String[] info = new String[2];
+        info[0] = doc.getElementsByTagName("host").item(1).getTextContent();
+        info[2] = doc.getElementsByTagName("host").item(2).getTextContent();
+        return info;
     }
 
     public static ConfigurationLoader getInstance() {
