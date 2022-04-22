@@ -10,9 +10,22 @@ import com.view.frame.LoginFrame;
  *
  * @author kunbo
  */
-public class RunApp {
+public class RunApp extends Thread {
 
-    private static void configSystem() {
+    private static final RunApp _instance = new RunApp();
+    private LoginFrame mainFrame;
+
+    private RunApp() {
+        configSystem();
+    }
+
+    @Override
+    public void run() {
+        mainFrame = new LoginFrame();
+        mainFrame.setVisible(true);
+    }
+
+    private void configSystem() {
         if (System.getProperty("os.name").contains("Windows")) {
             System.setProperty("sun.java2d.uiScale", "1.0");
             System.setProperty("-Dprism.allowhidpi", "false");
@@ -21,8 +34,13 @@ public class RunApp {
     }
 
     public static void main(String[] args) {
-        configSystem();
-        new LoginFrame().setVisible(true);
+        RunApp.getInstance().start();
+    }
+    public void disposeLoginFrame(){
+        mainFrame.dispose();
+    }
 
+    public static RunApp getInstance() {
+        return _instance;
     }
 }

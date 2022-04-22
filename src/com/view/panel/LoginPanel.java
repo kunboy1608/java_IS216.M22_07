@@ -21,6 +21,9 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -31,6 +34,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import com.boot.RunApp;
+import com.view.frame.HomeFrame;
 
 /**
  *
@@ -84,7 +89,23 @@ public class LoginPanel extends JPanel {
 
         txtPassword = new RoundedJPasswordField(300, 50, 10);
         txtPassword.addFocusListener(new PlaceHolder("********", txtPassword));
+        txtPassword.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
 
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    Login();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+
+        });
         lbNotification = new JLabel(" ", JLabel.LEFT);
         lbNotification.setPreferredSize(new Dimension(300, 20));
         lbNotification.setForeground(Color.red);
@@ -174,7 +195,8 @@ public class LoginPanel extends JPanel {
                 && ConnectionHandle.getInstance().getConnection() != null) {
             lbNotification.setText(ERROR_MESSAGE);
         } else {
-            System.out.println("Dang nhap thanh cong");
+            RunApp.getInstance().disposeLoginFrame();
+            new HomeFrame();
         }
     }
 

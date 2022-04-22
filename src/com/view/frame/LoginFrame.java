@@ -32,7 +32,7 @@ public class LoginFrame extends JFrame {
         loadText();
         initComponent();
     }
-
+    
     private static final int HEIGHT = 562;
     private static final int WIDTH = 1000;
     private String TITLE;
