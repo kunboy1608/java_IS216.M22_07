@@ -12,16 +12,16 @@ public class NhaCungCapModel {
     private int MaNCC;
     private String TenNCC;
     private String DiaChi;
-    private String SDT;
+    private String SDTNCC;
 
     public NhaCungCapModel() {
     }
 
-    public NhaCungCapModel(int MaNCC, String TenNCC, String DiaChi, String SDT) {
+    public NhaCungCapModel(int MaNCC, String TenNCC, String DiaChi, String SDTNCC) {
         this.MaNCC = MaNCC;
         this.TenNCC = TenNCC;
         this.DiaChi = DiaChi;
-        this.SDT = SDT;
+        this.SDTNCC = SDTNCC;
     }
 
     public int getMaNCC() {
@@ -48,13 +48,15 @@ public class NhaCungCapModel {
         this.DiaChi = DiaChi;
     }
 
-    public String getSDT() {
-        return SDT;
+    public String getSDTNCC() {
+        return SDTNCC;
     }
 
-    public void setSDT(String SDT) {
-        this.SDT = SDT;
+    public void setSDTNCC(String SDTNCC) {
+        this.SDTNCC = SDTNCC;
     }
+
+   
     
     
 }

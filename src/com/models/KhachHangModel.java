@@ -10,31 +10,27 @@ package com.models;
  */
 public class KhachHangModel {
 
-    private int MaKH;
+    private String SDT;
     private String TenKH;
     private Boolean GioiTinh;
-    private String SDT;
     private int TongDiem;
 
     public KhachHangModel() {
     }
 
-    
-
-    public KhachHangModel(int MaKH, String TenKH, Boolean GioiTinh, String SDT, int TongDiem) {
-        this.MaKH = MaKH;
+    public KhachHangModel(String SDT, String TenKH, Boolean GioiTinh, int TongDiem) {
+        this.SDT = SDT;
         this.TenKH = TenKH;
         this.GioiTinh = GioiTinh;
-        this.SDT = SDT;
         this.TongDiem = TongDiem;
     }
 
-    public int getMaKH() {
-        return MaKH;
+    public String getSDT() {
+        return SDT;
     }
 
-    public void setMaKH(int MaKH) {
-        this.MaKH = MaKH;
+    public void setSDT(String SDT) {
+        this.SDT = SDT;
     }
 
     public String getTenKH() {
@@ -53,14 +49,6 @@ public class KhachHangModel {
         this.GioiTinh = GioiTinh;
     }
 
-    public String getSDT() {
-        return SDT;
-    }
-
-    public void setSDT(String SDT) {
-        this.SDT = SDT;
-    }
-
     public int getTongDiem() {
         return TongDiem;
     }
@@ -69,7 +57,4 @@ public class KhachHangModel {
         this.TongDiem = TongDiem;
     }
 
- 
-    
-    
 }
