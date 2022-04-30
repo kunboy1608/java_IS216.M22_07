@@ -6,7 +6,6 @@ package com.controller;
 
 import com.handle.ConnectionHandle;
 import com.models.ChiNhanhModel;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -45,7 +44,7 @@ public class ChiNhanhController {
         try {
 
             // Cau truy van SQL
-            String sql = "update ChiNhanh set TenNL=?, Ghichu=?";
+            String sql = "update ChiNhanh set TenCN=?, DiaChi=?";
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 

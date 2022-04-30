@@ -77,4 +77,6 @@ public class NhanVienModel {
     public void setCCCD(String CCCD) {
         this.CCCD = CCCD;
     }
+
+    
 }

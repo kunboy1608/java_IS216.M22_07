@@ -12,6 +12,8 @@ import java.util.Date;
  */
 public class HoaDonNCCModel {
     private int MaHDNCC;
+    private int MaNV;
+    private int MaNCC;
     private Date NgayLap;
     private Date NgayThanhToan;
     private double TongTien;
@@ -21,8 +23,10 @@ public class HoaDonNCCModel {
     public HoaDonNCCModel() {
     }
 
-    public HoaDonNCCModel(int MaHDNCC, Date NgayLap, Date NgayThanhToan, double TongTien, double No, String GhiChu) {
+    public HoaDonNCCModel(int MaHDNCC, int MaNV, int MaNCC, Date NgayLap, Date NgayThanhToan, double TongTien, double No, String GhiChu) {
         this.MaHDNCC = MaHDNCC;
+        this.MaNV = MaNV;
+        this.MaNCC = MaNCC;
         this.NgayLap = NgayLap;
         this.NgayThanhToan = NgayThanhToan;
         this.TongTien = TongTien;
@@ -36,6 +40,22 @@ public class HoaDonNCCModel {
 
     public void setMaHDNCC(int MaHDNCC) {
         this.MaHDNCC = MaHDNCC;
+    }
+
+    public int getMaNV() {
+        return MaNV;
+    }
+
+    public void setMaNV(int MaNV) {
+        this.MaNV = MaNV;
+    }
+
+    public int getMaNCC() {
+        return MaNCC;
+    }
+
+    public void setMaNCC(int MaNCC) {
+        this.MaNCC = MaNCC;
     }
 
     public Date getNgayLap() {

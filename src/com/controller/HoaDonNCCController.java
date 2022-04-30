@@ -48,7 +48,7 @@ public class HoaDonNCCController {
         try {
 
             // Cau truy van SQL
-            String sql = "update HoaDonNCC set TenNL=?, Ghichu=?";
+            String sql = "update HoaDonNCC set NgayLap =?, NgayThanhToan =?, TongTien =?, No =?, GhiChu =?";
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 

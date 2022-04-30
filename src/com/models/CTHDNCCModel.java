@@ -11,15 +11,17 @@ package com.models;
 public class CTHDNCCModel {
     private int MANL;
     private int MaHDNCC;
-    private double Tong;
+    private int SoLuong;
+    private double Gia;
 
     public CTHDNCCModel() {
     }
 
-    public CTHDNCCModel(int MANL, int MaHDNCC, double Tong) {
+    public CTHDNCCModel(int MANL, int MaHDNCC, int SoLuong, double Gia) {
         this.MANL = MANL;
         this.MaHDNCC = MaHDNCC;
-        this.Tong = Tong;
+        this.SoLuong = SoLuong;
+        this.Gia = Gia;
     }
 
     public int getMANL() {
@@ -38,12 +40,22 @@ public class CTHDNCCModel {
         this.MaHDNCC = MaHDNCC;
     }
 
-    public double getTong() {
-        return Tong;
+    public int getSoLuong() {
+        return SoLuong;
     }
 
-    public void setTong(double Tong) {
-        this.Tong = Tong;
+    public void setSoLuong(int SoLuong) {
+        this.SoLuong = SoLuong;
     }
+
+    public double getGia() {
+        return Gia;
+    }
+
+    public void setGia(double Tong) {
+        this.Gia = Tong;
+    }
+
+    
     
 }
