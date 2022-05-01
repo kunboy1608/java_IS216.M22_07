@@ -13,16 +13,22 @@ import java.util.Date;
  */
 public class HoaDonKhachHangModel {
     private int MaGiamGia;
+    private String SDTKH;
+    private int MaNV;
     private Date NgayLap;
     private double TongTien;
+    private int MaHD;
 
     public HoaDonKhachHangModel() {
     }
 
-    public HoaDonKhachHangModel(int MaGiamGia, Date NgayLap, double TongTien) {
+    public HoaDonKhachHangModel(int MaGiamGia, String SDTKH, int MaNV, Date NgayLap, double TongTien, int MaHD) {
         this.MaGiamGia = MaGiamGia;
+        this.SDTKH = SDTKH;
+        this.MaNV = MaNV;
         this.NgayLap = NgayLap;
         this.TongTien = TongTien;
+        this.MaHD = MaHD;
     }
 
     public int getMaGiamGia() {
@@ -31,6 +37,22 @@ public class HoaDonKhachHangModel {
 
     public void setMaGiamGia(int MaGiamGia) {
         this.MaGiamGia = MaGiamGia;
+    }
+
+    public String getSDTKH() {
+        return SDTKH;
+    }
+
+    public void setSDTKH(String SDTKH) {
+        this.SDTKH = SDTKH;
+    }
+
+    public int getMaNV() {
+        return MaNV;
+    }
+
+    public void setMaNV(int MaNV) {
+        this.MaNV = MaNV;
     }
 
     public Date getNgayLap() {
@@ -49,5 +71,13 @@ public class HoaDonKhachHangModel {
         this.TongTien = TongTien;
     }
 
-   
+    public int getMaHD() {
+        return MaHD;
+    }
+
+    public void setMaHD(int MaHD) {
+        this.MaHD = MaHD;
+    }
+
+
 }

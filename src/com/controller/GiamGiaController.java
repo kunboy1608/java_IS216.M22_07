@@ -5,7 +5,8 @@
 package com.controller;
 
 import com.handle.ConnectionHandle;
-import com.models.KhachHangModel;
+import com.models.GiamGiaModel;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -15,21 +16,22 @@ import java.util.logging.Logger;
  *
  * @author kunbo
  */
-public class KhachHangController {
+public class GiamGiaController {
 
-    public boolean ThemKhachHang(KhachHangModel k) {
+    public boolean ThemGiamGia(GiamGiaModel k) {
         try {
 
             // Cau truy van SQL
-            String sql = "Insert into KhachHang values(?,?,?)";
+            String sql = "Insert into GiamGia values(?,?,?,?)";
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             // Gan bien vao cac dau  ?
-            ps.setString(1, k.getTenKH());
-            ps.setBoolean(2, k.getGioiTinh());
-            ps.setInt(3, k.getTongDiem());
+            ps.setInt(1, k.getGiaTri());
+            ps.setDouble(2, k.getToiDa());
+            ps.setDate(3, (Date) k.getNgayBatDau());
+            ps.setDate(4, (Date) k.getNgayKetThuc());
 
             // Kiem tra xem thuc hien co thanh cong hay khong
             if (ps.executeUpdate() != 1) {
@@ -37,44 +39,45 @@ public class KhachHangController {
             }
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(KhachHangController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GiamGiaController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
 
-    public boolean SuaKhachHang(int id, KhachHangModel k) {
+    public boolean SuaGiamGia(int id, GiamGiaModel k) {
         try {
 
             // Cau truy van SQL
-            String sql = "update KhachHang set TenKH=?, GioiTinh=?, TongDiem=?";
+            String sql = "update GiamGia set GiaTri=?, ToiDa=?, NgayBatDau=?, NgayKetThuc=?";
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             // Gan bien vao cac dau  ?
-            ps.setString(1, k.getTenKH());
-            ps.setBoolean(2, k.getGioiTinh());
-            ps.setInt(3, k.getTongDiem());
-
+            ps.setInt(1, k.getGiaTri());
+            ps.setDouble(2, k.getToiDa());
+            ps.setDate(3, (Date) k.getNgayBatDau());
+            ps.setDate(4, (Date) k.getNgayKetThuc());
             // Kiem tra xem thuc hien co thanh cong hay khong
             if (ps.executeUpdate() != 1) {
                 return false;
             }
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(KhachHangController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GiamGiaController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
- public boolean XoaKhachHang(String SDTKH) {
+ public boolean XoaGiamGia(int id) {
         try {
 
             // Cau truy van SQL
-            String sql = "delete from KhachHang where SDT = " + SDTKH ;
+            String sql = "delete from GiamGia where MaGiamGia = ";
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             
+            ps.setString(id,sql);
             if (ps.executeUpdate() != 1) {
                 return false;
             }

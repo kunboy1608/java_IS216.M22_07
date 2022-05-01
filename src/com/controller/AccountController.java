@@ -21,16 +21,15 @@ public class AccountController {
         try {
 
             // Cau truy van SQL
-            String sql = "Insert into Account values(?,?)";
+            String sql = "Insert into Account values(?,?,?)";
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             // Gan bien vao cac dau  ?
-            ps.setString(1, k.getUserName());
-            
-            ps.setString(3, k.getPassword());
-       
+            ps.setString(1, k.getPassword());
+            ps.setBoolean(2, k.getIsLocked());
+            ps.setByte(3, (byte) k.getType());
 
             // Kiem tra xem thuc hien co thanh cong hay khong
             if (ps.executeUpdate() != 1) {
@@ -43,18 +42,18 @@ public class AccountController {
         return false;
     }
 
-    public boolean SuaAccount(int id, AccountModel acc) {
+    public boolean SuaAccount(int id, AccountModel k) {
         try {
 
             // Cau truy van SQL
-            String sql = "update Account set username=?, password=?";
+            String sql = "update Account set password=?, islocked=?, type=?";
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             // Gan bien vao cac dau  ?
-            ps.setString(1, acc.getUserName());
-            ps.setString(2, acc.getPassword());
-         
+            ps.setString(1, k.getPassword());
+            ps.setBoolean(2, k.getIsLocked());
+            ps.setByte(3, (byte) k.getType());
 
             // Kiem tra xem thuc hien co thanh cong hay khong
             if (ps.executeUpdate() != 1) {
@@ -77,7 +76,7 @@ public class AccountController {
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             
-
+           
             if (ps.executeUpdate() != 1) {
                 return false;
             }

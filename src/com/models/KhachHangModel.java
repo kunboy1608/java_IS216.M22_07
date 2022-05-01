@@ -10,7 +10,7 @@ package com.models;
  */
 public class KhachHangModel {
 
-    private String SDT;
+    private String SDTKH;
     private String TenKH;
     private Boolean GioiTinh;
     private int TongDiem;
@@ -19,18 +19,18 @@ public class KhachHangModel {
     }
 
     public KhachHangModel(String SDT, String TenKH, Boolean GioiTinh, int TongDiem) {
-        this.SDT = SDT;
+        this.SDTKH = SDT;
         this.TenKH = TenKH;
         this.GioiTinh = GioiTinh;
         this.TongDiem = TongDiem;
     }
 
-    public String getSDT() {
-        return SDT;
+    public String getSDTKH() {
+        return SDTKH;
     }
 
-    public void setSDT(String SDT) {
-        this.SDT = SDT;
+    public void setSDTKH(String SDT) {
+        this.SDTKH = SDT;
     }
 
     public String getTenKH() {
