@@ -35,7 +35,7 @@ public class ConnectionHandle {
                     + "password=" + user[1] + ";"
                     + "encrypt=true;"
                     + "trustServerCertificate=true;"
-                    + "loginTimeout=5;";
+                    + "loginTimeout=5;";           
             con = DriverManager.getConnection(connectionUrl);
         } catch (Exception e) {
             e.printStackTrace();

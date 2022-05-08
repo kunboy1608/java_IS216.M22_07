@@ -16,6 +16,20 @@ import java.util.logging.Logger;
  * @author DO THAO QUYEN
  */
 public class ChiNhanhController {
+
+    private static ChiNhanhController _instance;
+
+    public static synchronized ChiNhanhController getInstance() {
+        if (_instance == null) {
+            _instance = new ChiNhanhController();
+        }
+        return _instance;
+    }
+
+    private ChiNhanhController() {
+
+    }
+
     public boolean ThemChiNhanh(ChiNhanhModel cn) {
         try {
 
