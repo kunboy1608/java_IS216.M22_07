@@ -18,6 +18,19 @@ import java.util.logging.Logger;
  */
 public class NhanVienController {
 
+    private static NhanVienController _instance;
+
+    public static synchronized NhanVienController getInstance() {
+        if (_instance == null) {
+            _instance = new NhanVienController();
+        }
+        return _instance;
+    }
+
+    private NhanVienController() {
+
+    }
+
     public boolean ThemNhanVien(NhanVienModel nv) {
         try {
 

@@ -5,8 +5,8 @@
 package com.controller;
 
 import com.handle.ConnectionHandle;
+import com.handle.ImageHandle;
 import com.models.DoUongModel;
-import java.awt.Image;
 import java.io.ByteArrayInputStream;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -19,8 +19,17 @@ import java.util.logging.Logger;
  */
 public class DoUongController {
 
-    private static byte[] toByteArray(Image hinhAnh, String jpg) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private static DoUongController _instance;
+
+    public static synchronized DoUongController getInstance() {
+        if (_instance == null) {
+            _instance = new DoUongController();
+        }
+        return _instance;
+    }
+
+    private DoUongController() {
+
     }
 
     public boolean ThemDoUong(DoUongModel dr) {
@@ -38,12 +47,12 @@ public class DoUongController {
             ps.setString(4, dr.getGhiChu());
 
             if (dr.getHinhAnh() != null) {
-                byte[] b = DoUongController.toByteArray(dr.getHinhAnh(), "jpg");
+                byte[] b = ImageHandle.getInstance().toByteArray(dr.getHinhAnh(), "jpg");
                 ps.setBinaryStream(3, new ByteArrayInputStream(b), b.length);
             } else {
                 ps.setBinaryStream(3, null);
             }
-            
+
             // Kiem tra xem thuc hien co thanh cong hay khong
             if (ps.executeUpdate() != 1) {
                 return false;
@@ -69,12 +78,12 @@ public class DoUongController {
             ps.setString(4, dr.getGhiChu());
 
             if (dr.getHinhAnh() != null) {
-                byte[] b = DoUongController.toByteArray(dr.getHinhAnh(), "jpg");
+                byte[] b = ImageHandle.getInstance().toByteArray(dr.getHinhAnh(), "jpg");
                 ps.setBinaryStream(3, new ByteArrayInputStream(b), b.length);
             } else {
                 ps.setBinaryStream(3, null);
             }
-            
+
             // Kiem tra xem thuc hien co thanh cong hay khong
             if (ps.executeUpdate() != 1) {
                 return false;
@@ -85,7 +94,8 @@ public class DoUongController {
         }
         return false;
     }
- public boolean XoaDoUong(int id) {
+
+    public boolean XoaDoUong(int id) {
         try {
 
             // Cau truy van SQL
@@ -94,8 +104,7 @@ public class DoUongController {
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
-            
-            ps.setString(id,sql);
+            ps.setString(id, sql);
             if (ps.executeUpdate() != 1) {
                 return false;
             }

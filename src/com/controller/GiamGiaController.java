@@ -18,6 +18,19 @@ import java.util.logging.Logger;
  */
 public class GiamGiaController {
 
+    private static GiamGiaController _instance;
+
+    public static synchronized GiamGiaController getInstance() {
+        if (_instance == null) {
+            _instance = new GiamGiaController();
+        }
+        return _instance;
+    }
+
+    private GiamGiaController() {
+
+    }
+
     public boolean ThemGiamGia(GiamGiaModel k) {
         try {
 
@@ -67,7 +80,8 @@ public class GiamGiaController {
         }
         return false;
     }
- public boolean XoaGiamGia(int id) {
+
+    public boolean XoaGiamGia(int id) {
         try {
 
             // Cau truy van SQL
@@ -76,8 +90,7 @@ public class GiamGiaController {
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
-            
-            ps.setString(id,sql);
+            ps.setString(id, sql);
             if (ps.executeUpdate() != 1) {
                 return false;
             }

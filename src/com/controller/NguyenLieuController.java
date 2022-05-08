@@ -16,6 +16,20 @@ import java.util.logging.Logger;
  * @author DO THAO QUYEN
  */
 public class NguyenLieuController {
+
+    private static NguyenLieuController _instance;
+
+    public static synchronized NguyenLieuController getInstance() {
+        if (_instance == null) {
+            _instance = new NguyenLieuController();
+        }
+        return _instance;
+    }
+
+    private NguyenLieuController() {
+
+    }
+
     public boolean ThemNguyenLieu(NguyenLieuModel nl) {
         try {
 

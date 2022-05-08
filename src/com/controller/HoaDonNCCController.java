@@ -17,6 +17,20 @@ import java.util.logging.Logger;
  * @author DO THAO QUYEN
  */
 public class HoaDonNCCController {
+
+    private static HoaDonNCCController _instance;
+
+    public static synchronized HoaDonNCCController getInstance() {
+        if (_instance == null) {
+            _instance = new HoaDonNCCController();
+        }
+        return _instance;
+    }
+
+    private HoaDonNCCController() {
+
+    }
+
     public boolean ThemHoaDonNCC(HoaDonNCCModel hd) {
         try {
 

@@ -17,6 +17,19 @@ import java.util.logging.Logger;
  */
 public class CTHDNCCController {
 
+    private static CTHDNCCController _instance;
+
+    public static synchronized CTHDNCCController getInstance() {
+        if (_instance == null) {
+            _instance = new CTHDNCCController();
+        }
+        return _instance;
+    }
+
+    private CTHDNCCController() {
+
+    }
+
     public boolean ThemCTHDNCC(CTHDNCCModel cthd) {
         try {
 

@@ -17,6 +17,19 @@ import java.sql.SQLException;
  */
 public class NhaCungCapController {
 
+    private static NhaCungCapController _instance;
+
+    public static synchronized NhaCungCapController getInstance() {
+        if (_instance == null) {
+            _instance = new NhaCungCapController();
+        }
+        return _instance;
+    }
+
+    private NhaCungCapController() {
+
+    }
+
     public boolean ThemNhaCungCap(NhaCungCapModel ncc) {
         try {
             // Cau truy van SQL
