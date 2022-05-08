@@ -17,6 +17,19 @@ import java.util.logging.Logger;
  */
 public class KhachHangController {
 
+    private static KhachHangController _instance;
+
+    public static synchronized KhachHangController getInstance() {
+        if (_instance == null) {
+            _instance = new KhachHangController();
+        }
+        return _instance;
+    }
+
+    private KhachHangController() {
+
+    }
+
     public boolean ThemKhachHang(KhachHangModel k) {
         try {
 
@@ -65,16 +78,16 @@ public class KhachHangController {
         }
         return false;
     }
- public boolean XoaKhachHang(String SDTKH) {
+
+    public boolean XoaKhachHang(String SDTKH) {
         try {
 
             // Cau truy van SQL
-            String sql = "delete from KhachHang where SDT = " + SDTKH ;
+            String sql = "delete from KhachHang where SDT = " + SDTKH;
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
-            
             if (ps.executeUpdate() != 1) {
                 return false;
             }

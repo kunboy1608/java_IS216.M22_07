@@ -17,6 +17,19 @@ import java.util.logging.Logger;
  */
 public class AccountController {
 
+    private static AccountController _instance;
+
+    public static AccountController getInstance() {
+        if (_instance == null) {
+            _instance = new AccountController();
+        }
+        return _instance;
+    }
+
+    private AccountController() {
+
+    }
+
     public boolean ThemAccount(AccountModel k) {
         try {
 
@@ -70,13 +83,11 @@ public class AccountController {
         try {
 
             // Cau truy van SQL
-            String sql = "delete from Account where username = "+ Username;
+            String sql = "delete from Account where username = " + Username;
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
-            
-           
             if (ps.executeUpdate() != 1) {
                 return false;
             }
@@ -85,5 +96,5 @@ public class AccountController {
         }
         return true;
     }
-    
+
 }

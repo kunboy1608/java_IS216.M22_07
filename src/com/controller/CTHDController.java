@@ -17,6 +17,19 @@ import java.util.logging.Logger;
  */
 public class CTHDController {
 
+    private static CTHDController _instance;
+
+    public static synchronized CTHDController getInstance() {
+        if (_instance == null) {
+            _instance = new CTHDController();
+        }
+        return _instance;
+    }
+
+    private CTHDController() {
+
+    }
+
     public boolean ThemCTHD(CTHDModel k) {
         try {
 
@@ -62,7 +75,8 @@ public class CTHDController {
         }
         return false;
     }
- public boolean XoaCTHD(int id) {
+
+    public boolean XoaCTHD(int id) {
         try {
 
             // Cau truy van SQL
@@ -71,8 +85,7 @@ public class CTHDController {
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
-            
-            ps.setString(id,sql);
+            ps.setString(id, sql);
             if (ps.executeUpdate() != 1) {
                 return false;
             }

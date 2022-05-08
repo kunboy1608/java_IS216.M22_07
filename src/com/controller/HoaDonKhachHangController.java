@@ -18,6 +18,19 @@ import java.util.logging.Logger;
  */
 public class HoaDonKhachHangController {
 
+    private static HoaDonKhachHangController _instance;
+
+    public static synchronized HoaDonKhachHangController getInstance() {
+        if (_instance == null) {
+            _instance = new HoaDonKhachHangController();
+        }
+        return _instance;
+    }
+
+    private HoaDonKhachHangController() {
+
+    }
+
     public boolean ThemHoaDonKhachHang(HoaDonKhachHangModel k) {
         try {
 
@@ -28,7 +41,7 @@ public class HoaDonKhachHangController {
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             // Gan bien vao cac dau  ?
-            ps.setInt(1,k.getMaNV());
+            ps.setInt(1, k.getMaNV());
             ps.setDate(2, (Date) k.getNgayLap());
             ps.setDouble(3, k.getTongTien());
 
@@ -52,7 +65,7 @@ public class HoaDonKhachHangController {
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             // Gan bien vao cac dau  ?
-            ps.setInt(1,k.getMaNV());
+            ps.setInt(1, k.getMaNV());
             ps.setDate(2, (Date) k.getNgayLap());
             ps.setDouble(3, k.getTongTien());
 
@@ -66,7 +79,8 @@ public class HoaDonKhachHangController {
         }
         return false;
     }
- public boolean XoaHoaDonKhachHang(int id) {
+
+    public boolean XoaHoaDonKhachHang(int id) {
         try {
 
             // Cau truy van SQL
@@ -75,8 +89,7 @@ public class HoaDonKhachHangController {
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
-            
-            ps.setString(id,sql);
+            ps.setString(id, sql);
             if (ps.executeUpdate() != 1) {
                 return false;
             }
@@ -87,4 +100,3 @@ public class HoaDonKhachHangController {
     }
 
 }
-
