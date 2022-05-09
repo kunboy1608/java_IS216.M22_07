@@ -19,7 +19,7 @@ public class AccountController {
 
     private static AccountController _instance;
 
-    public static AccountController getInstance() {
+    public static synchronized AccountController getInstance() {
         if (_instance == null) {
             _instance = new AccountController();
         }
