@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -29,6 +30,11 @@ public class ImageHandle {
 
     public static ImageHandle getInstance() {
         return _instance;
+    }
+
+    public ImageIcon resize(ImageIcon originalImage, int targetWidth, int targetHeight) {
+        ImageIcon resultingImage = new ImageIcon(originalImage.getImage().getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH));
+        return resultingImage;
     }
 
     public Image resize(Image originalImage, int targetWidth, int targetHeight) {
@@ -89,10 +95,23 @@ public class ImageHandle {
 
     public Image readImage(String URL) {
         try {
-            File f = new File(URL);
-            Image img = ImageIO.read(f);
-            return img;
+            BufferedImage bi = ImageIO.read(getClass().getResourceAsStream(URL));
+            return resize(
+                    bi,
+                    bi.getWidth(),
+                    bi.getHeight()
+            );
         } catch (IOException | java.lang.NullPointerException e) {
+            System.out.println("Không timg thấy ảnh");
+            return null;
+        }
+    }
+
+    public ImageIcon readImageIcon(String URL) {
+        try {
+            return new ImageIcon(readImage(URL));
+
+        } catch (java.lang.NullPointerException e) {
             System.out.println("Không timg thấy ảnh");
             return null;
         }

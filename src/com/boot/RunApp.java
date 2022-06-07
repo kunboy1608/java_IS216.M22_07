@@ -10,19 +10,11 @@ import com.view.frame.LoginFrame;
  *
  * @author kunbo
  */
-public class RunApp extends Thread {
-
-    private static final RunApp _instance = new RunApp();
-    private LoginFrame mainFrame;
+public class RunApp {
 
     private RunApp() {
         configSystem();
-    }
-
-    @Override
-    public void run() {
-        mainFrame = new LoginFrame();
-        mainFrame.setVisible(true);
+        new LoginFrame().setVisible(true);        
     }
 
     private void configSystem() {
@@ -34,13 +26,6 @@ public class RunApp extends Thread {
     }
 
     public static void main(String[] args) {
-        RunApp.getInstance().start();
-    }
-    public void disposeLoginFrame(){
-        mainFrame.dispose();
-    }
-
-    public static RunApp getInstance() {
-        return _instance;
+        new RunApp();
     }
 }

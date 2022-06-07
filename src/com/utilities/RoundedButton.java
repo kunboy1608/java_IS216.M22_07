@@ -36,14 +36,12 @@ public class RoundedButton extends JLabel {
         setOpaque(false);
 
         setHorizontalAlignment(CENTER);
-        
+
         tranfColor = new Color(1f, 1f, 1f, 0.5f);
 
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                currentColor = defaultColor;
-                paintComponent(getGraphics());
             }
 
             @Override
@@ -54,7 +52,8 @@ public class RoundedButton extends JLabel {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-
+                currentColor = defaultColor;
+                paintComponent(getGraphics());
             }
 
             @Override
