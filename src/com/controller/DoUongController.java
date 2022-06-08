@@ -6,10 +6,15 @@ package com.controller;
 
 import com.handle.ConnectionHandle;
 import com.handle.ImageHandle;
+import com.models.CTHDNCCModel;
+import com.models.DataContext;
 import com.models.DoUongModel;
 import java.io.ByteArrayInputStream;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -113,5 +118,30 @@ public class DoUongController {
         }
         return true;
     }
+public void LayDuLieu() {
+        try {
+            String sql = "Select *  FROM DoUong";
 
+            Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            LinkedList<DoUongModel> list = new LinkedList<>();
+            DoUongModel kh;
+            while (rs.next()) {
+                kh = new DoUongModel();
+                kh.setMaDU(rs.getInt(1));
+                kh.setTenDU(rs.getString(2));
+                kh.setGia(rs.getDouble(3));
+                
+                
+                
+
+                kh.setGhiChu(rs.getString(5));
+                list.add(kh);
+            }
+            DataContext.getInstance().setDoUongs(list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

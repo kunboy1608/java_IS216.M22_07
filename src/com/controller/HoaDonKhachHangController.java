@@ -5,10 +5,15 @@
 package com.controller;
 
 import com.handle.ConnectionHandle;
+import com.models.CTHDModel;
+import com.models.DataContext;
 import com.models.HoaDonKhachHangModel;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -98,5 +103,27 @@ public class HoaDonKhachHangController {
         }
         return true;
     }
+public void LayDuLieu() {
+        try {
+            String sql = "Select *  FROM HoaDonKhachHang";
 
+            Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            LinkedList<HoaDonKhachHangModel> list = new LinkedList<>();
+            HoaDonKhachHangModel kh;
+            while (rs.next()) {
+                kh = new HoaDonKhachHangModel();
+                kh.setMaGiamGia(rs.getInt(1));
+                kh.setSDTKH(rs.getString(2));
+                kh.setMaHD(rs.getInt(3));
+                kh.setMaNV(rs.getInt(4));
+                kh.setNgayLap(rs.getDate(5));
+                kh.setTongTien(rs.getDouble(6));
+                list.add(kh);
+            }
+            DataContext.getInstance().setHoaDonKhachHangs(list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+}
 }

@@ -5,10 +5,15 @@
 package com.controller;
 
 import com.handle.ConnectionHandle;
+import com.models.DataContext;
 import com.models.GiamGiaModel;
+import com.models.HoaDonKhachHangModel;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -99,5 +104,26 @@ public class GiamGiaController {
         }
         return true;
     }
+public void LayDuLieu() {
+        try {
+            String sql = "Select *  FROM GiamGia";
 
+            Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            LinkedList<GiamGiaModel> list = new LinkedList<>();
+            GiamGiaModel kh;
+            while (rs.next()) {
+                kh = new GiamGiaModel();
+                kh.setMaGiamGia(rs.getInt(1));
+                kh.setGiaTri(rs.getInt(2));
+                kh.setToiDa(rs.getDouble(3));
+                kh.setNgayBatDau(rs.getDate(4));
+                kh.setNgayKetThuc(rs.getDate(5));
+                list.add(kh);
+            }
+            DataContext.getInstance().setGiamGias(list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+}
 }

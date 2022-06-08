@@ -6,8 +6,13 @@ package com.controller;
 
 import com.handle.ConnectionHandle;
 import com.models.AccountModel;
+import com.models.DataContext;
+import com.models.HoaDonKhachHangModel;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -96,5 +101,25 @@ public class AccountController {
         }
         return true;
     }
+public void LayDuLieu() {
+        try {
+            String sql = "Select *  FROM Account";
 
+            Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            LinkedList<AccountModel> list = new LinkedList<>();
+            AccountModel kh;
+            while (rs.next()) {
+                kh = new AccountModel();
+                kh.setUserName(rs.getString(1));
+                kh.setPassword(rs.getString(2));
+                kh.setIsLocked(rs.getBoolean(3));
+                kh.setType(rs.getByte(4));
+                list.add(kh);
+            }
+            DataContext.getInstance().setAccounts(list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+}
 }

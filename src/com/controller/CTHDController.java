@@ -6,8 +6,13 @@ package com.controller;
 
 import com.handle.ConnectionHandle;
 import com.models.CTHDModel;
+import com.models.CTHDNCCModel;
+import com.models.DataContext;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -94,5 +99,26 @@ public class CTHDController {
         }
         return true;
     }
+public void LayDuLieu() {
+        try {
+            String sql = "Select *  FROM CTHD";
 
+            Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            LinkedList<CTHDModel> list = new LinkedList<>();
+            CTHDModel kh;
+            while (rs.next()) {
+                kh = new CTHDModel();
+                kh.setMaHD(rs.getInt(1));
+                kh.setMADU(rs.getInt(2));
+                kh.setSoLuong(rs.getInt(3));
+                kh.setGia(rs.getInt(4));
+                list.add(kh);
+            }
+            DataContext.getInstance().setCTHDs(list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
