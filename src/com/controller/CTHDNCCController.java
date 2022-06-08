@@ -5,9 +5,15 @@
 package com.controller;
 
 import com.handle.ConnectionHandle;
+import com.models.CTHDModel;
 import com.models.CTHDNCCModel;
+import com.models.DataContext;
+import com.models.KhachHangModel;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -92,5 +98,28 @@ public class CTHDNCCController {
             return false;
         }
         return false;
+    }
+    
+    public void LayDuLieu() {
+        try {
+            String sql = "Select *  FROM CTHDNCC";
+
+            Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            LinkedList<CTHDNCCModel> list = new LinkedList<>();
+            CTHDNCCModel kh;
+            while (rs.next()) {
+                kh = new CTHDNCCModel();
+                kh.setMANL(rs.getInt(1));
+                kh.setMaHDNCC(rs.getInt(2));
+                kh.setSoLuong(rs.getInt(3));
+                kh.setGia(rs.getInt(4));
+                list.add(kh);
+            }
+            DataContext.getInstance().setCTHDNCCs(list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }

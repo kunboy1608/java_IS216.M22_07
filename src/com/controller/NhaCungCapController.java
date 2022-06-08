@@ -5,11 +5,16 @@
 package com.controller;
 
 import com.handle.ConnectionHandle;
+import com.models.DataContext;
+import com.models.KhachHangModel;
 import com.models.NhaCungCapModel;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
 
 /**
  *
@@ -93,5 +98,28 @@ public class NhaCungCapController {
             return false;
         }
         return false;
+    }
+    
+    public void LayDuLieu() {
+        try {
+            String sql = "Select *  FROM NHACUNGCAP";
+
+            Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            LinkedList<NhaCungCapModel> list = new LinkedList<>();
+            NhaCungCapModel kh;
+            while (rs.next()) {
+                kh = new NhaCungCapModel();
+                kh.setMaNCC(rs.getInt(1));
+                kh.setTenNCC(rs.getString(2));
+                kh.setDiaChi(rs.getString(3));
+                kh.setSDTNCC(rs.getString(4));
+                list.add(kh);
+            }
+            DataContext.getInstance().setNhaCungCaps(list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }

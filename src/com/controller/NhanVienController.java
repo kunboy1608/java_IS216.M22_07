@@ -39,16 +39,18 @@ public class NhanVienController {
         try {
 
             // Cau truy van SQL
-            String sql = "Insert into NHANVIEN values(?,?,?,?)";
+            String sql = "Insert into NHANVIEN values(?,?,?,?,?,?)";
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             // Gan bien vao cac dau  ?
-            ps.setString(1, nv.getTenNV());
-            ps.setBoolean(2, nv.isGioiTinh());
-            ps.setDate(3, (Date) nv.getNgayVL());
-            ps.setString(4, nv.getCCCD());
+            ps.setInt(1, layMaNV());
+            ps.setInt(2, nv.getMaCN());
+            ps.setString(3, nv.getTenNV());
+            ps.setInt(4, nv.getGioiTinh());
+            ps.setDate(5, (Date) nv.getNgayVL());
+            ps.setString(6, nv.getCCCD());
 
             // Kiem tra xem thuc hien co thanh cong hay khong
             if (ps.executeUpdate() != 1) {
@@ -65,15 +67,16 @@ public class NhanVienController {
         try {
 
             // Cau truy van SQL
-            String sql = "update NHANVIEN set TenNV=?, GioiTinh=?,NgayVL=?, CMND=?";
+            String sql = "update NHANVIEN set MaCN = ?, TenNV=?, GioiTinh=?,NgayVL=?, CMND=?";
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             // Gan bien vao cac dau  ?
-            ps.setString(1, nv.getTenNV());
-            ps.setBoolean(2, nv.isGioiTinh());
-            ps.setDate(3, (Date) nv.getNgayVL());
-            ps.setString(4, nv.getCCCD());
+            ps.setInt(1, nv.getMaCN());
+            ps.setString(2, nv.getTenNV());
+            ps.setInt(3, nv.getGioiTinh());
+            ps.setDate(4, (Date) nv.getNgayVL());
+            ps.setString(5, nv.getCCCD());
 
             // Kiem tra xem thuc hien co thanh cong hay khong
             if (ps.executeUpdate() != 1) {
@@ -103,6 +106,30 @@ public class NhanVienController {
         return false;
     }
 
+    public void TimNhanVien(int id) {
+        try {
+            String sql = "SELECT * FROM NHANVIEN WHERE MANV=?";
+            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareCall(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery(sql);
+            LinkedList<NhanVienModel> list = new LinkedList<>();
+            NhanVienModel nv;
+            while (rs.next()) {
+                nv = new NhanVienModel();
+                nv.setMaNV(rs.getInt(1));
+                nv.setMaCN(rs.getInt(2));
+                nv.setTenNV(rs.getString(3));
+                nv.setGioiTinh(rs.getInt(4));
+                nv.setNgayVL(rs.getDate(5));
+                nv.setCCCD(rs.getString(6));
+                list.add(nv);
+            }
+            DataContext.getInstance().setNhanViens(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void LayDuLieu() {
         try {
             String sql = "Select *  FROM NHANVIEN";
@@ -116,7 +143,7 @@ public class NhanVienController {
                 nv.setMaNV(rs.getInt(1));
                 nv.setMaCN(rs.getInt(2));
                 nv.setTenNV(rs.getString(3));
-                nv.setGioiTinh(rs.getBoolean(4));
+                nv.setGioiTinh(rs.getInt(4));
                 nv.setNgayVL(rs.getDate(5));
                 nv.setCCCD(rs.getString(6));
                 list.add(nv);
@@ -126,5 +153,39 @@ public class NhanVienController {
             e.printStackTrace();
         }
 
+    }
+
+    public String hienthiTenCN(int maCN) {
+        String tenCN = "";
+        try {
+
+            String sql = "SELECT TENCN FROM CHINHANH WHERE MACN = ?";
+            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareCall(sql);
+            ps.setInt(1, maCN);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                tenCN = rs.getString(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tenCN;
+    }
+
+    public int layMaNV() {
+        int maNV = 0;
+        try {
+            String sql = "SELECT TOP (1) FROM NHANVIEN ORDER BY MaNV DESC";
+            Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            if (rs.next() == false) {
+                maNV = 1;
+            } else {
+                int maHT = rs.getInt("MANV") + 1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return maNV;
     }
 }

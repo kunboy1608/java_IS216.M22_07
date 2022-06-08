@@ -5,9 +5,14 @@
 package com.controller;
 
 import com.handle.ConnectionHandle;
+import com.models.DataContext;
+import com.models.KhachHangModel;
 import com.models.NguyenLieuModel;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -92,5 +97,26 @@ public class NguyenLieuController {
             return false;
         }
         return false;
+    }
+    
+    public void LayDuLieu() {
+        try {
+            String sql = "Select *  FROM NGUYENLIEU";
+
+            Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            LinkedList<NguyenLieuModel> list = new LinkedList<>();
+            NguyenLieuModel kh;
+            while (rs.next()) {
+                kh = new NguyenLieuModel();
+                kh.setMANL(rs.getInt(1));
+                kh.setTenNL(rs.getString(2));
+                kh.setGhiChu(rs.getString(3));
+                list.add(kh);
+            }
+            DataContext.getInstance().setNguyenLieus(list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

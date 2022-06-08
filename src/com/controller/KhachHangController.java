@@ -5,9 +5,14 @@
 package com.controller;
 
 import com.handle.ConnectionHandle;
+import com.models.DataContext;
 import com.models.KhachHangModel;
+import com.models.NhanVienModel;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,7 +46,7 @@ public class KhachHangController {
 
             // Gan bien vao cac dau  ?
             ps.setString(1, k.getTenKH());
-            ps.setBoolean(2, k.getGioiTinh());
+            ps.setInt(2, k.getGioiTinh());
             ps.setInt(3, k.getTongDiem());
 
             // Kiem tra xem thuc hien co thanh cong hay khong
@@ -65,7 +70,7 @@ public class KhachHangController {
 
             // Gan bien vao cac dau  ?
             ps.setString(1, k.getTenKH());
-            ps.setBoolean(2, k.getGioiTinh());
+            ps.setInt(2, k.getGioiTinh());
             ps.setInt(3, k.getTongDiem());
 
             // Kiem tra xem thuc hien co thanh cong hay khong
@@ -97,4 +102,26 @@ public class KhachHangController {
         return true;
     }
 
+    public void LayDuLieu() {
+        try {
+            String sql = "Select *  FROM KHACHHANG";
+
+            Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            LinkedList<KhachHangModel> list = new LinkedList<>();
+            KhachHangModel kh;
+            while (rs.next()) {
+                kh = new KhachHangModel();
+                kh.setSDTKH(rs.getString(1));
+                kh.setTenKH(rs.getString(2));
+                kh.setGioiTinh(rs.getInt(3));
+                kh.setTongDiem(rs.getInt(4));
+                list.add(kh);
+            }
+            DataContext.getInstance().setKhachHangs(list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

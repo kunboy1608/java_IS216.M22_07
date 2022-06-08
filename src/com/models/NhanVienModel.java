@@ -11,17 +11,18 @@ import java.util.Date;
  * @author DO THAO QUYEN
  */
 public class NhanVienModel {
+
     private int MaNV;
     private int MaCN;
     private String TenNV;
-    private boolean GioiTinh;
+    private int GioiTinh;
     private Date NgayVL;
     private String CCCD;
 
     public NhanVienModel() {
     }
 
-    public NhanVienModel(int MaNV, int MaCN, String TenNV, boolean GioiTinh, Date NgayVL, String CCCD) {
+    public NhanVienModel(int MaNV, int MaCN, String TenNV, int GioiTinh, Date NgayVL, String CCCD) {
         this.MaNV = MaNV;
         this.MaCN = MaCN;
         this.TenNV = TenNV;
@@ -54,11 +55,11 @@ public class NhanVienModel {
         this.TenNV = TenNV;
     }
 
-    public boolean isGioiTinh() {
+    public int getGioiTinh() {
         return GioiTinh;
     }
 
-    public void setGioiTinh(boolean GioiTinh) {
+    public void setGioiTinh(int GioiTinh) {
         this.GioiTinh = GioiTinh;
     }
 
@@ -78,5 +79,4 @@ public class NhanVienModel {
         this.CCCD = CCCD;
     }
 
-    
 }

@@ -12,13 +12,13 @@ public class KhachHangModel {
 
     private String SDTKH;
     private String TenKH;
-    private Boolean GioiTinh;
+    private int GioiTinh;
     private int TongDiem;
 
     public KhachHangModel() {
     }
 
-    public KhachHangModel(String SDT, String TenKH, Boolean GioiTinh, int TongDiem) {
+    public KhachHangModel(String SDT, String TenKH, int GioiTinh, int TongDiem) {
         this.SDTKH = SDT;
         this.TenKH = TenKH;
         this.GioiTinh = GioiTinh;
@@ -41,11 +41,11 @@ public class KhachHangModel {
         this.TenKH = TenKH;
     }
 
-    public Boolean getGioiTinh() {
+    public int getGioiTinh() {
         return GioiTinh;
     }
 
-    public void setGioiTinh(Boolean GioiTinh) {
+    public void setGioiTinh(int GioiTinh) {
         this.GioiTinh = GioiTinh;
     }
 

@@ -9,6 +9,7 @@ package com.models;
  * @author DO THAO QUYEN
  */
 public class ChiNhanhModel {
+    //1. UIT 2. Trung tâm 3. Miền Bắc
     private int MaCN;
     private String TenCN;
     private String DiaChi;

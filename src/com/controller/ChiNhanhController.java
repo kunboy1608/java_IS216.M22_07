@@ -6,8 +6,13 @@ package com.controller;
 
 import com.handle.ConnectionHandle;
 import com.models.ChiNhanhModel;
+import com.models.DataContext;
+import com.models.KhachHangModel;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -92,5 +97,27 @@ public class ChiNhanhController {
             return false;
         }
         return false;
+    }
+    
+    public void LayDuLieu() {
+        try {
+            String sql = "Select *  FROM CHINHANH";
+
+            Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            LinkedList<ChiNhanhModel> list = new LinkedList<>();
+            ChiNhanhModel kh;
+            while (rs.next()) {
+                kh = new ChiNhanhModel();
+                kh.setMaCN(rs.getInt(1));
+                kh.setTenCN(rs.getString(2));
+                kh.setDiaChi(rs.getString(3));
+                list.add(kh);
+            }
+            DataContext.getInstance().setChiNhanhs(list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }
