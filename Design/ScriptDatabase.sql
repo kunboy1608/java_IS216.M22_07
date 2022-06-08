@@ -327,11 +327,11 @@ insert into ChiNhanh values('UIT','Khu phố 6, Linh Trung, Thủ Đức, TP.HCM
 insert into ChiNhanh values('Trung tâm','Quận 1, TP.HCM')
 insert into ChiNhanh values('Miền Bắc','Thanh Xuân, Hà Nội')
 go
-insert into NhanVien values('1','01-04-2022','098765432101')
-insert into NhanVien values('2','01-05-2022','098765432102')
-insert into NhanVien values('3','01-06-2022','098765432103')
-insert into NhanVien values('1','01-07-2022','098765432104')
-insert into NhanVien values('2','01-08-2022','098765432105')
+insert into NhanVien values('1','Do Thao Quyen','1','01-04-2022','098765432101')
+insert into NhanVien values('2','Hoang Dinh Phu','1','01-05-2022','098765432102')
+insert into NhanVien values('3','Nguyen Hai Dang','1','01-06-2022','098765432103')
+insert into NhanVien values('1','Jennie','1','01-07-2022','098765432104')
+insert into NhanVien values('2','Rose','1','01-08-2022','098765432105')
 go
 insert into KhachHang values('0602186042','Nguyễn Trường Giang','0','0')
 insert into KhachHang values('0878143236','Võ Như Phước','0','0')
