@@ -4,6 +4,10 @@
  */
 package com.handle;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
@@ -11,9 +15,22 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
@@ -23,7 +40,8 @@ import org.xml.sax.SAXException;
 public class ConfigurationLoader {
 
     private static ConfigurationLoader _instance;
-    private static final String configURL = "/com/config/config.xml";
+    private final String oriConfig = "/com/config/config.xml";
+    private final String urlConfig;
 
     private Document doc;
     private DocumentBuilderFactory dbf;
@@ -31,15 +49,24 @@ public class ConfigurationLoader {
 
     private ConfigurationLoader() {
         this.dbf = DocumentBuilderFactory.newInstance();
+        String userHomeDir = System.getProperty("user.home");
+        userHomeDir += "\\.coffeExpress\\config.xml";
+        urlConfig = userHomeDir;
         try {
             this.docBuilder = dbf.newDocumentBuilder();
-            // Doc File
-            InputStream inputFile = getClass().getResourceAsStream(configURL);
-            doc = docBuilder.parse(inputFile);
+            // Doc File            
+            doc = docBuilder.parse(new File(urlConfig));
             doc.getDocumentElement().normalize();
-
-        } catch (ParserConfigurationException | SAXException | IOException ex) {
+        } catch (ParserConfigurationException | SAXException ex) {
             Logger.getLogger(ConfigurationLoader.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            try {
+                exportFileXML();
+                doc = docBuilder.parse(new File(urlConfig));
+                doc.getDocumentElement().normalize();
+            } catch (SAXException | IOException ex1) {
+                Logger.getLogger(ConfigurationLoader.class.getName()).log(Level.SEVERE, null, ex1);
+            }
         }
     }
 
@@ -101,4 +128,50 @@ public class ConfigurationLoader {
         return _instance;
     }
 
+    public void exportFileXML() {
+        try {
+            File file = new File(urlConfig);
+            file.getParentFile().mkdir();
+            file.createNewFile();
+
+            FileOutputStream outputStream = new FileOutputStream(file, false);
+            int read;
+
+            byte[] bytes = new byte[8192];
+            InputStream inputStream = getClass().getResourceAsStream(oriConfig);
+
+            while ((read = inputStream.read(bytes)) != -1) {
+                outputStream.write(bytes, 0, read);
+            }
+
+            // Giai phong bo nho
+            InputStream.nullInputStream();
+        } catch (IOException ex) {
+            Logger.getLogger(ConfigurationLoader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void changLanguage() {
+        try {
+            var e = (NodeList) doc.getElementsByTagName("language").item(1);
+            if (e.item(0).getTextContent().equals("vi-vn")) {
+                e.item(0).setTextContent("en-us");
+            }else{
+                e.item(0).setTextContent("vi-vn");
+            }
+            
+            DOMSource source = new DOMSource(doc);
+            FileWriter writer = new FileWriter(new File(urlConfig));
+            StreamResult result = new StreamResult(writer);
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.transform(source, result);
+            
+        } catch (TransformerException ex) {
+            Logger.getLogger(ConfigurationLoader.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ConfigurationLoader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

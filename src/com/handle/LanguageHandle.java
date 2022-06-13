@@ -18,7 +18,7 @@ import org.w3c.dom.Node;
  *
  * @author kunbo
  */
-public class LanguageHandle {
+public final class LanguageHandle {
 
     private static final LanguageHandle _instance = new LanguageHandle();
     private Document doc;
@@ -32,17 +32,7 @@ public class LanguageHandle {
     }
 
     public void ChangeLanguage() {
-        try {
-            XPath xPath = XPathFactory.newInstance().newXPath();
-            Node startDateNode = (Node) xPath.compile("/data/startdate").evaluate(doc, XPathConstants.NODE);
-            startDateNode.setTextContent("29/07/2015");
-            
-            xPath = XPathFactory.newInstance().newXPath();
-            Node endDateNode = (Node) xPath.compile("/data/enddate").evaluate(doc, XPathConstants.NODE);
-            endDateNode.setTextContent("29/07/2015");
-        } catch (XPathExpressionException ex) {
-            Logger.getLogger(LanguageHandle.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ConfigurationLoader.getInstance().changLanguage();
     }
 
     public String getValue(String tag, String id) {
@@ -58,5 +48,4 @@ public class LanguageHandle {
     public static LanguageHandle getInstance() {
         return _instance;
     }
-
 }
