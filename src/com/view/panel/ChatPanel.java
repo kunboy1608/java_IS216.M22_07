@@ -4,6 +4,7 @@
  */
 package com.view.panel;
 
+import com.handle.NetHandle;
 import com.utilities.CommonFont;
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -12,6 +13,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.print.PrinterException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JPanel;
@@ -77,10 +81,10 @@ public class ChatPanel extends JPanel {
         btnSend.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                sendMessage();                
+                sendMessage();
             }
         });
-        btnSend.setPreferredSize(new Dimension(30, 30));        
+        btnSend.setPreferredSize(new Dimension(30, 30));
         c.add(btnSend, BorderLayout.LINE_END);
 
         this.add(c, BorderLayout.PAGE_END);
@@ -98,12 +102,14 @@ public class ChatPanel extends JPanel {
         }
         Contents += "<div class=\"me\">" + txtChat.getText().trim() + "</div>";
         Messages.setText(Contents);
+        NetHandle.getInstance().sendData(txtChat.getText().trim(), id);
         txtChat.setText("");
     }
 
-    public ChatPanel() {
+    public ChatPanel(String name) {
         loadText();
         initComponents();
+        this.id = name;
     }
 
     // Components

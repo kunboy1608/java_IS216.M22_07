@@ -14,5 +14,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <Login id="LOGIN">Login</Login>
         <Login id="CHANGE_LANGUAGE">Khởi động lại để đổi ngôn ngữ</Login>        
     </Login>
+    <Menu>
+        <Menu id="TITLE">Drinks</Menu>
+        <Menu id="TABLE">Table</Menu>
+    </Menu>
 </language>
 

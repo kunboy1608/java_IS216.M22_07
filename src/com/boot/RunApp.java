@@ -4,6 +4,7 @@
  */
 package com.boot;
 
+import com.handle.NetHandle;
 import com.view.frame.LoginFrame;
 
 /**
@@ -14,7 +15,8 @@ public class RunApp {
 
     private RunApp() {
         configSystem();
-        new LoginFrame().setVisible(true);        
+        NetHandle.getInstance();
+        new LoginFrame().setVisible(true);
     }
 
     private void configSystem() {

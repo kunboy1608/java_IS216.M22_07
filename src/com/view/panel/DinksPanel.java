@@ -12,7 +12,6 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,11 +23,9 @@ import javax.swing.JTextField;
  */
 public class DinksPanel extends JPanel {
 
-    private DinksPanel() {
-    }
-
-    public DinksPanel(String name, ImageIcon img) {
+    public DinksPanel(int id, String name, ImageIcon img) {
         this.imageIcon = img;
+        this.id = id;
         setLayout(new BorderLayout(3, 3));
 
         lbImage = new JLabel(img);
@@ -51,7 +48,7 @@ public class DinksPanel extends JPanel {
         conBtn.add(btnPlus);
         c.add(conBtn);
         add(c, BorderLayout.PAGE_END);
-        
+
     }
 
     @Override
@@ -65,6 +62,10 @@ public class DinksPanel extends JPanel {
         super.paintComponent(g);
     }
 
+    public int getId() {
+        return id;
+    }
+
     //Components
     private ImageIcon imageIcon;
     private JLabel lbImage;
@@ -72,4 +73,7 @@ public class DinksPanel extends JPanel {
     private JTextField txtName;
     private RoundedButton btnPlus;
     private RoundedButton btnSub;
+
+    //Variable
+    private int id;
 }

@@ -50,6 +50,8 @@ public class LoginFrame extends JFrame {
         loadResource();
         initComponents();
         arangeComponents();
+        txtUsername.setText("098765432101");
+        txtPassword.setText("12345678");
     }
 
     private void loadResource() {
@@ -73,8 +75,8 @@ public class LoginFrame extends JFrame {
 
     private void initComponents() {
         setTitle(TITLE);
-        setSize(WIDTH, HEIGHT);
-        setMinimumSize(new Dimension(WIDTH, HEIGHT));
+        setSize(LOGIN_WIDTH, LOGIN_HEIGHT);
+        setMinimumSize(new Dimension(LOGIN_WIDTH, LOGIN_HEIGHT));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         lbLogo = new JLabel(new ImageIcon(imageLogo));
@@ -107,6 +109,7 @@ public class LoginFrame extends JFrame {
 
         btnLogin = new RoundedButton(LOGIN, 300, 50, 10);
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 Login();
             }
@@ -118,7 +121,7 @@ public class LoginFrame extends JFrame {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 ChangeLanguage();
             }
-        });
+        });             
 
         leftCon = new Container();
         midCon = new Container();
@@ -184,11 +187,11 @@ public class LoginFrame extends JFrame {
 
     private void Login() {
         if ((!ConnectionHandle.getInstance().Login(txtUsername.getText(), txtPassword.getPassword()))
-                && ConnectionHandle.getInstance().getConnection() != null) {
+                || ConnectionHandle.getInstance().getConnection() == null) {
             lbNotification.setText(ERROR_MESSAGE);
         } else {
             this.dispose();
-            new MenuFrame().setVisible(true);
+            MenuFrame.getInstance().setVisible(true);
         }
     }
 
@@ -197,8 +200,8 @@ public class LoginFrame extends JFrame {
         lbNotification.setText(CHANGE_LANGUAGE);
     }
 
-    private static final int HEIGHT = 562;
-    private static final int WIDTH = 1000;
+    private static final int LOGIN_HEIGHT = 562;
+    private static final int LOGIN_WIDTH = 1000;
 
     private Image imageBackground;
     private Image imageLogo;

@@ -4,8 +4,15 @@
  */
 package com.handle;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  *
@@ -25,7 +32,17 @@ public class LanguageHandle {
     }
 
     public void ChangeLanguage() {
-
+        try {
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            Node startDateNode = (Node) xPath.compile("/data/startdate").evaluate(doc, XPathConstants.NODE);
+            startDateNode.setTextContent("29/07/2015");
+            
+            xPath = XPathFactory.newInstance().newXPath();
+            Node endDateNode = (Node) xPath.compile("/data/enddate").evaluate(doc, XPathConstants.NODE);
+            endDateNode.setTextContent("29/07/2015");
+        } catch (XPathExpressionException ex) {
+            Logger.getLogger(LanguageHandle.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public String getValue(String tag, String id) {

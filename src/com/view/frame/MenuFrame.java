@@ -4,7 +4,9 @@
  */
 package com.view.frame;
 
-import com.handle.ImageHandle;
+import com.handle.LanguageHandle;
+import com.models.DataContext;
+import com.models.DoUongModel;
 import com.utilities.RoundedToggleButton;
 import com.view.panel.BillPanel;
 import com.view.panel.ChatPanel;
@@ -14,11 +16,9 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.io.IOException;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Hashtable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
@@ -36,7 +36,7 @@ public class MenuFrame extends JFrame {
     private void initChatArea() {
         leftCon = new Container();
         leftCon.setLayout(new BorderLayout(5, 5));
-        leftCon.add(new ChatPanel());
+        leftCon.setPreferredSize(new Dimension(400, 0));
         add(leftCon, BorderLayout.LINE_START);
     }
 
@@ -51,8 +51,6 @@ public class MenuFrame extends JFrame {
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED
         );
         scMain.setPreferredSize(new Dimension(300, 300));
-        addDrinks();
-
         midCon.add(scMain);
         add(midCon, BorderLayout.CENTER);
     }
@@ -60,8 +58,7 @@ public class MenuFrame extends JFrame {
     private void initBillArea() {
         rightCon = new Container();
         rightCon.setLayout(new GridLayout());
-        pBill = new BillPanel();
-        rightCon.add(pBill);
+        rightCon.setPreferredSize(new Dimension(400, 0));
         add(rightCon, BorderLayout.LINE_END);
     }
 
@@ -74,7 +71,6 @@ public class MenuFrame extends JFrame {
                 10,
                 10
         ));
-        addTable();
         scTable = new JScrollPane(
                 pTable,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER,
@@ -85,69 +81,103 @@ public class MenuFrame extends JFrame {
     }
 
     private void initComponents() {
-        setTitle("Do uong");
+        setTitle(TITLE);
         setLayout(new BorderLayout(10, 10));
         setMinimumSize(new Dimension(1500, 700));
         initChatArea();
         initDrinkArea();
         initBillArea();
         initTableArea();
-
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    public void addTable() {
-        var group = new ButtonGroup();
-        var x = new RoundedToggleButton("Ban 1");
-        group.add(x);
-        pTable.add(x);
-        x = new RoundedToggleButton("Ban 2");
-        group.add(x);
-        pTable.add(x);
-
-    }
-
-    public void addDrinks() {
-        try {
-            var bi = ImageIO.read(getClass().getResourceAsStream("/com/resource/logo.png"));
-            var imageLogo = ImageHandle.getInstance().resize(
-                    bi,
-                    (int) (bi.getWidth() * 0.4),
-                    (int) (bi.getHeight() * 0.4)
-            );
-            var icon = new ImageIcon(imageLogo);
-            pMain.add(new DinksPanel("Mon 0", icon));
-            pMain.add(new DinksPanel("Mon 1", icon));
-            pMain.add(new DinksPanel("Mon 2", icon));
-            pMain.add(new DinksPanel("Mon 3", icon));
-            pMain.add(new DinksPanel("Mon 4", icon));
-            pMain.add(new DinksPanel("Mon 5", icon));
-
-        } catch (IOException ex) {
-            Logger.getLogger(MenuFrame.class.getName()).log(Level.SEVERE, null, ex);
+    public void addTable(String name) {
+        if (group == null) {
+            group = new ButtonGroup();
         }
-    }
 
-    private void loadText() {
-
-    }
-
-    public MenuFrame() {
-        loadText();
-        initComponents();
-    }
-
-    public void addNewTable() {
-        String name = "aaa";
-        ChatPanel cp = new ChatPanel();
-        BillPanel bp = new BillPanel();
+        ChatPanel cp = new ChatPanel(name);
+        BillPanel bp = new BillPanel(name);
         if (list == null) {
             list = new Hashtable<>();
         }
         list.put(name, new Object[]{cp, bp});
+
+        RoundedToggleButton x = new RoundedToggleButton(name);
+        x.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                changTable(TABLE + name);
+            }
+        });
+        group.add(x);
+        pTable.add(x);
+        revalidate();
+        repaint();
     }
 
+    private void changTable(String name) {
+        currentTable = name;
+        leftCon.removeAll();
+        leftCon.add((ChatPanel) list.get(name)[0]);
+        add(leftCon, BorderLayout.LINE_START);
+
+        rightCon.removeAll();
+        rightCon.add((BillPanel) list.get(name)[1]);
+        add(rightCon, BorderLayout.LINE_END);
+
+        revalidate();
+        repaint();
+    }
+
+    public void addDrinks(DoUongModel du) {
+        DinksPanel dp = new DinksPanel(
+                du.getMaDU(),
+                du.getTenDU(),
+                new ImageIcon(du.getHinhAnh())
+        );
+    }
+
+    private void loadText() {
+        TITLE = LanguageHandle.getInstance().getValue("Menu", "TITLE");
+        TABLE = LanguageHandle.getInstance().getValue("Menu", "TABLE");
+    }
+
+    private void sub(int id) {
+        BillPanel bp = (BillPanel) list.get(currentTable)[1];
+        bp.addDrinks(DataContext.getInstance()
+                .getDoUongs()
+                .stream()
+                .filter(du -> du.getMaDU() == id)
+                .findFirst().get()
+        );
+    }
+
+    private void plus(int id) {
+
+    }
+
+    private void loadDrinks() {
+//        for (int i = 1; i < DataContext.getInstance().getDoUongs().size(); i++) {
+//            addDrinks(DataContext.getInstance().getDoUongs().get(i));
+//        }
+    }
+
+    private MenuFrame() {
+        loadText();
+        initComponents();
+        loadDrinks();
+    }
+
+    public static synchronized MenuFrame getInstance() {
+        if (_instance == null) {
+            _instance = new MenuFrame();
+        }
+        return _instance;
+    }
+
+    private static MenuFrame _instance;
     // GUI Components
     private Container leftCon;
     private Container midCon;
@@ -162,5 +192,11 @@ public class MenuFrame extends JFrame {
     private JEditorPane txtChat;
 
     // Variable
-    Hashtable<String, Object[]> list;
+    private Hashtable<String, Object[]> list;
+    private ButtonGroup group;
+    private String currentTable;
+
+    //Text 
+    private String TITLE;
+    private String TABLE;
 }

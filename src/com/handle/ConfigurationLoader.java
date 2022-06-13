@@ -22,7 +22,7 @@ import org.xml.sax.SAXException;
  */
 public class ConfigurationLoader {
 
-    private static ConfigurationLoader _instance = new ConfigurationLoader();
+    private static ConfigurationLoader _instance;
     private static final String configURL = "/com/config/config.xml";
 
     private Document doc;
@@ -90,11 +90,14 @@ public class ConfigurationLoader {
     public String[] getHostInfo() {
         String[] info = new String[2];
         info[0] = doc.getElementsByTagName("host").item(1).getTextContent();
-        info[2] = doc.getElementsByTagName("host").item(2).getTextContent();
+        info[1] = doc.getElementsByTagName("host").item(2).getTextContent();
         return info;
     }
 
-    public static ConfigurationLoader getInstance() {
+    public static synchronized ConfigurationLoader getInstance() {
+        if (_instance == null) {
+            _instance = new ConfigurationLoader();
+        }
         return _instance;
     }
 

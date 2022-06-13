@@ -4,6 +4,7 @@
  */
 package com.models;
 
+import com.controller.DoUongController;
 import java.util.LinkedList;
 
 /**
