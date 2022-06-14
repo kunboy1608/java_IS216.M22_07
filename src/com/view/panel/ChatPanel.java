@@ -4,8 +4,11 @@
  */
 package com.view.panel;
 
+import com.handle.ImageHandle;
+import com.handle.LanguageHandle;
 import com.handle.NetHandle;
 import com.utilities.CommonFont;
+import com.utilities.NonBorder;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -15,6 +18,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -26,8 +30,8 @@ import javax.swing.ScrollPaneConstants;
  */
 public class ChatPanel extends JPanel {
 
-    private void initComponents() {
-        this.setLayout(new BorderLayout(5, 5));
+    private void initComponents() {        
+        setLayout(new BorderLayout(5, 5));
         Messages = new JEditorPane();
         Messages.setFont(new CommonFont(14));
         Messages.setContentType("text/html");
@@ -72,7 +76,17 @@ public class ChatPanel extends JPanel {
         });
         c.add(txtChat, BorderLayout.CENTER);
 
-        btnSend = new JButton("Send");
+        btnSend = new JLabel(
+                ImageHandle
+                        .getInstance()
+                        .resize(
+                                ImageHandle
+                                        .getInstance()
+                                        .readImageIcon("/com/resource/send.png"),
+                                28,
+                                28
+                        ));
+        btnSend.setBorder(new NonBorder());
         btnSend.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -87,10 +101,6 @@ public class ChatPanel extends JPanel {
         this.setPreferredSize(new Dimension(WIDTH_CHAT, HEIGHT_CHAT));
     }
 
-    private void loadText() {
-
-    }
-
     private void sendMessage() {
         if (txtChat.getText().trim().equals("")) {
             return;
@@ -102,7 +112,6 @@ public class ChatPanel extends JPanel {
     }
 
     public ChatPanel(String name) {
-        loadText();
         initComponents();
         this.id = name;
     }
@@ -110,13 +119,12 @@ public class ChatPanel extends JPanel {
     // Components
     private JEditorPane Messages;
     private JScrollPane scChat;
-    private JButton btnSend;
+    private JLabel btnSend;
     private JTextField txtChat;
 
     // Variables
-    private String id;
+    private final String id;
     private String Contents;
-
     private final int WIDTH_CHAT = 500;
     private final int HEIGHT_CHAT = 300;
 }

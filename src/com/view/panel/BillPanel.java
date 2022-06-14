@@ -4,6 +4,7 @@
  */
 package com.view.panel;
 
+import com.handle.LanguageHandle;
 import com.handle.Utilities;
 import com.models.DoUongModel;
 import com.utilities.CommonFont;
@@ -35,15 +36,19 @@ public class BillPanel extends JPanel {
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(400, 0));
 
-        lbtitle = new JLabel("Hoa Don Ban " + id, JLabel.CENTER);
+        lbtitle = new JLabel(TITLE + id, JLabel.CENTER);
         lbtitle.setFont(new CommonFont(Font.BOLD, 30));
         add(lbtitle, BorderLayout.NORTH);
 
         tbBill = new JTable();
-
         dtm = new DefaultTableModel();
+        dtm.setColumnIdentifiers(new String[]{
+            NUMBER_ORDER,
+            NAME_DRINK,
+            PRICE,
+            QUANLITY
+        });
 
-        dtm.setColumnIdentifiers(new String[]{"ID", "Ten", "Giá", "SL"});
         tbBill.setModel(dtm);
         tbBill.getTableHeader().setFont(new CommonFont(14));
         tbBill.setRowHeight(30);
@@ -54,14 +59,15 @@ public class BillPanel extends JPanel {
         botCon = new Container();
         botCon.setLayout(new GridLayout(1, 2, 10, 10));
 
-        btnPrint = new RoundedButton("In", 100, 50, 10);
+        btnPrint = new RoundedButton(PRINT, 100, 50, 10);
         btnPrint.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 printBill();
             }
         });
         botCon.add(btnPrint);
-        btnPay = new RoundedButton("thanh toan", 100, 50, 10);
+
+        btnPay = new RoundedButton(PAY, 100, 50, 10);
         btnPay.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 pay();
@@ -70,11 +76,16 @@ public class BillPanel extends JPanel {
         botCon.add(btnPay);
 
         add(botCon, BorderLayout.SOUTH);
-
     }
 
     private void loadText() {
-
+        TITLE = LanguageHandle.getInstance().getValue("Bill", "TITLE");
+        NUMBER_ORDER = LanguageHandle.getInstance().getValue("Bill", "NUMBER_ORDER");
+        NAME_DRINK = LanguageHandle.getInstance().getValue("Bill", "NAME_DRINK");
+        PRICE = LanguageHandle.getInstance().getValue("Bill", "PRICE");
+        QUANLITY = LanguageHandle.getInstance().getValue("Bill", "QUANLITY");
+        PRINT = LanguageHandle.getInstance().getValue("Bill", "PRINT");
+        PAY = LanguageHandle.getInstance().getValue("Bill", "PAY");
     }
 
     public void addDrinks(DoUongModel du) {
@@ -212,16 +223,14 @@ public class BillPanel extends JPanel {
     }
 
     public BillPanel(String id) {
-        loadText();
-        initComponents();
         this.id = id;
         this.urlBackground = ClassLoader.getSystemResource("com/resource/logo-20.png").toString();
+        loadText();
+        initComponents();
     }
 
     // Components
     private final String id;
-    private JLabel lbIDEmployee;
-    private JLabel lbPhone;
     private JLabel lbtitle;
     private Container botCon;
     private RoundedButton btnPay;
@@ -233,5 +242,13 @@ public class BillPanel extends JPanel {
     private final String urlBackground;
     DefaultTableModel dtm;
     private String content;
+
     // Text
+    private String TITLE;
+    private String NUMBER_ORDER;
+    private String NAME_DRINK;
+    private String PRICE;
+    private String QUANLITY;
+    private String PRINT;
+    private String PAY;
 }

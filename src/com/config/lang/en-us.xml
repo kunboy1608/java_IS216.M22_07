@@ -8,8 +8,20 @@
         <Login id="CHANGE_LANGUAGE">Khởi động lại để đổi ngôn ngữ</Login>        
     </Login>
     <Menu>
-        <Menu id="TITLE">Drinks</Menu>
+        <Menu id="TITLE">DRINKS - COFFE EXPRESS</Menu>
         <Menu id="TABLE">Table</Menu>
     </Menu>
+    <Bill>
+        <Bill id="TITLE">Bill of table </Bill>
+        <Bill id="NUMBER_ORDER">NO</Bill>
+        <Bill id="NAME_DRINK">Name</Bill>
+        <Bill id="PRICE">Price</Bill>
+        <Bill id="QUANLITY">Quanlity</Bill>
+        <Bill id="PRINT">Print bill</Bill>
+        <Bill id="PAY">Pay</Bill>
+    </Bill>
+    <Chat>
+        <Chat id="SEND">Send</Chat>
+    </Chat>
 </language>
 

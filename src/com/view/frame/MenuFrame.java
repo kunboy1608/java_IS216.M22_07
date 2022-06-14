@@ -148,7 +148,8 @@ public class MenuFrame extends JFrame {
                 .getDoUongs()
                 .stream()
                 .filter(du -> du.getMaDU() == id)
-                .findFirst().get()
+                .findFirst()
+                .get()
         );
     }
 
@@ -166,6 +167,7 @@ public class MenuFrame extends JFrame {
         loadText();
         initComponents();
         loadDrinks();
+        addTable("6");
     }
 
     public static synchronized MenuFrame getInstance() {
