@@ -14,7 +14,6 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
@@ -37,16 +36,17 @@ public class ImageHandle {
     }
 
     public ImageIcon resize(ImageIcon originalImage, int targetWidth, int targetHeight) {
+        System.out.println(targetHeight);
         ImageIcon resultingImage = new ImageIcon(originalImage.getImage().getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH));
         return resultingImage;
     }
 
-    public Image resize(Image originalImage, int targetWidth, int targetHeight) {
+    public Image resize(Image originalImage, int targetWidth, int targetHeight) {        
         Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH);
         return resultingImage;
     }
 
-    public Image resize(BufferedImage originalBufferedImage, int targetWidth, int targetHeight) {
+    public Image resize(BufferedImage originalBufferedImage, int targetWidth, int targetHeight) {        
         return resize((Image) originalBufferedImage, targetWidth, targetHeight);
     }
 
@@ -142,7 +142,7 @@ public class ImageHandle {
         return bimage;
     }
 
-    public static BufferedImage makeRoundedCorner(Image img, int cornerRadius) {
+    public BufferedImage makeRoundedCorner(Image img, int cornerRadius) {
         BufferedImage image = getInstance().toBufferedImage(img);
         int w = image.getWidth();
         int h = image.getHeight();

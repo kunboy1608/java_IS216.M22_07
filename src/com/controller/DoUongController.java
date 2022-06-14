@@ -26,15 +26,18 @@ public class DoUongController {
 
     private static DoUongController _instance;
 
-    public static synchronized DoUongController getInstance() {
+    public static DoUongController getInstance() {
         if (_instance == null) {
-            _instance = new DoUongController();
+            synchronized (DoUongController.class) {
+                if (_instance == null) {
+                    _instance = new DoUongController();
+                }
+            }
         }
         return _instance;
     }
 
     private DoUongController() {
-
     }
 
     public boolean ThemDoUong(DoUongModel dr) {
@@ -57,12 +60,8 @@ public class DoUongController {
             } else {
                 ps.setBinaryStream(3, null);
             }
-
             // Kiem tra xem thuc hien co thanh cong hay khong
-            if (ps.executeUpdate() != 1) {
-                return false;
-            }
-            return true;
+            return ps.executeUpdate() == 1;
         } catch (SQLException ex) {
             Logger.getLogger(DoUongController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -88,12 +87,9 @@ public class DoUongController {
             } else {
                 ps.setBinaryStream(3, null);
             }
-
             // Kiem tra xem thuc hien co thanh cong hay khong
-            if (ps.executeUpdate() != 1) {
-                return false;
-            }
-            return true;
+
+            return ps.executeUpdate() == 1;
         } catch (SQLException ex) {
             Logger.getLogger(DoUongController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -118,30 +114,33 @@ public class DoUongController {
         }
         return true;
     }
-public void LayDuLieu() {
+
+    public void LayDuLieu() {
         try {
             String sql = "Select *  FROM DoUong";
-
             Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
             ResultSet rs = ps.executeQuery(sql);
+            
             LinkedList<DoUongModel> list = new LinkedList<>();
-            DoUongModel kh;
+            DoUongModel du;
+            
             while (rs.next()) {
-                kh = new DoUongModel();
-                kh.setMaDU(rs.getInt(1));
-                kh.setTenDU(rs.getString(2));
-                kh.setGia(rs.getDouble(3));
-                
-                
-                
-
-                kh.setGhiChu(rs.getString(5));
-                list.add(kh);
+                du = new DoUongModel();
+                du.setMaDU(rs.getInt(1));
+                du.setTenDU(rs.getString(2));
+                du.setGia(rs.getDouble(3));
+                du.setHinhAnh(
+                        ImageHandle
+                                .getInstance()
+                                .createImageFromBlob(rs.getBlob(4))
+                );
+                du.setGhiChu(rs.getString(5));
+                list.add(du);
             }
+            
             DataContext.getInstance().setDoUongs(list);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }

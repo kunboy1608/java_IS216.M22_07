@@ -26,12 +26,19 @@ public class DataContext {
     private LinkedList<NhaCungCapModel> NhaCungCaps;
     private LinkedList<NhanVienModel> NhanViens;
     private UserModel user;
-    private final static DataContext _instance = new DataContext();
+    private static DataContext _instance;
 
     private DataContext() {
     }
 
     public static DataContext getInstance() {
+        if (_instance == null) {
+            synchronized (DataContext.class) {
+                if (_instance == null) {
+                    _instance = new DataContext();
+                }
+            }
+        }
         return _instance;
     }
 
@@ -68,6 +75,13 @@ public class DataContext {
     }
 
     public LinkedList<DoUongModel> getDoUongs() {
+        if (DoUongs == null) {
+            synchronized (DataContext.class) {
+                if (DoUongs == null) {
+                    DoUongController.getInstance().LayDuLieu();
+                }
+            }
+        }
         return DoUongs;
     }
 

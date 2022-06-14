@@ -16,7 +16,7 @@ public final class LanguageHandle {
     private static final LanguageHandle _instance = new LanguageHandle();
     private Document doc;
 
-    private LanguageHandle() {
+    private LanguageHandle() {        
         LoadLangue();
     }
 

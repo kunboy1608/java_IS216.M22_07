@@ -4,6 +4,7 @@
  */
 package com.view.frame;
 
+import com.handle.ImageHandle;
 import com.handle.LanguageHandle;
 import com.models.DataContext;
 import com.models.DoUongModel;
@@ -44,12 +45,13 @@ public class MenuFrame extends JFrame {
         midCon = new Container();
         midCon.setLayout(new GridLayout());
         pMain = new JPanel(new GridLayout(0, 3, 30, 30));
-
+        loadDrinks();
         scMain = new JScrollPane(
                 pMain,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED
         );
+        scMain.getVerticalScrollBar().setUnitIncrement(50);
         scMain.setPreferredSize(new Dimension(300, 300));
         midCon.add(scMain);
         add(midCon, BorderLayout.CENTER);
@@ -103,7 +105,7 @@ public class MenuFrame extends JFrame {
             list = new Hashtable<>();
         }
         list.put(TABLE + name, new Object[]{cp, bp});
-        
+
         RoundedToggleButton x = new RoundedToggleButton(name);
         x.addMouseListener(new MouseAdapter() {
             @Override
@@ -123,18 +125,17 @@ public class MenuFrame extends JFrame {
         leftCon.add((ChatPanel) list.get(name)[0]);
 
         rightCon.removeAll();
-        rightCon.add((BillPanel) list.get(name)[1]);        
+        rightCon.add((BillPanel) list.get(name)[1]);
         revalidate();
         repaint();
     }
 
     public void addDrinks(DoUongModel du) {
-        DinksPanel dp = new DinksPanel(
+        pMain.add(new DinksPanel(
                 du.getMaDU(),
                 du.getTenDU(),
-                new ImageIcon(du.getHinhAnh())
-        );
-        midCon.add(dp);
+                du.getHinhAnh()
+        ));        
     }
 
     private void loadText() {
@@ -158,16 +159,15 @@ public class MenuFrame extends JFrame {
     }
 
     private void loadDrinks() {
-//        for (int i = 1; i < DataContext.getInstance().getDoUongs().size(); i++) {
-//            addDrinks(DataContext.getInstance().getDoUongs().get(i));
-//        }
+        for (int i = 0; i < DataContext.getInstance().getDoUongs().size(); i++) {
+            addDrinks(DataContext.getInstance().getDoUongs().get(i));
+        }
     }
 
     private MenuFrame() {
         loadText();
         initComponents();
-        loadDrinks();
-        addTable("6");
+        addTable("6");        
     }
 
     public static synchronized MenuFrame getInstance() {

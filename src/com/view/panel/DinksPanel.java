@@ -12,6 +12,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,12 +24,22 @@ import javax.swing.JTextField;
  */
 public class DinksPanel extends JPanel {
 
-    public DinksPanel(int id, String name, ImageIcon img) {
-        this.imageIcon = img;
+    public DinksPanel(int id, String name, Image img) {
+        this.imageIcon = new ImageIcon(
+                ImageHandle.getInstance().resize(
+                        ImageHandle.getInstance()
+                                .makeRoundedCorner(
+                                        img,
+                                        50
+                                ),
+                        300,
+                        250
+                )
+        );
         this.id = id;
         setLayout(new BorderLayout(3, 3));
 
-        lbImage = new JLabel(img);
+        lbImage = new JLabel(imageIcon);
         add(lbImage);
 
         Container c = new Container();
@@ -53,11 +64,6 @@ public class DinksPanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        lbImage.setIcon(ImageHandle.getInstance().resize(
-                imageIcon,
-                lbImage.getWidth(),
-                lbImage.getHeight())
-        );
         setPreferredSize(new Dimension(200, 250));
         super.paintComponent(g);
     }
@@ -67,13 +73,13 @@ public class DinksPanel extends JPanel {
     }
 
     //Components
-    private ImageIcon imageIcon;
-    private JLabel lbImage;
-    private JLabel lbName;
+    private final ImageIcon imageIcon;
+    private final JLabel lbImage;
+    private final JLabel lbName;
+    private final RoundedButton btnPlus;
+    private final RoundedButton btnSub;
     private JTextField txtName;
-    private RoundedButton btnPlus;
-    private RoundedButton btnSub;
 
     //Variable
-    private int id;
+    private final int id;
 }
