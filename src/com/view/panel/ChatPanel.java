@@ -13,9 +13,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.print.PrinterException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JPanel;
@@ -50,9 +47,7 @@ public class ChatPanel extends JPanel {
                 padding: 10px;
             }
         </style>
-        <body style = "font-family: Helvetica, Arial, sans-serif; font-size: 20;">
-            <div class="employee"> Hi</div>
-            <div class="me">Ok tks</div>                           
+        <body style = "font-family: Helvetica, Arial, sans-serif; font-size: 20;">                         
                         """;
 
         Messages.setText(Contents);

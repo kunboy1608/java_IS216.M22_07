@@ -102,8 +102,8 @@ public class MenuFrame extends JFrame {
         if (list == null) {
             list = new Hashtable<>();
         }
-        list.put(name, new Object[]{cp, bp});
-
+        list.put(TABLE + name, new Object[]{cp, bp});
+        
         RoundedToggleButton x = new RoundedToggleButton(name);
         x.addMouseListener(new MouseAdapter() {
             @Override
@@ -121,12 +121,9 @@ public class MenuFrame extends JFrame {
         currentTable = name;
         leftCon.removeAll();
         leftCon.add((ChatPanel) list.get(name)[0]);
-        add(leftCon, BorderLayout.LINE_START);
 
         rightCon.removeAll();
-        rightCon.add((BillPanel) list.get(name)[1]);
-        add(rightCon, BorderLayout.LINE_END);
-
+        rightCon.add((BillPanel) list.get(name)[1]);        
         revalidate();
         repaint();
     }
@@ -137,6 +134,7 @@ public class MenuFrame extends JFrame {
                 du.getTenDU(),
                 new ImageIcon(du.getHinhAnh())
         );
+        midCon.add(dp);
     }
 
     private void loadText() {

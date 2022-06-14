@@ -4,15 +4,8 @@
  */
 package com.handle;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
  *

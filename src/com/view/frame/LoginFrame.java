@@ -4,7 +4,6 @@
  */
 package com.view.frame;
 
-import com.boot.RunApp;
 import com.handle.ConnectionHandle;
 import com.handle.ImageHandle;
 import com.handle.LanguageHandle;

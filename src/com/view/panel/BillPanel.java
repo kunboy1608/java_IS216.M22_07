@@ -4,7 +4,7 @@
  */
 package com.view.panel;
 
-import com.models.CTHDModel;
+import com.handle.Utilities;
 import com.models.DoUongModel;
 import com.utilities.CommonFont;
 import com.utilities.RoundedButton;
@@ -18,7 +18,6 @@ import java.awt.event.MouseEvent;
 import java.awt.print.PrinterException;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JEditorPane;
@@ -44,8 +43,8 @@ public class BillPanel extends JPanel {
 
         dtm = new DefaultTableModel();
 
-        dtm.setColumnIdentifiers(new String[]{"ID", "Ten", "Giá", "SL"});            
-        tbBill.setModel(dtm);        
+        dtm.setColumnIdentifiers(new String[]{"ID", "Ten", "Giá", "SL"});
+        tbBill.setModel(dtm);
         tbBill.getTableHeader().setFont(new CommonFont(14));
         tbBill.setRowHeight(30);
         tbBill.setFont(new CommonFont(14));
@@ -124,60 +123,86 @@ public class BillPanel extends JPanel {
         // Kiem tra ma giam gia
     }
 
+    private void addHeader() {
+        content = """
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td,
+            th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+            h1, h2, h3, h4, h6{
+              text-align: center;
+            }
+            div{
+              text-align: right;
+            }                            
+        """;
+        // Body
+        content += "body{background-image: url(\"" + urlBackground + "\");}</style>";
+        content += """                 
+        <body>
+            <h6>Địa chỉ: KP6, Linh Trung, Thủ Đức, TP. Hồ Chí Minh</h6>
+            <h1>COFFE EXPRESS</h1>
+            <h2>Hóa đơn</h2>
+        """;
+        content += "<div> Xuất hóa đơn lúc:" + Utilities.getInstance().getTime() + "</div>";
+        content += """ 
+            <table>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên đồ uống</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                </tr>                                                                   
+        """;
+    }
+
+    private void addFooter() {
+        content += """                               
+            <h4>Pass WIFI: Ai em gà vler</h4>
+            <h3>Vui lòng khách đến vừa lòng khách đi</h3>
+            <h6>Designer: HoangDP</h6>
+            <h6>Email: 19520838@gm.uit.edu.vn</h6>
+            <h6>SDT: 0968910755</h6>
+        </body></html>
+        """;
+    }
+
     public void printBill() {
         JEditorPane bill = new JEditorPane();
         bill.setFont(new CommonFont(14));
         bill.setContentType("text/html");
-        String content = """
-                     <style>
-                         table {
-                             font-family: arial, sans-serif;
-                             border-collapse: collapse;
-                             width: 100%;
-                         }
-                     
-                         td,
-                         th {
-                             border: 1px solid #dddddd;
-                             text-align: left;
-                             padding: 8px;
-                         }
-                     
-                         tr:nth-child(even) {
-                             background-color: #dddddd;
-                         }
-                     </style>
-                     
-                     <body>
-                         <table>
-                             <tr>
-                                 <th>STT</th>
-                                 <th>Tên đồ uống</th>
-                                 <th>Giá</th>
-                                 <th>Số lượng</th>
-                                 <th>Thành tiền</th>
-                             </tr>  
-                          <tr>
-                                                               <th>1</th>
-                                                               <th>Capuchino</th>
-                                                               <th>35000</th>
-                                                               <th>3</th>
-                                                               <th>105000</th>
-                                                           </tr>
-                          <tr>
-                                                          <th>2</th>
-                                                          <th>Capuchino</th>
-                                                          <th>35000</th>
-                                                          <th>3</th>
-                                                          <th>105000</th>
-                                                      </tr>
-                        """;
-        content += """                 
-                         </table>
-                     </body>
-                     
-                     </html>
-                     """;
+        addHeader();
+
+        // Them danh sach mon da goi
+        long tongTien = 0;
+        for (int i = 0; i < dtm.getRowCount(); i++) {
+            content += "<tr>";
+            content += "<td>" + i + "</td>";
+            content += "<td>" + dtm.getValueAt(i, 0).toString() + "</td>";
+            content += "<td>" + dtm.getValueAt(i, 1).toString() + "</td>";
+            content += "<td>" + dtm.getValueAt(i, 2).toString() + "</td>";
+            long sum = Long.parseLong(dtm.getValueAt(i, 2).toString())
+                    * Integer.parseInt(dtm.getValueAt(i, 3).toString());
+            content += "<td>" + sum + "</td>";
+            content += "</tr>";
+        }
+        content += "</table><div>Tổng tiền: " + tongTien + " đ</div>";
+
+        addFooter();
         bill.setText(content);
         try {
             bill.print();
@@ -187,14 +212,14 @@ public class BillPanel extends JPanel {
     }
 
     public BillPanel(String id) {
-        this.beginTime = LocalDateTime.now();
         loadText();
         initComponents();
         this.id = id;
+        this.urlBackground = ClassLoader.getSystemResource("com/resource/logo-20.png").toString();
     }
 
     // Components
-    private String id;
+    private final String id;
     private JLabel lbIDEmployee;
     private JLabel lbPhone;
     private JLabel lbtitle;
@@ -205,7 +230,8 @@ public class BillPanel extends JPanel {
     private JScrollPane scTb;
 
     // Varible
-    private LocalDateTime beginTime;
+    private final String urlBackground;
     DefaultTableModel dtm;
+    private String content;
     // Text
 }
