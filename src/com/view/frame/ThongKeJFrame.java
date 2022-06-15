@@ -397,7 +397,7 @@ public class ThongKeJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "thang va nam khong duoc de trong!!");
         } else
             try {
-            HoaDonKhachHangController.getInstance().ThongKe(month, year);
+//            HoaDonKhachHangController.getInstance().ThongKe(month, year);
 
         } catch (Exception e) {
         }
