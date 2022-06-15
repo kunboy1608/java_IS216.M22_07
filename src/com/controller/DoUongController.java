@@ -6,7 +6,6 @@ package com.controller;
 
 import com.handle.ConnectionHandle;
 import com.handle.ImageHandle;
-import com.models.CTHDNCCModel;
 import com.models.DataContext;
 import com.models.DoUongModel;
 import java.io.ByteArrayInputStream;
