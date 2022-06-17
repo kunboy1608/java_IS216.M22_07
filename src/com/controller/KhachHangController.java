@@ -39,15 +39,16 @@ public class KhachHangController {
         try {
 
             // Cau truy van SQL
-            String sql = "Insert into KhachHang values(?,?,?)";
+            String sql = "Insert into KhachHang values(?,?,?,?)";
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             // Gan bien vao cac dau  ?
-            ps.setString(1, k.getTenKH());
-            ps.setInt(2, k.getGioiTinh());
-            ps.setInt(3, k.getTongDiem());
+            ps.setString(1, k.getSDTKH());
+            ps.setString(2, k.getTenKH());
+            ps.setInt(3, k.getGioiTinh());
+            ps.setInt(4, k.getTongDiem());
 
             // Kiem tra xem thuc hien co thanh cong hay khong
             if (ps.executeUpdate() != 1) {
@@ -60,11 +61,11 @@ public class KhachHangController {
         return false;
     }
 
-    public boolean SuaKhachHang(int id, KhachHangModel k) {
+    public boolean SuaKhachHang(String id, KhachHangModel k) {
         try {
 
             // Cau truy van SQL
-            String sql = "update KhachHang set TenKH=?, GioiTinh=?, TongDiem=?";
+            String sql = "update KhachHang set TenKH=?, GioiTinh=?, TongDiem=? WHERE SDTKH=" + id;
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
@@ -123,5 +124,27 @@ public class KhachHangController {
             e.printStackTrace();
         }
 
+    }
+    
+    public void TimNhanVien(String id) {
+        try {
+            String sql = "SELECT * FROM KHACHHANG WHERE SDTKH=?";
+            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareCall(sql);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            LinkedList<KhachHangModel> list = new LinkedList<>();
+            KhachHangModel nv;
+            while (rs.next()) {
+                nv = new KhachHangModel();
+                nv.setSDTKH(rs.getString(1));
+                nv.setTenKH(rs.getString(2));
+                nv.setGioiTinh(rs.getInt(3));
+                nv.setTongDiem(rs.getInt(4));
+                list.add(nv);
+            }
+            DataContext.getInstance().setKhachHangs(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -175,7 +176,7 @@ public class NhanVienController {
     public int layMaNV() {
         int maNV = 0;
         try {
-            String sql = "SELECT TOP (1) FROM NHANVIEN ORDER BY MaNV DESC";
+            String sql = "SELECT TOP (1) * FROM NHANVIEN ORDER BY MaNV DESC";
             Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
             ResultSet rs = ps.executeQuery(sql);
             if (rs.next() == false) {
@@ -188,4 +189,6 @@ public class NhanVienController {
         }
         return maNV;
     }
+    
+    
 }

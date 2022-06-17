@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -119,5 +120,22 @@ public class ChiNhanhController {
             e.printStackTrace();
         }
 
+    }
+    
+    public String loadTenCN(int macn){
+        String tenCN = "";
+        try {
+            String sql = "SELECT tencn FROM chinhanh WHERE MANV =?";
+            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareCall(sql);
+            ps.setInt(1, macn);
+            ResultSet rs = ps.executeQuery();
+            if (rs.absolute(1) == false) {
+                JOptionPane.showMessageDialog(null, "Không tìm thấy mã nhân viên", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                tenCN = "";
+            }else tenCN = rs.getString(tenCN);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tenCN;
     }
 }
