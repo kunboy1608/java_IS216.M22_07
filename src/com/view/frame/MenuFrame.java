@@ -6,6 +6,7 @@ package com.view.frame;
 
 import com.handle.ImageHandle;
 import com.handle.LanguageHandle;
+import com.handle.NetHandle;
 import com.models.DataContext;
 import com.models.DoUongModel;
 import com.utilities.NonBorder;
@@ -91,7 +92,7 @@ public class MenuFrame extends JFrame {
         scTable.getViewport().setOpaque(false);
         botCon.add(scTable);
         panel.add(botCon, BorderLayout.PAGE_END);
-                
+
     }
 
     private void initComponents() {
@@ -172,7 +173,9 @@ public class MenuFrame extends JFrame {
                     .get()
             );
         } catch (java.lang.NullPointerException e) {
+            return;
         }
+        NetHandle.getInstance().sendData("HuyMon:  " + id, currentTable);
     }
 
     public void plus(int id) {
@@ -185,8 +188,11 @@ public class MenuFrame extends JFrame {
                     .findFirst()
                     .get()
             );
+
         } catch (java.lang.NullPointerException e) {
+            return;
         }
+        NetHandle.getInstance().sendData("ThemMon: " + id, currentTable);
     }
 
     private void loadDrinks() {
@@ -196,6 +202,25 @@ public class MenuFrame extends JFrame {
     }
 
     public void receiveMessage(String name, String message) {
+        if (message.contains("ThemMon: ")) {
+            int maDU = Integer.parseInt(message.substring(9).trim());
+            DoUongModel doUongModel = DataContext.getInstance()
+                    .getDoUongs()
+                    .stream()
+                    .filter(x -> x.getMaDU() == maDU)
+                    .findFirst()
+                    .get();
+            message = "Goi Mon " + doUongModel.getTenDU() + " ID: " + doUongModel.getMaDU();
+        } else if (message.contains("HuyMon:  ")) {
+            int maDU = Integer.parseInt(message.substring(9).trim());
+            DoUongModel doUongModel = DataContext.getInstance()
+                    .getDoUongs()
+                    .stream()
+                    .filter(x -> x.getMaDU() == maDU)
+                    .findFirst()
+                    .get();
+            message = "Huy Mon " + doUongModel.getTenDU() + " ID: " + doUongModel.getMaDU();
+        }
         ((ChatPanel) list.get(name)[0]).receiveMessage(message);
         ((RoundedToggleButton) list.get(name)[2]).setNotification(true);
         validate();

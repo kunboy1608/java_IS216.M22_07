@@ -22,7 +22,6 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JViewport;
-import javax.swing.ScrollPaneConstants;
 
 /**
  *

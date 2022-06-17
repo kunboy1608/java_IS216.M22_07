@@ -24,7 +24,7 @@ public class RoundedToggleButton extends JToggleButton {
     private void initProperties() {
         setOpaque(false);
         setBorder(new NonBorder());
-        setPreferredSize(new Dimension(80, 80));
+        setPreferredSize(new Dimension(100, 80));
 
         setBackground(Color.green);
         addMouseListener(new MouseAdapter() {
