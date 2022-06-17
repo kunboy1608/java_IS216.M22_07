@@ -12,8 +12,6 @@ import com.models.ChiNhanhModel;
 import com.models.DataContext;
 import com.models.NhanVienModel;
 import java.awt.event.KeyEvent;
-import java.util.Date;
-import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 

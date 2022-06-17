@@ -11,19 +11,15 @@ import java.util.LinkedList;
  *
  * @author kunbo
  */
-public class DataContext{
+public class DataContext {
 
     private LinkedList<AccountModel> Accounts;
     private LinkedList<CTHDModel> CTHDs;
-    private LinkedList<CTHDNCCModel> CTHDNCCs;
     private LinkedList<ChiNhanhModel> ChiNhanhs;
     private LinkedList<DoUongModel> DoUongs;
     private LinkedList<GiamGiaModel> GiamGias;
     private LinkedList<HoaDonKhachHangModel> HoaDonKhachHangs;
-    private LinkedList<HoaDonNCCModel> HoaDonNCCs;
     private LinkedList<KhachHangModel> KhachHangs;
-    private LinkedList<NguyenLieuModel> NguyenLieus;
-    private LinkedList<NhaCungCapModel> NhaCungCaps;
     private LinkedList<NhanVienModel> NhanViens;
     private UserModel user;
     private static DataContext _instance;
@@ -56,14 +52,6 @@ public class DataContext{
 
     public void setCTHDs(LinkedList<CTHDModel> CTHDs) {
         this.CTHDs = CTHDs;
-    }
-
-    public LinkedList<CTHDNCCModel> getCTHDNCCs() {
-        return CTHDNCCs;
-    }
-
-    public void setCTHDNCCs(LinkedList<CTHDNCCModel> CTHDNCCs) {
-        this.CTHDNCCs = CTHDNCCs;
     }
 
     public LinkedList<ChiNhanhModel> getChiNhanhs() {
@@ -105,36 +93,12 @@ public class DataContext{
         this.HoaDonKhachHangs = HoaDonKhachHangs;
     }
 
-    public LinkedList<HoaDonNCCModel> getHoaDonNCCs() {
-        return HoaDonNCCs;
-    }
-
-    public void setHoaDonNCCs(LinkedList<HoaDonNCCModel> HoaDonNCCs) {
-        this.HoaDonNCCs = HoaDonNCCs;
-    }
-
     public LinkedList<KhachHangModel> getKhachHangs() {
         return KhachHangs;
     }
 
     public void setKhachHangs(LinkedList<KhachHangModel> KhachHangs) {
         this.KhachHangs = KhachHangs;
-    }
-
-    public LinkedList<NguyenLieuModel> getNguyenLieus() {
-        return NguyenLieus;
-    }
-
-    public void setNguyenLieus(LinkedList<NguyenLieuModel> NguyenLieus) {
-        this.NguyenLieus = NguyenLieus;
-    }
-
-    public LinkedList<NhaCungCapModel> getNhaCungCaps() {
-        return NhaCungCaps;
-    }
-
-    public void setNhaCungCaps(LinkedList<NhaCungCapModel> NhaCungCaps) {
-        this.NhaCungCaps = NhaCungCaps;
     }
 
     public LinkedList<NhanVienModel> getNhanViens() {

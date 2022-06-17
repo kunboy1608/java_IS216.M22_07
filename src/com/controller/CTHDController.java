@@ -6,7 +6,6 @@ package com.controller;
 
 import com.handle.ConnectionHandle;
 import com.models.CTHDModel;
-import com.models.CTHDNCCModel;
 import com.models.DataContext;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
