@@ -132,4 +132,30 @@ public class HoaDonNCCController {
         }
 
     }
+    public void ThongKe(int month, int year){
+     try {
+            String sql = "Select MaHDNCC, MaNCC, NgayLap, NgayThanhToan, TongTien, No, GhiChu  FROM HOADONNCC where month(NgayLap)="+month+"year(NgayLap)="+year;
+
+            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery(sql);
+            LinkedList<HoaDonNCCModel> list = new LinkedList<>();
+            HoaDonNCCModel kh;
+            while (rs.next()) {
+                kh = new HoaDonNCCModel();
+                kh.setMaHDNCC(rs.getInt(1));
+                kh.setMaNCC(rs.getInt(2));
+                kh.setNgayLap(rs.getDate(3));
+                kh.setNgayThanhToan(rs.getDate(4));
+                kh.setTongTien(rs.getInt(5));
+                kh.setNo(rs.getInt(6));
+                kh.setGhiChu(rs.getString(7));
+                list.add(kh);
+            }
+            DataContext.getInstance().setHoaDonNCCs(list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+     
+    }
+    
 }

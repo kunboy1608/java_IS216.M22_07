@@ -126,4 +126,25 @@ public void LayDuLieu() {
             e.printStackTrace();
         }
 }
+ public void ThongKe(int month, int year){
+     try {
+            String sql = "Select MaHD, NgayLap, TongTien FROM HOADONNCC where month(NgayLap)="+month+"year(NgayLap)="+year;
+
+            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery(sql);
+            LinkedList<HoaDonKhachHangModel> list = new LinkedList<>();
+            HoaDonKhachHangModel kh;
+            while (rs.next()) {
+                kh = new HoaDonKhachHangModel();
+                kh.setMaHD(rs.getInt(1));
+                kh.setNgayLap(rs.getDate(2));
+                kh.setTongTien(rs.getInt(3));
+                list.add(kh);
+            }
+            DataContext.getInstance().setHoaDonKhachHangs(list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+     
+    }
 }
