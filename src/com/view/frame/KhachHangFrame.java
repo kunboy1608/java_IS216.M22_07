@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class KhachHangFrame extends javax.swing.JFrame {
 
-    DefaultTableModel modelttKH, modelCTmuahang;
+    DefaultTableModel modelttKH;
 
     /**
      * Creates new form KhachHangFrame
@@ -26,8 +26,6 @@ public class KhachHangFrame extends javax.swing.JFrame {
     public KhachHangFrame() {
         initComponents();
         loadTable();
-        ImageHandle.getInstance().readImage("/com/resource/background.png");
-        //getContentPane().setBackground();
         setVisible(true);
     }
 
@@ -47,6 +45,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         tbThongTinKH = new javax.swing.JTable();
         txtTimKiem = new javax.swing.JTextField();
         btTim = new javax.swing.JToggleButton();
+        btRefreshTim = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -109,6 +108,14 @@ public class KhachHangFrame extends javax.swing.JFrame {
             }
         });
 
+        btRefreshTim.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btRefreshTim.setText("Refresh");
+        btRefreshTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRefreshTimActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -118,7 +125,9 @@ public class KhachHangFrame extends javax.swing.JFrame {
                 .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btTim)
-                .addGap(17, 17, 17))
+                .addGap(18, 18, 18)
+                .addComponent(btRefreshTim)
+                .addContainerGap())
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
@@ -127,7 +136,8 @@ public class KhachHangFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btTim)
-                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btRefreshTim))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1))
         );
@@ -144,7 +154,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Tổng Điểm");
 
-        cbGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
+        cbGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Nam", "Nữ" }));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("THÔNG TIN KHÁCH HÀNG");
@@ -223,7 +233,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         });
 
         btReset.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btReset.setText("Reset");
+        btReset.setText("Refresh");
         btReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btResetActionPerformed(evt);
@@ -361,15 +371,13 @@ public class KhachHangFrame extends javax.swing.JFrame {
                 }
                 kh.setTongDiem(Integer.parseInt(tongDiem));
                 if (KhachHangController.getInstance().ThemKhachHang(kh) == true) {
-                    JOptionPane.showMessageDialog(this, "Thêm khách hàng thành công");
+                    JOptionPane.showMessageDialog(this, "Thêm khách hàng thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Thêm khách hàng thất bại");
+                    JOptionPane.showMessageDialog(this, "Thêm khách hàng không thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 }
                 loadTable();
-
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("Thêm thất bại");
             }
         }
     }//GEN-LAST:event_btThemActionPerformed
@@ -386,7 +394,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         String tongDiem = txtTongDiem.getText();
 
         if (sdt.length() == 0 || tenKH.length() == 0 || tongDiem.length() == 0) {
-            JOptionPane.showMessageDialog(this, "Nhập đủ thông tin");
+            JOptionPane.showMessageDialog(this, "Thông tin nhập còn trống", "Thông báo", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
                 KhachHangModel kh = new KhachHangModel();
@@ -401,10 +409,12 @@ public class KhachHangFrame extends javax.swing.JFrame {
                 }
                 kh.setTongDiem(Integer.parseInt(tongDiem));
 
-                KhachHangController.getInstance().SuaKhachHang(sdt, kh);
+                if (KhachHangController.getInstance().SuaKhachHang(sdt, kh) == true) {
+                    JOptionPane.showMessageDialog(this, "Cập nhập khách hàng thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Cập nhập khách hàng không thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                }
                 loadTable();
-                JOptionPane.showMessageDialog(this, "Cập nhập khách hàng thành công");
-
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("Cập nhập thất bại");
@@ -417,17 +427,19 @@ public class KhachHangFrame extends javax.swing.JFrame {
      *
      */
     private void btTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTimActionPerformed
+        modelttKH = (DefaultTableModel) tbThongTinKH.getModel();
+        String sdt = txtTimKiem.getText();
+        modelttKH.setRowCount(0);
         if (txtTimKiem.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Chưa nhập thông tin tìm kiếm", "Lỗi", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
-                KhachHangController.getInstance().TimNhanVien(txtTimKiem.getText());
+                KhachHangController.getInstance().TimKhachHang(sdt);
                 loadTable();
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("Khách hàng không tồn tại!");
             }
-            txtTimKiem.setText("");
         }
     }//GEN-LAST:event_btTimActionPerformed
 
@@ -457,7 +469,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
     private void txtTimKiemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
-                KhachHangController.getInstance().TimNhanVien(txtSDT.getText());
+                KhachHangController.getInstance().TimKhachHang(txtSDT.getText());
                 loadTable();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -480,10 +492,10 @@ public class KhachHangFrame extends javax.swing.JFrame {
 
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
         if (this.txtSDT.getText().length() == 0)
-            JOptionPane.showMessageDialog(null, "Bạn cần chọn mã độc giả để xóa", "Thông báo", 1);
+            JOptionPane.showMessageDialog(null, "Bạn cần chọn số điện thoại để xóa", "Thông báo", 1);
         else {
             try {
-                int result = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn xóa độc giả này", "Xác nhận", JOptionPane.YES_NO_OPTION);
+                int result = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn xóa khách hàng này", "Xác nhận", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     if (KhachHangController.getInstance().XoaKhachHang(txtSDT.getText()) == true) {
                         JOptionPane.showMessageDialog(this, "Xóa khách hàng thành công", "Thông báo", JOptionPane.WARNING_MESSAGE);
@@ -491,10 +503,19 @@ public class KhachHangFrame extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Xóa không thành công!", "Thông báo", JOptionPane.WARNING_MESSAGE);
                     }
                 }
+                loadTable();
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }//GEN-LAST:event_btXoaActionPerformed
+
+    private void btRefreshTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRefreshTimActionPerformed
+        txtTimKiem.setText("");
+        modelttKH = (DefaultTableModel) tbThongTinKH.getModel();
+        modelttKH.setRowCount(0);
+        loadTable();
+    }//GEN-LAST:event_btRefreshTimActionPerformed
 
     /**
      * @param args the command line arguments
@@ -533,6 +554,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCapNhap;
+    private javax.swing.JButton btRefreshTim;
     private javax.swing.JButton btReset;
     private javax.swing.JButton btThem;
     private javax.swing.JButton btThoat;

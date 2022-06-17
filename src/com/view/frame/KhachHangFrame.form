@@ -112,7 +112,9 @@
                       <Component id="txtTimKiem" min="-2" pref="161" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btTim" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btRefreshTim" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" alignment="0" pref="560" max="32767" attributes="0"/>
               </Group>
@@ -124,6 +126,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btTim" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtTimKiem" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btRefreshTim" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" max="32767" attributes="0"/>
@@ -172,6 +175,17 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btTimActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btRefreshTim">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Refresh"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRefreshTimActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -279,9 +293,10 @@
             <Component class="javax.swing.JComboBox" name="cbGioiTinh">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
-                    <StringItem index="0" value="Nam"/>
-                    <StringItem index="1" value="N&#x1eef;"/>
+                  <StringArray count="3">
+                    <StringItem index="0" value=""/>
+                    <StringItem index="1" value="Nam"/>
+                    <StringItem index="2" value="N&#x1eef;"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -339,7 +354,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Reset"/>
+            <Property name="text" type="java.lang.String" value="Refresh"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btResetActionPerformed"/>

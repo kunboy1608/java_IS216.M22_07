@@ -65,7 +65,7 @@ public class KhachHangController {
         try {
 
             // Cau truy van SQL
-            String sql = "update KhachHang set TenKH=?, GioiTinh=?, TongDiem=? WHERE SDTKH=" + id;
+            String sql = "update KhachHang set TenKH=?, GioiTinh=?, TongDiem=? WHERE SDTKH='" + id + " '";
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
@@ -89,11 +89,12 @@ public class KhachHangController {
         try {
 
             // Cau truy van SQL
-            String sql = "delete from KhachHang where SDT = " + SDTKH;
+            String sql = "delete from KhachHang where SDTKH = ?" ;
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
-
+            ps.setString(1, SDTKH);
+            
             if (ps.executeUpdate() != 1) {
                 return false;
             }
@@ -126,10 +127,10 @@ public class KhachHangController {
 
     }
     
-    public void TimNhanVien(String id) {
+    public void TimKhachHang(String id) {
         try {
             String sql = "SELECT * FROM KHACHHANG WHERE SDTKH=?";
-            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareCall(sql);
+            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
             LinkedList<KhachHangModel> list = new LinkedList<>();
