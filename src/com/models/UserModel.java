@@ -4,21 +4,24 @@
  */
 package com.models;
 
+import java.util.Date;
+
 /**
  *
  * @author kunbo
  */
-public class UserModel extends AccountModel {
+public class UserModel extends NhanVienModel {
 
-    private String fullName;
+    private String Position;
+    private String Password;
 
-    public UserModel() {
-        super();
-        this.fullName = "";
+    public UserModel(String Position, String Password, int MaNV, int MaCN, String TenNV, int GioiTinh, Date NgayVL, String CCCD) {
+        super(MaNV, MaCN, TenNV, GioiTinh, NgayVL, CCCD);
+        this.Position = Position;
+        this.Password = Password;
     }
 
-    public UserModel(String fullName, String UserName, String Password, Boolean IsLocked, Byte Type) {
-        super(UserName, Password, IsLocked, Type);
-        this.fullName = fullName;
+    public String getPosition() {
+        return Position;
     }
 }

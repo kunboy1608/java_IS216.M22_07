@@ -4,7 +4,6 @@
  */
 package com.boot;
 
-import com.controller.DoUongController;
 import com.handle.NetHandle;
 import com.view.frame.LoginFrame;
 
@@ -17,7 +16,7 @@ public class RunApp {
     private RunApp() {
         configSystem();
         NetHandle.getInstance();
-        new LoginFrame().setVisible(true);
+        new LoginFrame().setVisible(true);        
     }
 
     private void configSystem() {
