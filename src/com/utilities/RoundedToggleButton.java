@@ -24,7 +24,7 @@ public class RoundedToggleButton extends JToggleButton {
     private void initProperties() {
         setOpaque(false);
         setBorder(new NonBorder());
-        setPreferredSize(new Dimension(100, 100));
+        setPreferredSize(new Dimension(80, 80));
 
         setBackground(Color.green);
         addMouseListener(new MouseAdapter() {
@@ -33,18 +33,20 @@ public class RoundedToggleButton extends JToggleButton {
                 setNotification(false);
             }
         });
-        setFont(new CommonFont(20));                
+        setFont(new CommonFont(20));
     }
 
     private RoundedToggleButton() {
         this.notification = true;
         initProperties();
     }
-    public  RoundedToggleButton(String text) {
+
+    public RoundedToggleButton(String text) {
         this.notification = true;
         setText(text);
         initProperties();
     }
+
     public boolean isNotification() {
         return notification;
     }
@@ -61,13 +63,14 @@ public class RoundedToggleButton extends JToggleButton {
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        
+
         if (!isSelected()) {
             g2d.setColor(Color.green);
         }
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 50, 50);
+        super.paintComponent(g);
         if (notification) {
             g2d.setColor(Color.red);
             g2d.fillRoundRect(
@@ -79,6 +82,5 @@ public class RoundedToggleButton extends JToggleButton {
                     90
             );
         }
-        super.paintComponent(g);
     }
 }

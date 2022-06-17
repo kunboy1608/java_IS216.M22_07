@@ -4,6 +4,7 @@
  */
 package com.boot;
 
+import com.controller.DoUongController;
 import com.handle.NetHandle;
 import com.view.frame.LoginFrame;
 

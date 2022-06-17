@@ -11,7 +11,7 @@ import java.util.LinkedList;
  *
  * @author kunbo
  */
-public class DataContext {
+public class DataContext{
 
     private LinkedList<AccountModel> Accounts;
     private LinkedList<CTHDModel> CTHDs;

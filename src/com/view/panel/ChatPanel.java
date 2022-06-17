@@ -5,32 +5,32 @@
 package com.view.panel;
 
 import com.handle.ImageHandle;
-import com.handle.LanguageHandle;
 import com.handle.NetHandle;
 import com.utilities.CommonFont;
 import com.utilities.NonBorder;
+import com.utilities.RoundedBorder;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JViewport;
 import javax.swing.ScrollPaneConstants;
 
 /**
  *
  * @author hoangdp
  */
-public class ChatPanel extends JPanel {
-
-    private void initComponents() {        
+public class ChatPanel extends Container {
+    
+    private void initComponents() {
         setLayout(new BorderLayout(5, 5));
         Messages = new JEditorPane();
         Messages.setFont(new CommonFont(14));
@@ -53,19 +53,27 @@ public class ChatPanel extends JPanel {
         </style>
         <body style = "font-family: Helvetica, Arial, sans-serif; font-size: 20;">                         
                         """;
-
+        
         Messages.setText(Contents);
-        scChat = new JScrollPane(
-                Messages,
-                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED
-        );
+        Messages.setOpaque(false);
+        JViewport viewport = new JViewport();
+        viewport.setOpaque(false);
+        viewport.setView(Messages);
+        scChat = new JScrollPane();
+        scChat.setViewport(viewport);
+        scChat.setOpaque(false);
+        scChat.setBorder(new NonBorder());
+        scChat.getViewport().setOpaque(false);
         this.add(scChat, BorderLayout.CENTER);
-
+        
         var c = new Container();
         c.setLayout(new BorderLayout(5, 5));
-
+        
         txtChat = new JTextField();
+        txtChat.setOpaque(false);
+        txtChat.setFont(new CommonFont(30));
+        txtChat.setForeground(Color.red);
+        txtChat.setBorder(new RoundedBorder());
         txtChat.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -75,7 +83,7 @@ public class ChatPanel extends JPanel {
             }
         });
         c.add(txtChat, BorderLayout.CENTER);
-
+        
         btnSend = new JLabel(
                 ImageHandle
                         .getInstance()
@@ -83,8 +91,8 @@ public class ChatPanel extends JPanel {
                                 ImageHandle
                                         .getInstance()
                                         .readImageIcon("/com/resource/send.png"),
-                                28,
-                                28
+                                45,
+                                45
                         ));
         btnSend.setBorder(new NonBorder());
         btnSend.addMouseListener(new MouseAdapter() {
@@ -93,14 +101,14 @@ public class ChatPanel extends JPanel {
                 sendMessage();
             }
         });
-        btnSend.setPreferredSize(new Dimension(30, 30));
+        btnSend.setPreferredSize(new Dimension(50, 50));
         c.add(btnSend, BorderLayout.LINE_END);
-
+        
         this.add(c, BorderLayout.PAGE_END);
-
+        
         this.setPreferredSize(new Dimension(WIDTH_CHAT, HEIGHT_CHAT));
     }
-
+    
     private void sendMessage() {
         if (txtChat.getText().trim().equals("")) {
             return;
@@ -110,7 +118,15 @@ public class ChatPanel extends JPanel {
         NetHandle.getInstance().sendData(txtChat.getText().trim(), id);
         txtChat.setText("");
     }
-
+    
+    public void receiveMessage(String message) {
+        if (message == null) {
+            return;
+        }
+        Contents += "<div class=\"employee\">" + message + "</div>";
+        Messages.setText(Contents);
+    }
+    
     public ChatPanel(String name) {
         initComponents();
         this.id = name;

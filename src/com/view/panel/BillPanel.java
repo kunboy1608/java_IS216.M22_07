@@ -4,12 +4,19 @@
  */
 package com.view.panel;
 
+import com.controller.CTHDController;
+import com.controller.HoaDonKhachHangController;
+import com.handle.ConnectionHandle;
 import com.handle.LanguageHandle;
 import com.handle.Utilities;
+import com.models.CTHDModel;
 import com.models.DoUongModel;
+import com.models.HoaDonKhachHangModel;
 import com.utilities.CommonFont;
+import com.utilities.NonBorder;
 import com.utilities.RoundedButton;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -17,20 +24,22 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.print.PrinterException;
+import java.sql.SQLException;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JEditorPane;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JViewport;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author hoangdp
  */
-public class BillPanel extends JPanel {
+public class BillPanel extends Container {
 
     private void initComponents() {
         setLayout(new BorderLayout());
@@ -38,9 +47,11 @@ public class BillPanel extends JPanel {
 
         lbtitle = new JLabel(TITLE + id, JLabel.CENTER);
         lbtitle.setFont(new CommonFont(Font.BOLD, 30));
+        lbtitle.setForeground(Color.WHITE);
         add(lbtitle, BorderLayout.NORTH);
 
         tbBill = new JTable();
+        tbBill.setOpaque(false);
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(new String[]{
             NUMBER_ORDER,
@@ -50,10 +61,18 @@ public class BillPanel extends JPanel {
         });
 
         tbBill.setModel(dtm);
-        tbBill.getTableHeader().setFont(new CommonFont(14));
+        tbBill.getTableHeader().setFont(new CommonFont(20));
         tbBill.setRowHeight(30);
-        tbBill.setFont(new CommonFont(14));
-        scTb = new JScrollPane(tbBill);
+        tbBill.setFont(new CommonFont(20));
+        
+        JViewport viewport = new JViewport();
+        viewport.setOpaque(false);
+        viewport.setView(tbBill);
+        scTb = new JScrollPane();
+        scTb.setViewport(viewport);
+        scTb.setOpaque(false);
+        scTb.setBorder(new NonBorder());
+        scTb.getViewport().setOpaque(false);
         add(scTb, BorderLayout.CENTER);
 
         botCon = new Container();
@@ -61,6 +80,7 @@ public class BillPanel extends JPanel {
 
         btnPrint = new RoundedButton(PRINT, 100, 50, 10);
         btnPrint.addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseClicked(MouseEvent e) {
                 printBill();
             }
@@ -69,8 +89,35 @@ public class BillPanel extends JPanel {
 
         btnPay = new RoundedButton(PAY, 100, 50, 10);
         btnPay.addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseClicked(MouseEvent e) {
-                pay();
+                try {
+                    if (dtm.getRowCount() == 0) {
+                        JOptionPane.showConfirmDialog(
+                                null,
+                                "Khong co goi do ",
+                                "Loi",
+                                JOptionPane.DEFAULT_OPTION
+                        );
+                        return;
+                    }
+                    if (JOptionPane.showConfirmDialog(
+                            null,
+                            "in hoa don khong",
+                            "title",
+                            JOptionPane.YES_NO_OPTION
+                    ) == 0) {
+                        printBill();
+                    }
+                    pay();
+                } catch (SQLException ex) {
+                    JOptionPane.showConfirmDialog(
+                            null,
+                            "Khong thanh cong",
+                            "Loi",
+                            JOptionPane.DEFAULT_OPTION
+                    );
+                }
             }
         });
         botCon.add(btnPay);
@@ -89,7 +136,7 @@ public class BillPanel extends JPanel {
     }
 
     public void addDrinks(DoUongModel du) {
-        for (int i = 1; i < dtm.getRowCount(); i++) {
+        for (int i = 0; i < dtm.getRowCount(); i++) {
             if (Integer.parseInt(dtm.getValueAt(i, 0).toString())
                     == du.getMaDU()) {
                 int value = Integer.parseInt(dtm.getValueAt(i, 3).toString());
@@ -110,7 +157,7 @@ public class BillPanel extends JPanel {
     }
 
     public void removeDrinks(DoUongModel du) {
-        for (int i = 1; i < dtm.getRowCount(); i++) {
+        for (int i = 0; i < dtm.getRowCount(); i++) {
             if (Integer.parseInt(dtm.getValueAt(i, 0).toString())
                     == du.getMaDU()) {
                 int value = Integer.parseInt(dtm.getValueAt(i, 3).toString());
@@ -128,10 +175,54 @@ public class BillPanel extends JPanel {
         }
     }
 
-    public void pay() {
-        // Them HoaDonKhachHang
-        // Them CTHD
-        // Kiem tra ma giam gia
+    public void pay() throws SQLException {
+        try {
+            // Tinh tong hoa don
+            ConnectionHandle.getInstance().getConnection().setAutoCommit(false);
+            var x = ConnectionHandle.getInstance().getConnection().setSavepoint();
+            double tongTien = 0;
+            for (int i = 0; i < dtm.getRowCount(); i++) {
+                double sum = Float.parseFloat(dtm.getValueAt(i, 2).toString())
+                        * Integer.parseInt(dtm.getValueAt(i, 3).toString());
+                tongTien += sum;
+            }
+            // Them hoa don
+            int maHD = HoaDonKhachHangController.getInstance().ThemHoaDonKhachHang(
+                    new HoaDonKhachHangModel(
+                            0,
+                            "SDT",
+                            1,
+                            null,
+                            tongTien,
+                            1
+                    )
+            );
+            // Kiem tra them hoa do nco thanh cong hay khong
+            if (maHD == -1) {
+                ConnectionHandle.getInstance().getConnection().rollback(x);
+            }
+
+            // Them CTHD
+            for (int i = 0; i < dtm.getRowCount(); i++) {
+                CTHDController.getInstance().ThemCTHD(new CTHDModel(
+                        Integer.parseInt(dtm.getValueAt(i, 0).toString()),
+                        maHD,
+                        Integer.parseInt(dtm.getValueAt(i, 3).toString()),
+                        Double.parseDouble(dtm.getValueAt(i, 2).toString())
+                ));
+            }
+
+            // Commit
+            ConnectionHandle.getInstance().getConnection().commit();
+        } catch (com.microsoft.sqlserver.jdbc.SQLServerException ex) {
+            ConnectionHandle.getInstance().getConnection().rollback();
+            Logger.getLogger(BillPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            ConnectionHandle.getInstance().getConnection().rollback();
+            Logger.getLogger(BillPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionHandle.getInstance().getConnection().setAutoCommit(true);
+        }
     }
 
     private void addHeader() {
@@ -199,17 +290,18 @@ public class BillPanel extends JPanel {
         addHeader();
 
         // Them danh sach mon da goi
-        long tongTien = 0;
+        float tongTien = 0;
         for (int i = 0; i < dtm.getRowCount(); i++) {
             content += "<tr>";
-            content += "<td>" + i + "</td>";
-            content += "<td>" + dtm.getValueAt(i, 0).toString() + "</td>";
+            content += "<td>" + (i + 1) + "</td>";
             content += "<td>" + dtm.getValueAt(i, 1).toString() + "</td>";
             content += "<td>" + dtm.getValueAt(i, 2).toString() + "</td>";
-            long sum = Long.parseLong(dtm.getValueAt(i, 2).toString())
+            content += "<td>" + dtm.getValueAt(i, 3).toString() + "</td>";
+            float sum = Float.parseFloat(dtm.getValueAt(i, 2).toString())
                     * Integer.parseInt(dtm.getValueAt(i, 3).toString());
             content += "<td>" + sum + "</td>";
             content += "</tr>";
+            tongTien += sum;
         }
         content += "</table><div>Tổng tiền: " + tongTien + " đ</div>";
 
@@ -240,7 +332,7 @@ public class BillPanel extends JPanel {
 
     // Varible
     private final String urlBackground;
-    DefaultTableModel dtm;
+    private DefaultTableModel dtm;
     private String content;
 
     // Text

@@ -119,24 +119,20 @@ public class DoUongController {
             String sql = "Select *  FROM DoUong";
             Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
             ResultSet rs = ps.executeQuery(sql);
-            
+
             LinkedList<DoUongModel> list = new LinkedList<>();
             DoUongModel du;
-            
+
             while (rs.next()) {
                 du = new DoUongModel();
                 du.setMaDU(rs.getInt(1));
                 du.setTenDU(rs.getString(2));
                 du.setGia(rs.getDouble(3));
-                du.setHinhAnh(
-                        ImageHandle
-                                .getInstance()
-                                .createImageFromBlob(rs.getBlob(4))
-                );
+                du.setHinhAnh(rs.getBlob(4));
                 du.setGhiChu(rs.getString(5));
                 list.add(du);
             }
-            
+
             DataContext.getInstance().setDoUongs(list);
         } catch (SQLException e) {
             e.printStackTrace();

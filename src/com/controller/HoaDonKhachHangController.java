@@ -22,45 +22,52 @@ import java.util.logging.Logger;
  * @author kunbo
  */
 public class HoaDonKhachHangController {
-
+    
     private static HoaDonKhachHangController _instance;
-
+    
     public static synchronized HoaDonKhachHangController getInstance() {
         if (_instance == null) {
             _instance = new HoaDonKhachHangController();
         }
         return _instance;
     }
-
+    
     private HoaDonKhachHangController() {
-
+        
     }
-
-    public boolean ThemHoaDonKhachHang(HoaDonKhachHangModel k) {
+    
+    public int ThemHoaDonKhachHang(HoaDonKhachHangModel k) {
         try {
 
             // Cau truy van SQL
-            String sql = "Insert into HoaDonKhachHang values(?,?,?)";
+            String sql = """
+                         Begin tran t1;
+                         insert into HOADONKHACHHANG  WITH (TABLOCK, HOLDLOCK) values(?, ?, ?, ?, ?);
+                         select top 1 mahd from HOADONKHACHHANG order by MaHD desc;
+                         commit tran t1;
+            """;
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             // Gan bien vao cac dau  ?
-            ps.setInt(1, k.getMaNV());
-            ps.setDate(2, (Date) k.getNgayLap());
-            ps.setDouble(3, k.getTongTien());
-
-            // Kiem tra xem thuc hien co thanh cong hay khong
-            if (ps.executeUpdate() != 1) {
-                return false;
+            ps.setString(1, k.getSDTKH());
+            ps.setInt(2, k.getMaGiamGia());
+            ps.setInt(3, k.getMaNV());
+            ps.setDate(4, (Date) k.getNgayLap());
+            ps.setDouble(5, k.getTongTien());
+            
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
             }
-            return true;
+            return -1;
         } catch (SQLException ex) {
             Logger.getLogger(HoaDonKhachHangController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return -1;
     }
-
+    
     public boolean SuaHoaDonKhachHang(int id, HoaDonKhachHangModel k) {
         try {
 
@@ -84,7 +91,7 @@ public class HoaDonKhachHangController {
         }
         return false;
     }
-
+    
     public boolean XoaHoaDonKhachHang(int id) {
         try {
 
@@ -93,7 +100,7 @@ public class HoaDonKhachHangController {
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
-
+            
             ps.setString(id, sql);
             if (ps.executeUpdate() != 1) {
                 return false;
@@ -103,10 +110,11 @@ public class HoaDonKhachHangController {
         }
         return true;
     }
-public void LayDuLieu() {
+    
+    public void LayDuLieu() {
         try {
             String sql = "Select *  FROM HoaDonKhachHang";
-
+            
             Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
             ResultSet rs = ps.executeQuery(sql);
             LinkedList<HoaDonKhachHangModel> list = new LinkedList<>();
@@ -125,5 +133,5 @@ public void LayDuLieu() {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-}
+    }
 }

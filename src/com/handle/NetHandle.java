@@ -85,8 +85,18 @@ public class NetHandle extends Thread {
             );
             sendData("OK".getBytes(), packet.getAddress(), packet.getPort());
             MenuFrame.getInstance().addTable(message.substring(6));
+        } else {
+            for (var x : listClient.keySet()) {
+                if (((InetAddress) listClient.get(x)[0]).equals(packet.getAddress())
+                        && ((int) listClient.get(x)[1]) == (packet.getPort())) {
+                    MenuFrame.getInstance().receiveMessage(
+                            (String) x,
+                            message
+                    );
+                    return;
+                }
+            }
         }
         System.out.println("Danh sach may hien tai:" + listClient.size());
     }
-
 }

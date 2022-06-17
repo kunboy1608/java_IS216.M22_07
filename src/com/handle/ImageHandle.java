@@ -17,6 +17,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
@@ -36,17 +38,16 @@ public class ImageHandle {
     }
 
     public ImageIcon resize(ImageIcon originalImage, int targetWidth, int targetHeight) {
-        System.out.println(targetHeight);
         ImageIcon resultingImage = new ImageIcon(originalImage.getImage().getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH));
         return resultingImage;
     }
 
-    public Image resize(Image originalImage, int targetWidth, int targetHeight) {        
+    public Image resize(Image originalImage, int targetWidth, int targetHeight) {
         Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH);
         return resultingImage;
     }
 
-    public Image resize(BufferedImage originalBufferedImage, int targetWidth, int targetHeight) {        
+    public Image resize(BufferedImage originalBufferedImage, int targetWidth, int targetHeight) {
         return resize((Image) originalBufferedImage, targetWidth, targetHeight);
     }
 
@@ -71,13 +72,13 @@ public class ImageHandle {
         }
     }
 
-    public Image createImageFromByteArray(byte[] data, String type) throws IOException {
+    public Image createImageFromByteArray(byte[] data, String type) {
         try {
             ByteArrayInputStream bis = new ByteArrayInputStream(data);
             BufferedImage bImage = ImageIO.read(bis);
             Image img = bImage.getScaledInstance(bImage.getWidth(), bImage.getHeight(), Image.SCALE_SMOOTH);
             return img;
-        } catch (javax.imageio.IIOException | java.lang.NullPointerException e) {
+        } catch (java.lang.NullPointerException | IOException e) {
             return null;
         }
     }
@@ -86,15 +87,20 @@ public class ImageHandle {
         try {
             byte[] imagebytes = b.getBytes(1, (int) b.length());
             return createImageFromByteArray(imagebytes, "jpg");
-        } catch (SQLException | IOException | java.lang.NullPointerException e) {
+        } catch (SQLException | java.lang.NullPointerException e) {
             return null;
         }
     }
 
-    public byte[] BlobToByteArray(Blob b) throws SQLException {
-        int myblobLength = (int) b.length();
-        byte[] myblobAsBytes = b.getBytes(1, myblobLength);
-        return myblobAsBytes;
+    public byte[] BlobToByteArray(Blob b) {
+        try {
+            int myblobLength = (int) b.length();
+            byte[] myblobAsBytes = b.getBytes(1, myblobLength);
+            return myblobAsBytes;
+        } catch (SQLException ex) {
+            Logger.getLogger(ImageHandle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public Image readImage(String URL) {
@@ -166,5 +172,13 @@ public class ImageHandle {
 
         g2.dispose();
         return output;
+    }
+
+    public BufferedImage getBufferedImage(Image img) {
+        BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
+        Graphics2D g = bimage.createGraphics();
+        g.drawImage(img, 0, 0, null);
+        g.dispose();
+        return bimage;
     }
 }

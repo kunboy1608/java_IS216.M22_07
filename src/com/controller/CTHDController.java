@@ -21,43 +21,42 @@ import java.util.logging.Logger;
  * @author kunbo
  */
 public class CTHDController {
-
+    
     private static CTHDController _instance;
-
+    
     public static synchronized CTHDController getInstance() {
         if (_instance == null) {
             _instance = new CTHDController();
         }
         return _instance;
     }
-
+    
     private CTHDController() {
-
+        
     }
-
-    public boolean ThemCTHD(CTHDModel k) {
+    
+    public boolean ThemCTHD(CTHDModel ct) {
         try {
 
             // Cau truy van SQL
-            String sql = "Insert into CTHD values(?,?)";
+            String sql = "Insert into CTHD values(?,?,?,?)";
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             // Gan bien vao cac dau  ?
-            ps.setInt(1, k.getSoLuong());
-            ps.setDouble(2, k.getGia());
+            ps.setInt(1, ct.getMaHD());
+            ps.setInt(2, ct.getMADU());
+            ps.setInt(3, ct.getSoLuong());
+            ps.setDouble(4, ct.getGia());
             // Kiem tra xem thuc hien co thanh cong hay khong
-            if (ps.executeUpdate() != 1) {
-                return false;
-            }
-            return true;
+            return ps.executeUpdate() == 1;
         } catch (SQLException ex) {
             Logger.getLogger(CTHDController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
-
+    
     public boolean SuaCTHD(int id, CTHDModel k) {
         try {
 
@@ -80,7 +79,7 @@ public class CTHDController {
         }
         return false;
     }
-
+    
     public boolean XoaCTHD(int id) {
         try {
 
@@ -89,7 +88,7 @@ public class CTHDController {
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
-
+            
             ps.setString(id, sql);
             if (ps.executeUpdate() != 1) {
                 return false;
@@ -99,10 +98,11 @@ public class CTHDController {
         }
         return true;
     }
-public void LayDuLieu() {
+
+    public void LayDuLieu() {
         try {
             String sql = "Select *  FROM CTHD";
-
+            
             Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
             ResultSet rs = ps.executeQuery(sql);
             LinkedList<CTHDModel> list = new LinkedList<>();
@@ -119,6 +119,6 @@ public void LayDuLieu() {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        
     }
 }

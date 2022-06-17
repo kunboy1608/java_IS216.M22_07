@@ -7,22 +7,23 @@ package com.view.panel;
 import com.handle.ImageHandle;
 import com.utilities.CommonFont;
 import com.utilities.RoundedButton;
+import com.view.frame.MenuFrame;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
  *
  * @author hoangdp
  */
-public class DinksPanel extends JPanel {
+public class DinksPanel extends Container {
 
     public DinksPanel(int id, String name, Image img) {
         this.imageIcon = new ImageIcon(
@@ -45,7 +46,8 @@ public class DinksPanel extends JPanel {
         Container c = new Container();
         c.setLayout(new GridLayout(2, 1, 3, 3));
         lbName = new JLabel(name);
-        lbName.setFont(new CommonFont(14));
+        lbName.setFont(new CommonFont(25));
+        lbName.setForeground(Color.WHITE);
         lbName.setHorizontalAlignment(JLabel.CENTER);
         c.add(lbName);
         Container conBtn = new Container();
@@ -53,19 +55,25 @@ public class DinksPanel extends JPanel {
         conBtn.setLayout(new GridLayout(1, 2, 3, 3));
 
         btnSub = new RoundedButton("-", 30, 30, 10);
+        btnSub.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                MenuFrame.getInstance().sub(id);
+            }
+        });
         conBtn.add(btnSub);
 
         btnPlus = new RoundedButton("+", 30, 30, 10);
         conBtn.add(btnPlus);
+        btnPlus.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                MenuFrame.getInstance().plus(id);
+            }
+        });
         c.add(conBtn);
         add(c, BorderLayout.PAGE_END);
 
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        setPreferredSize(new Dimension(200, 250));
-        super.paintComponent(g);
     }
 
     public int getId() {

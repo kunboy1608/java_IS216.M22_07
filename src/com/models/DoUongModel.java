@@ -4,23 +4,30 @@
  */
 package com.models;
 
+import com.handle.ImageHandle;
 import java.awt.Image;
+import java.io.Serializable;
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author dang
  */
-public class DoUongModel {
-  private int MaDU;
-  private String TenDU;
-  private double Gia;
-  private Image HinhAnh;
-  private String GhiChu;
+public class DoUongModel implements Serializable {
+
+    private int MaDU;
+    private String TenDU;
+    private double Gia;
+    private Blob HinhAnh;
+    private String GhiChu;
 
     public DoUongModel() {
     }
 
-    public DoUongModel(int MaDU, String TenDU, double Gia, Image HinhAnh, String GhiChu) {
+    public DoUongModel(int MaDU, String TenDU, double Gia, Blob HinhAnh, String GhiChu) {
         this.MaDU = MaDU;
         this.TenDU = TenDU;
         this.Gia = Gia;
@@ -53,11 +60,22 @@ public class DoUongModel {
     }
 
     public Image getHinhAnh() {
-        return HinhAnh;
+        return ImageHandle.getInstance().createImageFromBlob(HinhAnh);
     }
 
-    public void setHinhAnh(Image HinhAnh) {
+    public void setHinhAnh(Blob HinhAnh) {
         this.HinhAnh = HinhAnh;
+    }
+
+    public void setHinhAnh(Image img) {
+        try {
+            this.HinhAnh.setBytes(
+                    ImageHandle.getInstance().toByteArray(img, "jpg").length,
+                    ImageHandle.getInstance().toByteArray(img, "jpg")
+            );
+        } catch (SQLException ex) {
+            Logger.getLogger(DoUongModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public String getGhiChu() {
@@ -67,5 +85,5 @@ public class DoUongModel {
     public void setGhiChu(String GhiChu) {
         this.GhiChu = GhiChu;
     }
-  
+
 }
