@@ -72,14 +72,16 @@ public class HoaDonKhachHangController {
         try {
 
             // Cau truy van SQL
-            String sql = "update KhachHang set MaNV=?, NgapLap=?, TongTien=?";
+            String sql = "update KhachHang set MaGiamGia=?, SDTKH=?, MaNV=?, NgapLap=?, TongTien=? WHERE MANV=" + id;
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             // Gan bien vao cac dau  ?
-            ps.setInt(1, k.getMaNV());
-            ps.setDate(2, (Date) k.getNgayLap());
-            ps.setDouble(3, k.getTongTien());
+            ps.setString(1, k.getSDTKH());
+            ps.setInt(2, k.getMaGiamGia());
+            ps.setInt(3, k.getMaNV());
+            ps.setDate(4, (Date) k.getNgayLap());
+            ps.setDouble(5, k.getTongTien());
 
             // Kiem tra xem thuc hien co thanh cong hay khong
             if (ps.executeUpdate() != 1) {
@@ -101,7 +103,7 @@ public class HoaDonKhachHangController {
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
             
-            ps.setString(id, sql);
+            ps.setInt(1, id);
             if (ps.executeUpdate() != 1) {
                 return false;
             }
