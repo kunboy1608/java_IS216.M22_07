@@ -40,18 +40,18 @@ public class NhanVienController {
         try {
 
             // Cau truy van SQL
-            String sql = "Insert into NHANVIEN values(?,?,?,?,?,?)";
+            String sql = "Insert into NHANVIEN values(?,?,?,?,?)";
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             // Gan bien vao cac dau  ?
-            ps.setInt(1, layMaNV());
-            ps.setInt(2, nv.getMaCN());
-            ps.setString(3, nv.getTenNV());
-            ps.setInt(4, nv.getGioiTinh());
-            ps.setDate(5, (Date) nv.getNgayVL());
-            ps.setString(6, nv.getCCCD());
+            //ps.setInt(1, layMaNV());
+            ps.setInt(1, nv.getMaCN());
+            ps.setString(2, nv.getTenNV());
+            ps.setInt(3, nv.getGioiTinh());
+            ps.setDate(4, new java.sql.Date(nv.getNgayVL().getTime()));
+            ps.setString(5, nv.getCCCD());
 
             // Kiem tra xem thuc hien co thanh cong hay khong
             if (ps.executeUpdate() != 1) {
@@ -68,7 +68,7 @@ public class NhanVienController {
         try {
 
             // Cau truy van SQL
-            String sql = "update NHANVIEN set MaCN = ?, TenNV=?, GioiTinh=?,NgayVL=?, CMND=?";
+            String sql = "update NHANVIEN set MaCN = ?, TenNV=?, GioiTinh=?,NgayVL=?, CCCD=? where MaNV = '" + id + " '";
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
@@ -76,9 +76,9 @@ public class NhanVienController {
             ps.setInt(1, nv.getMaCN());
             ps.setString(2, nv.getTenNV());
             ps.setInt(3, nv.getGioiTinh());
-            ps.setDate(4, (Date) nv.getNgayVL());
+            ps.setDate(4, new java.sql.Date(nv.getNgayVL().getTime()));
             ps.setString(5, nv.getCCCD());
-
+            
             // Kiem tra xem thuc hien co thanh cong hay khong
             if (ps.executeUpdate() != 1) {
                 return false;
@@ -92,11 +92,11 @@ public class NhanVienController {
 
     public boolean XoaNhanVien(int id) {
         try {
-            String sql = "DELETE FROM NHANVIEN WHERE MaNV = ";
+            String sql = "DELETE FROM NHANVIEN WHERE MaNV = ?";
 
-            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareCall(sql);
+            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
-            ps.setString(id, sql);
+            ps.setInt(1, id);
 
             if (ps.executeUpdate() != 1) {
                 return false;
@@ -134,7 +134,6 @@ public class NhanVienController {
     public void LayDuLieu() {
         try {
             String sql = "Select *  FROM NHANVIEN";
-
             Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
             ResultSet rs = ps.executeQuery(sql);
             LinkedList<NhanVienModel> list = new LinkedList<>();
@@ -189,6 +188,5 @@ public class NhanVienController {
         }
         return maNV;
     }
-    
-    
+
 }
