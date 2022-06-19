@@ -153,9 +153,9 @@ go
 /* Table: HOADONKHACHHANG                                       */
 /*==============================================================*/
 create table HOADONKHACHHANG (
-   MAHD                 int                  not null,
-   MAGIAMGIA            int                  identity,
-   SDTKH                char(11)             not null,
+   MAHD                 int                  not null identity,
+   MAGIAMGIA            int                  null,
+   SDTKH                char(11)             null,
    MANV                 int                  null,
    NGAYLAP              datetime             null,
    TONGTIEN             money                null,
