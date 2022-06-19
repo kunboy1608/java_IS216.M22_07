@@ -7,7 +7,6 @@ package com.controller;
 import com.handle.ConnectionHandle;
 import com.models.DataContext;
 import com.models.GiamGiaModel;
-import com.models.HoaDonKhachHangModel;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -104,7 +103,8 @@ public class GiamGiaController {
         }
         return true;
     }
-public void LayDuLieu() {
+
+    public void LayDuLieu() {
         try {
             String sql = "Select *  FROM GiamGia";
 
@@ -125,5 +125,30 @@ public void LayDuLieu() {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-}
+    }
+
+    public void TimGiamGia(String id) {
+        try {
+            String sql = "SELECT * FROM GIAMGIA WHERE MaGiamGia=?";
+            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            ps.setString(1, id);
+
+            LinkedList<GiamGiaModel> list = new LinkedList<>();
+            GiamGiaModel nv;
+            while (rs.next()) {
+                nv = new GiamGiaModel();
+                nv.setMaGiamGia(rs.getInt(1));
+                nv.setGiaTri(rs.getInt(2));
+                nv.setToiDa(rs.getDouble(3));
+                nv.setNgayBatDau(rs.getDate(4));
+                nv.setNgayKetThuc(rs.getDate(5));
+
+                list.add(nv);
+            }
+            DataContext.getInstance().setGiamGias(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
