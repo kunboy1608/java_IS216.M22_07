@@ -38,14 +38,14 @@ import javax.swing.JViewport;
  * @author hoangdp
  */
 public class MenuFrame extends JFrame {
-
+    
     private void initChatArea() {
         leftCon = new Container();
         leftCon.setLayout(new BorderLayout(5, 5));
         leftCon.setPreferredSize(new Dimension(400, 0));
         panel.add(leftCon, BorderLayout.LINE_START);
     }
-
+    
     private void initDrinkArea() {
         midCon = new Container();
         midCon.setLayout(new GridLayout());
@@ -65,14 +65,14 @@ public class MenuFrame extends JFrame {
         midCon.add(scMain);
         panel.add(midCon, BorderLayout.CENTER);
     }
-
+    
     private void initBillArea() {
         rightCon = new Container();
         rightCon.setLayout(new GridLayout());
         rightCon.setPreferredSize(new Dimension(400, 0));
         panel.add(rightCon, BorderLayout.LINE_END);
     }
-
+    
     private void initTableArea() {
         botCon = new Container();
         botCon.setLayout(new BorderLayout(10, 10));
@@ -92,10 +92,11 @@ public class MenuFrame extends JFrame {
         scTable.getViewport().setOpaque(false);
         botCon.add(scTable);
         panel.add(botCon, BorderLayout.PAGE_END);
-
+        
     }
-
+    
     private void initComponents() {
+        setIconImage(ImageHandle.getInstance().getIconLogo());
         setTitle(TITLE);
         panel = new JPanel() {
             @Override
@@ -114,7 +115,7 @@ public class MenuFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
-
+    
     public void addTable(String name) {
         if (group == null) {
             group = new ButtonGroup();
@@ -137,18 +138,18 @@ public class MenuFrame extends JFrame {
         revalidate();
         repaint();
     }
-
+    
     private void changTable(String name) {
         currentTable = name;
         leftCon.removeAll();
         leftCon.add((ChatPanel) list.get(name)[0]);
-
+        
         rightCon.removeAll();
         rightCon.add((BillPanel) list.get(name)[1]);
         revalidate();
         repaint();
     }
-
+    
     public void addDrinks(DoUongModel du) {
         pMain.add(new DinksPanel(
                 du.getMaDU(),
@@ -156,12 +157,14 @@ public class MenuFrame extends JFrame {
                 du.getHinhAnh()
         ));
     }
-
+    
     private void loadText() {
         TITLE = LanguageHandle.getInstance().getValue("Menu", "TITLE");
         TABLE = LanguageHandle.getInstance().getValue("Menu", "TABLE");
+        ORDER = LanguageHandle.getInstance().getValue("Chat", "ORDER");
+        CANCEL = LanguageHandle.getInstance().getValue("Chat", "CANCEL");
     }
-
+    
     public void sub(int id) {
         try {
             BillPanel bp = (BillPanel) list.get(currentTable)[1];
@@ -177,7 +180,7 @@ public class MenuFrame extends JFrame {
         }
         NetHandle.getInstance().sendData("HuyMon:  " + id, currentTable);
     }
-
+    
     public void plus(int id) {
         try {
             BillPanel bp = (BillPanel) list.get(currentTable)[1];
@@ -188,19 +191,19 @@ public class MenuFrame extends JFrame {
                     .findFirst()
                     .get()
             );
-
+            
         } catch (java.lang.NullPointerException e) {
             return;
         }
         NetHandle.getInstance().sendData("ThemMon: " + id, currentTable);
     }
-
+    
     private void loadDrinks() {
         for (int i = 0; i < DataContext.getInstance().getDoUongs().size(); i++) {
             addDrinks(DataContext.getInstance().getDoUongs().get(i));
         }
     }
-
+    
     public void receiveMessage(String name, String message) {
         if (message.contains("ThemMon: ")) {
             int maDU = Integer.parseInt(message.substring(9).trim());
@@ -210,7 +213,7 @@ public class MenuFrame extends JFrame {
                     .filter(x -> x.getMaDU() == maDU)
                     .findFirst()
                     .get();
-            message = "Goi Mon " + doUongModel.getTenDU() + " ID: " + doUongModel.getMaDU();
+            message = ORDER + doUongModel.getTenDU() + " ID: " + doUongModel.getMaDU();
         } else if (message.contains("HuyMon:  ")) {
             int maDU = Integer.parseInt(message.substring(9).trim());
             DoUongModel doUongModel = DataContext.getInstance()
@@ -219,14 +222,14 @@ public class MenuFrame extends JFrame {
                     .filter(x -> x.getMaDU() == maDU)
                     .findFirst()
                     .get();
-            message = "Huy Mon " + doUongModel.getTenDU() + " ID: " + doUongModel.getMaDU();
+            message = CANCEL + doUongModel.getTenDU() + " ID: " + doUongModel.getMaDU();
         }
         ((ChatPanel) list.get(name)[0]).receiveMessage(message);
         ((RoundedToggleButton) list.get(name)[2]).setNotification(true);
         validate();
         repaint();
     }
-
+    
     public void drawBackground(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         // Ve hinh nen
@@ -240,20 +243,20 @@ public class MenuFrame extends JFrame {
         g2d.setColor(new Color(0f, 0f, 0f, 0.6f));
         g2d.fillRect(0, 0, getWidth(), getHeight());
     }
-
+    
     private MenuFrame() {
         loadText();
         initComponents();
         imageBackground = ImageHandle.getInstance().readImage("/com/resource/background_menu.jpg");
     }
-
+    
     public static synchronized MenuFrame getInstance() {
         if (_instance == null) {
             _instance = new MenuFrame();
         }
         return _instance;
     }
-
+    
     private static MenuFrame _instance;
     // GUI Components
     private Container leftCon;
@@ -278,4 +281,6 @@ public class MenuFrame extends JFrame {
     //Text 
     private String TITLE;
     private String TABLE;
+    private String ORDER;
+    private String CANCEL;
 }

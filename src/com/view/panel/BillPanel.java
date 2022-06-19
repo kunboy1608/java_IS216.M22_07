@@ -64,7 +64,7 @@ public class BillPanel extends Container {
         tbBill.getTableHeader().setFont(new CommonFont(20));
         tbBill.setRowHeight(30);
         tbBill.setFont(new CommonFont(20));
-        
+
         JViewport viewport = new JViewport();
         viewport.setOpaque(false);
         viewport.setView(tbBill);
@@ -82,6 +82,15 @@ public class BillPanel extends Container {
         btnPrint.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if (dtm.getRowCount() == 0) {
+                    JOptionPane.showConfirmDialog(
+                            null,
+                            NOTHING,
+                            PRINT_TITLE,
+                            JOptionPane.DEFAULT_OPTION
+                    );
+                    return;
+                }
                 printBill();
             }
         });
@@ -95,26 +104,32 @@ public class BillPanel extends Container {
                     if (dtm.getRowCount() == 0) {
                         JOptionPane.showConfirmDialog(
                                 null,
-                                "Khong co goi do ",
-                                "Loi",
+                                NOTHING,
+                                PRINT_TITLE,
                                 JOptionPane.DEFAULT_OPTION
                         );
                         return;
                     }
                     if (JOptionPane.showConfirmDialog(
                             null,
-                            "in hoa don khong",
-                            "title",
+                            PRINT_MESSAGE,
+                            PRINT_MESSAGE,
                             JOptionPane.YES_NO_OPTION
                     ) == 0) {
                         printBill();
                     }
                     pay();
+                    JOptionPane.showConfirmDialog(
+                            null,
+                            PAY_SUCCESS,
+                            PAY_TITLE,
+                            JOptionPane.DEFAULT_OPTION
+                    );
                 } catch (SQLException ex) {
                     JOptionPane.showConfirmDialog(
                             null,
-                            "Khong thanh cong",
-                            "Loi",
+                            PAY_FAILED,
+                            PAY_TITLE,
                             JOptionPane.DEFAULT_OPTION
                     );
                 }
@@ -133,6 +148,13 @@ public class BillPanel extends Container {
         QUANLITY = LanguageHandle.getInstance().getValue("Bill", "QUANLITY");
         PRINT = LanguageHandle.getInstance().getValue("Bill", "PRINT");
         PAY = LanguageHandle.getInstance().getValue("Bill", "PAY");
+        PRINT_MESSAGE = LanguageHandle.getInstance().getValue("Bill", "PRINT_MESSAGE");
+        PRINT_TITLE = LanguageHandle.getInstance().getValue("Bill", "PRINT_TITLE");
+        PAY_TITLE = LanguageHandle.getInstance().getValue("Bill", "PAY_TITLE");
+        PAY_SUCCESS = LanguageHandle.getInstance().getValue("Bill", "PAY_SUCCESS");
+        PAY_FAILED = LanguageHandle.getInstance().getValue("Bill", "PAY_FAILED");
+        NOTHING = LanguageHandle.getInstance().getValue("Bill", "NOTHING");
+
     }
 
     public void addDrinks(DoUongModel du) {
@@ -343,4 +365,10 @@ public class BillPanel extends Container {
     private String QUANLITY;
     private String PRINT;
     private String PAY;
+    private String PRINT_MESSAGE;
+    private String PRINT_TITLE;
+    private String PAY_TITLE;
+    private String PAY_SUCCESS;
+    private String PAY_FAILED;
+    private String NOTHING;
 }

@@ -181,4 +181,8 @@ public class ImageHandle {
         g.dispose();
         return bimage;
     }
+
+    public Image getIconLogo() {
+        return readImage("/com/resource/logo.png");
+    }
 }

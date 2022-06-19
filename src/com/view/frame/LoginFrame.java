@@ -57,7 +57,7 @@ public class LoginFrame extends JFrame {
         // Nap anh nen
         imageBackground = ImageHandle.getInstance().readImage("/com/resource/background_login.jpg");
         // Nap anh logo
-        imageLogo = ImageHandle.getInstance().readImage("/com/resource/logo.png");
+        imageLogo = ImageHandle.getInstance().getIconLogo();
         imageLogo = ImageHandle.getInstance().resize(
                 imageLogo,
                 200,
@@ -73,6 +73,7 @@ public class LoginFrame extends JFrame {
     }
 
     private void initComponents() {
+        setIconImage(imageLogo);
         setTitle(TITLE);
         setSize(LOGIN_WIDTH, LOGIN_HEIGHT);
         setMinimumSize(new Dimension(LOGIN_WIDTH, LOGIN_HEIGHT));

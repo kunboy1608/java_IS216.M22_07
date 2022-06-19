@@ -19,9 +19,17 @@
         <Bill id="QUANLITY">Số lượng</Bill>
         <Bill id="PRINT">In hóa đơn</Bill>
         <Bill id="PAY">Thanh toán</Bill>
+        <Bill id="PRINT_MESSAGE">Bạn có muốn in hóa đơn không?</Bill>
+        <Bill id="PRINT_TITLE">In hóa đơn</Bill>
+        <Bill id="PAY_TITLE">Thanh toán</Bill>
+        <Bill id="PAY_SUCCESS">Thanh toán thành công</Bill>
+        <Bill id="PAY_FAILED">Thanh toán thất bại</Bill>
+        <Bill id="NOTHING">Chưa gọi món</Bill>
     </Bill>
     <Chat>
         <Chat id="SEND">Gửi</Chat>
+        <Chat id="CANCEL">Hủy: </Chat>
+        <Chat id="ORDER">Gọi: </Chat>
     </Chat>
 </language>
 
