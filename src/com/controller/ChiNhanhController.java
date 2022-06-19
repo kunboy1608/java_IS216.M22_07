@@ -64,7 +64,7 @@ public class ChiNhanhController {
         try {
 
             // Cau truy van SQL
-            String sql = "update ChiNhanh set TenCN=?, DiaChi=?";
+            String sql = "update ChiNhanh set TenCN=?, DiaChi=? where macn = " + id;
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
@@ -85,21 +85,22 @@ public class ChiNhanhController {
 
     public boolean XoaChiNhanh(int id) {
         try {
-            String sql = "DELETE FROM ChiNhanh WHERE MaCN = ";
+            String sql = "DELETE FROM ChiNhanh WHERE MaCN = ?";
 
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareCall(sql);
 
-            ps.setString(id, sql);
+            ps.setInt(1, id);
 
             if (ps.executeUpdate() != 1) {
                 return false;
             }
+            return true;
         } catch (SQLException e) {
-            return false;
+            Logger.getLogger(ChiNhanhController.class.getName()).log(Level.SEVERE, null, e);
         }
         return false;
     }
-    
+
     public void LayDuLieu() {
         try {
             String sql = "Select *  FROM CHINHANH";
@@ -121,8 +122,8 @@ public class ChiNhanhController {
         }
 
     }
-    
-    public String loadTenCN(int macn){
+
+    public String loadTenCN(int macn) {
         String tenCN = "";
         try {
             String sql = "SELECT tencn FROM chinhanh WHERE MANV =?";
@@ -132,7 +133,9 @@ public class ChiNhanhController {
             if (rs.absolute(1) == false) {
                 JOptionPane.showMessageDialog(null, "Không tìm thấy mã nhân viên", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 tenCN = "";
-            }else tenCN = rs.getString(tenCN);
+            } else {
+                tenCN = rs.getString(tenCN);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
