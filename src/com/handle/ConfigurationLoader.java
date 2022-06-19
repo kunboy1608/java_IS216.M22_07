@@ -42,7 +42,7 @@ public class ConfigurationLoader {
     private ConfigurationLoader() {
         this.dbf = DocumentBuilderFactory.newInstance();
         String userHomeDir = System.getProperty("user.home");
-        userHomeDir += "\\.coffeExpress\\config.xml";
+        userHomeDir += "/.coffeExpress/config.xml";
         urlConfig = userHomeDir;
         try {
             this.docBuilder = dbf.newDocumentBuilder();
