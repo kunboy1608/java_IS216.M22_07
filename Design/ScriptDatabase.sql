@@ -153,9 +153,9 @@ go
 /* Table: HOADONKHACHHANG                                       */
 /*==============================================================*/
 create table HOADONKHACHHANG (
-   MAHD                 int                  not null identity,
-   MAGIAMGIA            int                  null,
-   SDTKH                char(11)             null,
+   MAHD                 int                  not null,
+   MAGIAMGIA            int                  identity,
+   SDTKH                char(11)             not null,
    MANV                 int                  null,
    NGAYLAP              datetime             null,
    TONGTIEN             money                null,
@@ -344,6 +344,27 @@ insert into DoUong values(N'Mocha','35000',(SELECT BulkColumn FROM Openrowset( B
 insert into DoUong values(N'Hot Chocolate','35000',(SELECT BulkColumn FROM Openrowset( Bulk 'D:\DaiHoc\HocKi6\LapTrinhJava\DoAn\Images\9.jpg', Single_Blob) as img),'')
 insert into DoUong values(N'Ice Chocolate','35000',(SELECT BulkColumn FROM Openrowset( Bulk 'D:\DaiHoc\HocKi6\LapTrinhJava\DoAn\Images\10.jpg', Single_Blob) as img),'')
 go
+insert into hoaDonkhachHang values('1','0524604687','1','2022-05-22','100000')
+insert into hoaDonkhachHang values('2','0878143236','1','2022-04-23','75000')
+insert into hoaDonkhachHang values('1','0446692130','2','2022-04-24','40000')
+insert into hoaDonkhachHang values('2','0194031273','2','2022-04-25','80000')
+insert into hoaDonkhachHang values('1','0687355295','2','2022-04-26','105000')
+insert into hoaDonkhachHang values('2','0395638524','1','2022-04-27','140000')
+insert into hoaDonkhachHang values('1','0424614536','2','2022-04-28','175000')
+insert into hoaDonkhachHang values('2','0908859367','3','2022-04-29','210000')
+insert into hoaDonkhachHang values('2','0712566967','3','2022-04-30','160000')
+insert into hoaDonkhachHang values('2','0525286507','3','2022-05-01','200000')
+go
+insert into CTHD values('11','1','4','25000')
+insert into CTHD values('12','2','3','25000')
+insert into CTHD values('13','3','1','40000')
+insert into CTHD values('14','4','2','40000')
+insert into CTHD values('15','8','3','35000')
+insert into CTHD values('16','9','4','35000')
+insert into CTHD values('17','10','5','35000')
+insert into CTHD values('18','8','6','35000')
+insert into CTHD values('19','6','4','40000')
+insert into CTHD values('20','6','5','40000')
 go
 alter table NhanVien
 	add constraint FK_NhanVien foreign key(MaCN)
