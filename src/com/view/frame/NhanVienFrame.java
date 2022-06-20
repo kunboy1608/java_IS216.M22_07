@@ -10,6 +10,7 @@ import com.models.DataContext;
 import com.models.NhanVienModel;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -63,9 +64,8 @@ public class NhanVienFrame extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbNV = new javax.swing.JTable();
-        txtTim = new javax.swing.JTextField();
-        btTim = new javax.swing.JButton();
-        btRefreshTim = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,7 +112,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
         });
         jPanel2.add(txtCCCD, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 397, 143, -1));
 
-        cbGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Nam", "Nữ" }));
+        cbGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
         jPanel2.add(cbGioiTinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 300, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -136,7 +136,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
                 btXoaActionPerformed(evt);
             }
         });
-        jPanel2.add(btXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 448, -1, -1));
+        jPanel2.add(btXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 450, -1, -1));
 
         btCapNhap.setText("Cập Nhập");
         btCapNhap.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +158,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
         jLabel8.setText("Thông tin Nhân Viên");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 41, -1, -1));
 
-        cbMaCN.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "1", "2", "3" }));
+        cbMaCN.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
         cbMaCN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbMaCNActionPerformed(evt);
@@ -168,7 +168,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
         jPanel2.add(NgayVL, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 349, 143, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/background2.png"))); // NOI18N
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 580));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 550));
 
         tbNV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -177,7 +177,15 @@ public class NhanVienFrame extends javax.swing.JFrame {
             new String [] {
                 "Mã Chi Nhánh", "Mã Nhân Viên", "Tên Nhân Viên", "Giới Tính", "Ngày Vào Làm", "CCCD"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         tbNV.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbNVMouseClicked(evt);
@@ -185,35 +193,32 @@ public class NhanVienFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbNV);
 
-        btTim.setText("Tìm");
-
-        btRefreshTim.setText("Refresh ");
+        jLabel11.setText("Danh sach nhan vien");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                        .addGap(236, 236, 236)
-                        .addComponent(txtTim, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btTim)
-                        .addGap(18, 18, 18)
-                        .addComponent(btRefreshTim)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 18, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btTim)
-                    .addComponent(btRefreshTim))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 28, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -275,32 +280,6 @@ public class NhanVienFrame extends javax.swing.JFrame {
         tbNV.setModel(listNV);
         setVisible(true);
     }
-
-    public void LoadTable1() {
-        listNV = new DefaultTableModel();
-        String tieuDe[] = {"Mã Chi Nhánh", "Mã Nhân Viên", "Tên Nhân Viên", "Giới Tính", "Ngày Vào Làm", "CCCD"};
-        listNV.setColumnIdentifiers(tieuDe);
-        Object row[] = new Object[6];
-        NhanVienController.getInstance().LayDuLieu();
-        int i = 0;
-        while (i < DataContext.getInstance().getNhanViens().size()) {
-            try {
-                row[0] = DataContext.getInstance().getNhanViens().get(i).getMaCN();
-                row[1] = DataContext.getInstance().getNhanViens().get(i).getMaNV();
-                row[2] = DataContext.getInstance().getNhanViens().get(i).getTenNV();
-                row[3] = DataContext.getInstance().getNhanViens().get(i).getGioiTinh();
-                row[4] = DataContext.getInstance().getNhanViens().get(i).getNgayVL();
-                row[5] = DataContext.getInstance().getNhanViens().get(i).getCCCD();
-                i++;
-                listNV.addRow(row);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        tbNV.setModel(listNV);
-        setVisible(true);
-    }
-
 
     private void btThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThemActionPerformed
         String tenNV = txtTenNV.getText();
@@ -428,7 +407,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
                 txtTenNV.setText(tbNV.getValueAt(row, 2).toString());
                 //0: Nam 1: Nữ
                 cbGioiTinh.setSelectedIndex(Integer.parseInt(tbNV.getValueAt(row, 3).toString()));
-                NgayVL.setDate(new SimpleDateFormat("yyyy/mm/dd").parse(tbNV.getValueAt(row, 4).toString()));
+                NgayVL.setDate(new SimpleDateFormat("yyyy-mm-dd").parse(tbNV.getValueAt(row, 4).toString()));
                 txtCCCD.setText(tbNV.getValueAt(row, 5).toString());
                 LoadTable();
             }
@@ -450,13 +429,13 @@ public class NhanVienFrame extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser NgayVL;
     private javax.swing.JButton btCapNhap;
     private javax.swing.JButton btRefreshNV;
-    private javax.swing.JButton btRefreshTim;
     private javax.swing.JButton btThem;
-    private javax.swing.JButton btTim;
     private javax.swing.JButton btXoa;
     private javax.swing.JComboBox<String> cbGioiTinh;
     private javax.swing.JComboBox<String> cbMaCN;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -475,6 +454,5 @@ public class NhanVienFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtMaNV;
     private javax.swing.JTextField txtTenCN;
     private javax.swing.JTextField txtTenNV;
-    private javax.swing.JTextField txtTim;
     // End of variables declaration//GEN-END:variables
 }

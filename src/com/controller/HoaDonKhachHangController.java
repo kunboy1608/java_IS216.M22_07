@@ -22,20 +22,20 @@ import java.util.logging.Logger;
  * @author kunbo
  */
 public class HoaDonKhachHangController {
-    
+
     private static HoaDonKhachHangController _instance;
-    
+
     public static synchronized HoaDonKhachHangController getInstance() {
         if (_instance == null) {
             _instance = new HoaDonKhachHangController();
         }
         return _instance;
     }
-    
+
     private HoaDonKhachHangController() {
-        
+
     }
-    
+
     public int ThemHoaDonKhachHang(HoaDonKhachHangModel k) {
         try {
 
@@ -56,7 +56,7 @@ public class HoaDonKhachHangController {
             ps.setInt(3, k.getMaNV());
             ps.setDate(4, (Date) k.getNgayLap());
             ps.setDouble(5, k.getTongTien());
-            
+
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return rs.getInt(1);
@@ -67,18 +67,18 @@ public class HoaDonKhachHangController {
         }
         return -1;
     }
-    
+
     public boolean SuaHoaDonKhachHang(int id, HoaDonKhachHangModel k) {
         try {
 
             // Cau truy van SQL
-            String sql = "update KhachHang set MaGiamGia=?, SDTKH=?, MaNV=?, NgapLap=?, TongTien=? WHERE MANV=" + id;
+            String sql = "update HOADONKHACHHANG set MaGiamGia=?, SDTKH=?, MaNV=?, NgapLap=?, TongTien=? WHERE MaHD =" + id;
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             // Gan bien vao cac dau  ?
-            ps.setString(1, k.getSDTKH());
-            ps.setInt(2, k.getMaGiamGia());
+            ps.setInt(1, k.getMaGiamGia());
+            ps.setString(2, k.getSDTKH());
             ps.setInt(3, k.getMaNV());
             ps.setDate(4, (Date) k.getNgayLap());
             ps.setDouble(5, k.getTongTien());
@@ -93,16 +93,16 @@ public class HoaDonKhachHangController {
         }
         return false;
     }
-    
+
     public boolean XoaHoaDonKhachHang(int id) {
         try {
 
             // Cau truy van SQL
-            String sql = "delete from HoaDonKhachHang where MaHD = ";
+            String sql = "delete from HoaDonKhachHang where MaHD = ?";
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
-            
+
             ps.setInt(1, id);
             if (ps.executeUpdate() != 1) {
                 return false;
@@ -112,20 +112,20 @@ public class HoaDonKhachHangController {
         }
         return true;
     }
-    
+
     public void LayDuLieu() {
         try {
-            String sql = "Select *  FROM HoaDonKhachHang";
-            
+            String sql = "select * from HOADONKHACHHANG";
+
             Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
             ResultSet rs = ps.executeQuery(sql);
             LinkedList<HoaDonKhachHangModel> list = new LinkedList<>();
             HoaDonKhachHangModel kh;
             while (rs.next()) {
                 kh = new HoaDonKhachHangModel();
-                kh.setMaGiamGia(rs.getInt(1));
-                kh.setSDTKH(rs.getString(2));
-                kh.setMaHD(rs.getInt(3));
+                kh.setMaHD(rs.getInt(1));
+                kh.setMaGiamGia(rs.getInt(2));
+                kh.setSDTKH(rs.getString(3));
                 kh.setMaNV(rs.getInt(4));
                 kh.setNgayLap(rs.getDate(5));
                 kh.setTongTien(rs.getDouble(6));
@@ -135,10 +135,11 @@ public class HoaDonKhachHangController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-}
- public void ThongKe(int month, int year){
-     try {
-            String sql = "Select MaHD, NgayLap, TongTien FROM HOADONNCC where month(NgayLap)="+month+"year(NgayLap)="+year;
+    }
+
+    public void ThongKe(int month, int year) {
+        try {
+            String sql = "Select MaHD, NgayLap, TongTien FROM HOADONNCC where month(NgayLap)=" + month + "year(NgayLap)=" + year;
 
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery(sql);
@@ -155,6 +156,6 @@ public class HoaDonKhachHangController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-     
+
     }
 }

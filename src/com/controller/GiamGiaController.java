@@ -5,13 +5,17 @@
 package com.controller;
 
 import com.handle.ConnectionHandle;
+import com.handle.Utilities;
 import com.models.DataContext;
 import com.models.GiamGiaModel;
+import com.models.HoaDonKhachHangModel;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -65,7 +69,7 @@ public class GiamGiaController {
         try {
 
             // Cau truy van SQL
-            String sql = "update GiamGia set GiaTri=?, ToiDa=?, NgayBatDau=?, NgayKetThuc=?";
+            String sql = "update GiamGia set GiaTri=?, ToiDa=?, NgayBatDau=?, NgayKetThuc=? where magiamgia = ?" + id;
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
@@ -89,12 +93,12 @@ public class GiamGiaController {
         try {
 
             // Cau truy van SQL
-            String sql = "delete from GiamGia where MaGiamGia = ";
+            String sql = "delete from GiamGia where MaGiamGia = ?";
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
-            ps.setString(id, sql);
+            ps.setInt(1, id);
             if (ps.executeUpdate() != 1) {
                 return false;
             }
@@ -127,28 +131,17 @@ public class GiamGiaController {
         }
     }
 
-    public void TimGiamGia(String id) {
-        try {
-            String sql = "SELECT * FROM GIAMGIA WHERE MaGiamGia=?";
-            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            ps.setString(1, id);
-
-            LinkedList<GiamGiaModel> list = new LinkedList<>();
-            GiamGiaModel nv;
-            while (rs.next()) {
-                nv = new GiamGiaModel();
-                nv.setMaGiamGia(rs.getInt(1));
-                nv.setGiaTri(rs.getInt(2));
-                nv.setToiDa(rs.getDouble(3));
-                nv.setNgayBatDau(rs.getDate(4));
-                nv.setNgayKetThuc(rs.getDate(5));
-
-                list.add(nv);
+    public GiamGiaModel layMaGiamGia() {
+        GiamGiaModel sale = new GiamGiaModel();
+        LayDuLieu();
+        GiamGiaController.getInstance().LayDuLieu();
+        String date = Utilities.getInstance().getTime();
+        for (GiamGiaModel GiamGia : DataContext.getInstance().getGiamGias()) {
+            if (GiamGia.getNgayBatDau().before(Date.valueOf(date)) && GiamGia.getNgayBatDau().after(Date.valueOf(date))) {
+                System.out.println(GiamGia.getMaGiamGia());
+                return GiamGia;
             }
-            DataContext.getInstance().setGiamGias(list);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+        return null;
     }
 }
