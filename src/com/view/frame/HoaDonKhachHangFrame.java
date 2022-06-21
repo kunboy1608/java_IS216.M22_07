@@ -7,7 +7,6 @@ package com.view.frame;
 import com.controller.CTHDController;
 import com.controller.GiamGiaController;
 import com.controller.HoaDonKhachHangController;
-import com.controller.KhachHangController;
 import com.controller.NhanVienController;
 import com.handle.ImageHandle;
 import com.handle.LanguageHandle;
@@ -15,7 +14,6 @@ import com.models.CTHDModel;
 import com.models.DataContext;
 import com.models.GiamGiaModel;
 import com.models.HoaDonKhachHangModel;
-import com.models.KhachHangModel;
 import com.models.NhanVienModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -475,7 +473,6 @@ public class HoaDonKhachHangFrame extends javax.swing.JFrame {
                 tbCTHD.setModel(modelCTHD);
             } catch (Exception e) {
             }
-
         }
     }//GEN-LAST:event_tbHDKHMouseClicked
 
@@ -497,13 +494,15 @@ public class HoaDonKhachHangFrame extends javax.swing.JFrame {
             int maHD = Integer.parseInt(txtMaHD.getText());
             int result = JOptionPane.showConfirmDialog(this, REQUEST_DELETE, NOTIFICATION_TITLE, JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.YES_OPTION) {
-                if (HoaDonKhachHangController.getInstance().XoaHoaDonKhachHang(maHD) == true) {
+                if (CTHDController.getInstance().XoaCTHD(maHD)
+                        && HoaDonKhachHangController.getInstance().XoaHoaDonKhachHang(maHD) == true) {
                     JOptionPane.showMessageDialog(null, NOTI_SUCCESS);
                 } else {
                     JOptionPane.showMessageDialog(null, NOTI_FAILED);
                 }
             }
             loadTableHD();
+            loadTableCTHD();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
         }

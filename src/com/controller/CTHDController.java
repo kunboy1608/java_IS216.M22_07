@@ -83,13 +83,13 @@ public class CTHDController {
         try {
 
             // Cau truy van SQL
-            String sql = "delete from KhachHang where MaHD = ";
+            String sql = "delete from CTHD where MaHD = ?";
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
             
-            ps.setString(id, sql);
-            if (ps.executeUpdate() != 1) {
+            ps.setInt(1, id);
+            if (ps.executeUpdate() <= 0) {
                 return false;
             }
         } catch (SQLException e) {
@@ -115,10 +115,8 @@ public class CTHDController {
                 list.add(kh);
             }
             DataContext.getInstance().setCTHDs(list);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        
+        } catch (SQLException e) {            
+        }        
     }
     public void TimCTHD(String id) {
         try {
@@ -137,8 +135,7 @@ public class CTHDController {
                 list.add(kh);
             }
             DataContext.getInstance().setCTHDs(list);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e) {            
         }
     }
 }
