@@ -15,6 +15,7 @@
         <Home id="SELL">Bán hàng</Home>
         <Home id="STAT">Thống kê</Home>
         <Home id="CUSTOMER">Khách hàng</Home>
+        <Home id="MANAGE_DRINKS">Quản lí đồ uống</Home>
     </Home>
     <Menu>
         <Menu id="TITLE">Thực đơn - COFFE EXPRESS</Menu>
@@ -93,7 +94,8 @@
         <Dinks id="ERR_NAME_EMPTY">Tên đồ uống còn trống</Dinks>
         <Dinks id="ERR_PRICE_EMPTY">Giá còn trống</Dinks>
         <Dinks id="CHOSSE_DELETE">Chọn đồ uống để xóa</Dinks>
-        <Dinks id="REQUEST_DELETE">Bạn có chắc chắn xóa</Dinks>        
+        <Dinks id="REQUEST_DELETE">Bạn có chắc chắn xóa</Dinks> 
+        <Drinks id="CHOSSE_FILE">Chọn ảnh</Drinks>
     </Dinks>
     <Discount>
         <Discount id="TITLE">Giảm giá - COFFE EXPRESS</Discount>
@@ -204,7 +206,11 @@
         <Employee id="ERR_DATE_WRONG">Ngày vào làm bị sai</Employee> 
         <Employee id="ERR_CCCD">Nhập sai CCCD/CMND</Employee> 
     </Employee>
-
+    <Stat>
+        <Stat id="TITLE">Thống kê</Stat>
+        <Stat id="REVENUE">Doanh thu</Stat>
+        <Stat id="TITLE_CHART">Doanh thu từng ngày</Stat>        
+    </Stat>
     <Chat>
         <Chat id="SEND">Gửi</Chat>
         <Chat id="CANCEL">Hủy: </Chat>
