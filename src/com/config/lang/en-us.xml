@@ -8,7 +8,16 @@
         <Login id="CHANGE_LANGUAGE">Khởi động lại để đổi ngôn ngữ</Login>        
     </Login>
     <Menu>
-        <Menu id="TITLE">DRINKS - COFFE EXPRESS</Menu>
+        <Home id="TITLE">HOME  - COFFE EXPRESS</Home>
+        <Home id="EMPLOYEE">Employee</Home>
+        <Home id="ACCOUNT">Account</Home>
+        <Home id="BRANCH">Brand</Home>
+        <Home id="SELL">Sale</Home>
+        <Home id="STAT">Bistatistic</Home>
+        <Home id="CUSTOMER">Customer</Home>
+        <Home id="MANAGE_DRINKS">Drink Manager</Home>
+    </Menu>
+        <Menu id="TITLE">Menu - COFFE EXPRESS</Menu>
         <Menu id="TABLE">Table</Menu>
     </Menu>
     <Bill>
@@ -26,6 +35,181 @@
         <Bill id="PAY_FAILED">Pay failed</Bill>
         <Bill id="NOTHING">Nothing to print</Bill>        
     </Bill>
+    <Account>
+        <Account id="TITLE">Account Manager</Account>
+        <Account id="UPDATE">Update</Account>
+        <Account id="RESET">Empty</Account>
+        <Account id="EXIT">Exit</Account>
+        <Account id="KIND">Type</Account>
+        <Account id="STATUS">Status</Account>
+        <Account id="USERNAME">Username</Account>   
+        <Account id="INFO">Account Information</Account>     
+        <Account id="LOCK">Lock</Account>
+        <Account id="OPEN">Open</Account>
+        <Account id="GUEST">Client</Account>
+        <Account id="EMPLOYEE">Employee</Account>
+        <Account id="MANAGER">Manager</Account>
+        <Account id="EXIT_MESSAGE">Do you want to exit</Account>
+        <Account id="NOTIFICATION_TITLE">Announcement</Account>
+        <Account id="NOTI_SUCCESS">Success</Account>
+        <Account id="NOTI_FAILED">Fail</Account>
+    </Account>
+     <Branch>
+        <Branch id="TITLE">Branch information</Branch>
+        <Branch id="UPDATE">Update</Branch>
+        <Branch id="RESET">Empty</Branch>  
+        <Branch id="EXIT">Exit</Branch>      
+        <Branch id="REFRESH">Refresh</Branch>
+        <Branch id="LIST_BRANCH">List brach</Branch>
+        <Branch id="ADDRESS">Address</Branch>
+        <Branch id="ID">Branch Code</Branch>
+        <Branch id="INFO">Information</Branch>
+        <Branch id="NAME">Branch name</Branch>
+        <Branch id="DELETE">Delete</Branch>
+        <Branch id="NOTIFICATION_TITLE">Announcement</Branch>
+        <Branch id="NOTI_SUCCESS">Sucess</Branch>
+        <Branch id="NOTI_FAILED">Fail</Branch>
+        <Branch id="ERR_NAME_EMPTY">The empty branch information</Branch>
+        <Branch id="ERR_ADDRESS_EMPTY">The empty address</Branch>
+        <Branch id="CHOSSE_DELETE">Click to delete</Branch>
+        <Branch id="REQUEST_DELETE">Are you sure</Branch>
+    </Branch>
+    <Dinks>
+        <Dinks id="TITLE">Drink Manager - COFFE EXPRESS</Dinks>
+        <Dinks id="UPDATE">Update</Dinks>
+        <Dinks id="RESET">Empty</Dinks>
+        <Dinks id="EXIT">Exit</Dinks>
+        <Dinks id="REFRESH">Reset</Dinks>
+        <Dinks id="DELETE">Delete</Dinks>
+        <Dinks id="NOTE">Note</Dinks>
+        <Dinks id="PRICE">Cost</Dinks>
+        <Dinks id="IMAGE">Image</Dinks>
+        <Dinks id="INFO">Information</Dinks>        
+        <Dinks id="ID">Drink code</Dinks>
+        <Dinks id="NAME">Drink Name</Dinks>
+        <Dinks id="NOTIFICATION_TITLE">Announcement</Dinks>
+        <Dinks id="NOTI_SUCCESS">Sucess</Dinks>
+        <Dinks id="NOTI_FAILED">Fail</Dinks>        
+        <Dinks id="ERR_NAME_EMPTY">Drink name is empty</Dinks>
+        <Dinks id="ERR_PRICE_EMPTY">Cost is empty</Dinks>
+        <Dinks id="CHOSSE_DELETE">Click to delete</Dinks>
+        <Dinks id="REQUEST_DELETE">Are you want to delete</Dinks> 
+        <Drinks id="CHOSSE_FILE">Click image</Drinks>
+    </Dinks>
+    <Discount>
+        <Discount id="TITLE">Discount - COFFE EXPRESS</Discount>
+        <Discount id="UPDATE">Update</Discount>
+        <Discount id="RESET">Refresh</Discount>
+        <Discount id="EXIT">Exit</Discount>
+        <Discount id="REFRESH">Reset</Discount>
+        <Discount id="DELETE">Delete</Discount>
+        <Discount id="START_DATE">Starting date</Discount>
+        <Discount id="END_DATE">Ending date</Discount>
+        <Discount id="VALUE">Value</Discount>
+        <Discount id="ID">Discount code</Discount>        
+        <Discount id="INFO">Information</Discount>
+        <Discount id="MAX">Maximum</Discount>
+        <Discount id="ADD">Add</Discount>
+        <Discount id="NOTIFICATION_TITLE">Information</Discount>
+        <Discount id="NOTI_SUCCESS">Sucess</Discount>
+        <Discount id="NOTI_FAILED">Fail</Discount>     
+        <Discount id="CHOSSE_DELETE">Click to delete</Discount>
+        <Discount id="REQUEST_DELETE">Are you sure</Discount>     
+        <Discount id="ERR_PRICE_EMPTY">Cost is empty</Discount>
+        <Discount id="ERR_MAX_EMPTY">Maximun is empty</Discount>
+        <Discount id="ERR_START_DATE">Starting date is wrong format</Discount>
+        <Discount id="ERR_ENMD_DATE">Ending date is not correct</Discount>
+        <Discount id="ERR_DATE">Starting date is sooner than ending date</Discount>        
+    </Discount>
+    <BillFrame>
+        <BillFrame id="TITLE"></BillFrame>
+        <BillFrame id="UPDATE">Update</BillFrame>
+        <BillFrame id="RESET">Refresh</BillFrame>
+        <BillFrame id="EXIT">Exit</BillFrame>
+        <BillFrame id="REFRESH">Reset</BillFrame>
+        <BillFrame id="DELETE">Delete</BillFrame>
+        <BillFrame id="PHONE_NUMBER">Telephone number</BillFrame>
+        <BillFrame id="CREATE_DATE">Create day</BillFrame>
+        <BillFrame id="LIST_DETAILS">List detailed of bill</BillFrame>
+        <BillFrame id="LIST_BILL">List bill</BillFrame>        
+        <BillFrame id="ID_DISCOUNT">Discount code</BillFrame>
+        <BillFrame id="ID_BILL">Bill code</BillFrame>
+        <BillFrame id="ID_EMPLOYEE">Employee code</BillFrame>
+        <BillFrame id="INFO_BILL">Bill information</BillFrame>
+        <BillFrame id="SUM">Total</BillFrame>
+        <BillFrame id="NOTIFICATION_TITLE">Announcement</BillFrame>
+        <BillFrame id="NOTI_SUCCESS">Sucess</BillFrame>
+        <BillFrame id="NOTI_FAILED">Fail</BillFrame>
+        <BillFrame id="CHOSSE_DELETE">Click to delete</BillFrame>
+        <BillFrame id="REQUEST_DELETE">Are you sure</BillFrame>
+        <BillFrame id="ID_DRINK">Drink code</BillFrame>
+        <BillFrame id="QUANTILE">Anount</BillFrame>
+        <BillFrame id="PRICE">Cost</BillFrame>        
+        <BillFrame id="ERR_NUMBER_EMPTY">Telephone number is empty</BillFrame>
+        <BillFrame id="ERR_NUMBER_WRONG">Telephone is error</BillFrame>        
+        <BillFrame id="ERR_SUM_EMPTY">Total is empty</BillFrame>
+        <BillFrame id="ERR_SUM_WRONG">Total is not correct</BillFrame>     
+    </BillFrame>
+    <Customer>
+        <Customer id="TITLE"></Customer>
+        <Customer id="UPDATE">Update</Customer>
+        <Customer id="RESET">Empty</Customer>
+        <Customer id="EXIT">Exit</Customer>
+        <Customer id="REFRESH">Reset</Customer>
+        <Customer id="DELETE">Delete</Customer>
+        <Customer id="LIST_CUSTOMER">List customer</Customer>
+        <Customer id="SEX">Sex</Customer>
+        <Customer id="PHONE_NUMBER">Telehone number</Customer>
+        <Customer id="INFO_CUSTOMER">Information customer</Customer>        
+        <Customer id="NAME_CUSTOMER">Name customer</Customer>
+        <Customer id="SUM_POINTS">Sum point</Customer>
+        <Customer id="ADD">Add</Customer>
+        <Customer id="NOTIFICATION_TITLE">Notification</Customer>
+        <Customer id="NOTI_SUCCESS">Sucess</Customer>
+        <Customer id="NOTI_FAILED">Fail</Customer> 
+        <Customer id="CHOSSE_DELETE">Click to delete</Customer>
+        <Customer id="REQUEST_DELETE">Are you sure</Customer>   
+        <Customer id="ERR_NUMBER_EMPTY">Telephone number is empty</Customer>
+        <Customer id="ERR_NUMBER_WRONG">Telephone number is error</Customer>     
+        <Customer id="ERR_NAME_EMPTY">Customer name is empty</Customer>   
+        <Customer id="ERR_POINT_WRONG">Point is wrong</Customer>
+        <Customer id="ERR_POINT_EMPTY">Point is empty</Customer>    
+        <Customer id="MALE">Male</Customer> 
+        <Customer id="FEMALE">Female</Customer> 
+    </Customer>
+    <Employee>
+        <Employee id="TITLE">Employee manager - COFFE EXPRESS</Employee>
+        <Employee id="UPDATE">Update</Employee>
+        <Employee id="RESET">Reset</Employee>
+        <Employee id="EXIT">Exit</Employee>
+        <Employee id="REFRESH">Refresh</Employee>
+        <Employee id="DELETE">Delete</Employee>
+        <Employee id="CCCD">CCCD</Employee>
+        <Employee id="LIST_EMPLOYEE">List employee</Employee>
+        <Employee id="SEX">Sex</Employee>
+        <Employee id="ID_BRANCH">Mã chi nhánh</Employee>        
+        <Employee id="ID_EMPLOYEE">Mã nhân viên</Employee>
+        <Employee id="DATE_WORK">Ngày vào làm</Employee>
+        <Employee id="INFO_EMPLOYEE">Thông tin nhân viên</Employee>
+        <Employee id="NAME_BRANCH">Tên chi nhánh</Employee>
+        <Employee id="NAME_EMPLOYEE">Tên khách hàng</Employee>
+        <Employee id="ADD">Thêm</Employee>
+        <Employee id="NOTIFICATION_TITLE">Thông báo</Employee>
+        <Employee id="NOTI_SUCCESS">Thành công</Employee>
+        <Employee id="NOTI_FAILED">Thất bại</Employee>
+        <Employee id="CHOSSE_DELETE">Chọn chọn nhân viên để xóa</Employee>
+        <Employee id="REQUEST_DELETE">Bạn có chắc chắn xóa</Employee>
+        <Employee id="MALE">Nam</Employee> 
+        <Employee id="FEMALE">Nữ</Employee> 
+        <Employee id="ERR_NAME_EMPLOYEE_EMPTY">Tên nhân viên còn trống</Employee>
+        <Employee id="ERR_DATE_WRONG">Ngày vào làm bị sai</Employee> 
+        <Employee id="ERR_CCCD">Nhập sai CCCD/CMND</Employee> 
+    </Employee>
+    <Stat>
+        <Stat id="TITLE">Thống kê</Stat>
+        <Stat id="REVENUE">Doanh thu</Stat>
+        <Stat id="TITLE_CHART">Doanh thu từng ngày</Stat>        
+    </Stat>
     <Chat>
         <Chat id="SEND">Send</Chat>
         <Chat id="CANCEL">Cancel: </Chat>
