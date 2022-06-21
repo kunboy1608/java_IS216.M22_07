@@ -31,7 +31,7 @@ public class DoUongFrame extends javax.swing.JFrame {
         initComponents();
         loadText();
         configComponents();
-        loadTable();                
+        loadTable();
     }
 
     private void loadText() {
@@ -174,7 +174,9 @@ public class DoUongFrame extends javax.swing.JFrame {
             }
         });
 
+        lbIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbIcon.setText("...");
+        lbIcon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         lbIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbIconMouseClicked(evt);
@@ -401,6 +403,7 @@ DefaultTableModel modelThongTinDU;
             }
             loadTable();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
         }
 
     }//GEN-LAST:event_btnCapNhapActionPerformed
@@ -420,6 +423,7 @@ DefaultTableModel modelThongTinDU;
                 }
                 loadTable();
             } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.WARNING_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnXoaActionPerformed
@@ -436,8 +440,8 @@ DefaultTableModel modelThongTinDU;
             doUongModel.setTenDU(txtTenDU.getText());
             doUongModel.setGia(Double.parseDouble(txtGia.getText()));
             if (URL != null) {
-                doUongModel.setHinhAnh(ImageHandle.getInstance().readImage(URL));                
-            } 
+                doUongModel.setHinhAnh(ImageHandle.getInstance().readImage(URL));
+            }
             if ("".equals(txtGhiChu.getText())) {
                 return;
             } else {

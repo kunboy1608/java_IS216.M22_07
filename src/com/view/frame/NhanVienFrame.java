@@ -465,7 +465,6 @@ public class NhanVienFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, NOTI_FAILED);
             }
         }
-
         LoadTable();
     }//GEN-LAST:event_btnXoaActionPerformed
 

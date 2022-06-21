@@ -381,8 +381,8 @@ public class GiamGiaFrame extends javax.swing.JFrame {
             }
             loadTable();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
         }
-
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnCapNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhapActionPerformed
@@ -408,6 +408,7 @@ public class GiamGiaFrame extends javax.swing.JFrame {
             }
             loadTable();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnCapNhapActionPerformed
 

@@ -505,6 +505,7 @@ public class HoaDonKhachHangFrame extends javax.swing.JFrame {
             }
             loadTableHD();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
@@ -537,7 +538,6 @@ public class HoaDonKhachHangFrame extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, NOTI_FAILED);
         }
-
     }//GEN-LAST:event_btnCapNhapActionPerformed
 
     private void tbCTHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCTHDMouseClicked

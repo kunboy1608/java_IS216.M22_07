@@ -285,6 +285,7 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, NOTI_FAILED);
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, NOTI_FAILED);            
         }
         loadTable();
     }//GEN-LAST:event_btnThemActionPerformed
@@ -308,6 +309,7 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, NOTI_FAILED);
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, NOTI_FAILED);
         }
         loadTable();
     }//GEN-LAST:event_btnCapNhapActionPerformed
@@ -326,6 +328,7 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
                     }
                 }
             } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, NOTI_FAILED);
             }
         }
         loadTable();
