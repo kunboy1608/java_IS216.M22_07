@@ -23,8 +23,8 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
      */
     public ChiNhanhFrame() {
         initComponents();
-        loadTable();
         loadText();
+        loadTable();
         configComponents();
     }
 

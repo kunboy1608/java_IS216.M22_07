@@ -26,9 +26,9 @@ public class NhanVienFrame extends javax.swing.JFrame {
      */
     public NhanVienFrame() {
         initComponents();
+        loadText();
         LoadTable();
         loadMaCN();
-        loadText();
         configComponents();
     }
 
@@ -67,7 +67,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
         cbGioiTinh.removeAllItems();
         cbGioiTinh.addItem(MALE);
         cbGioiTinh.addItem(FEMALE);
-        
+
         btnCapNhap.setText(UPDATE);
         btnRefreshNV.setText(REFRESH);
         btnThem.setText(ADD);

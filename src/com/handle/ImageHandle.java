@@ -14,6 +14,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
@@ -111,6 +112,16 @@ public class ImageHandle {
                     bi.getWidth(),
                     bi.getHeight()
             );
+        } catch (IOException | java.lang.NullPointerException e) {
+            System.out.println("Không timg thấy ảnh");
+            return null;
+        }
+    }
+    public Image readImage2(String URL) {
+        try {
+            File f = new File(URL);
+            Image img = ImageIO.read(f);
+            return img;
         } catch (IOException | java.lang.NullPointerException e) {
             System.out.println("Không timg thấy ảnh");
             return null;

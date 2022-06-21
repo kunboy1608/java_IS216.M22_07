@@ -26,8 +26,9 @@ public class KhachHangFrame extends javax.swing.JFrame {
      */
     public KhachHangFrame() {
         initComponents();
-        loadTable();
         loadText();
+        loadTable();
+        
         configComponents();
     }
 

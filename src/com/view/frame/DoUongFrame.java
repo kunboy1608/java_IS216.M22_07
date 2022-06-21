@@ -9,7 +9,10 @@ import com.handle.ImageHandle;
 import com.handle.LanguageHandle;
 import com.models.DataContext;
 import com.models.DoUongModel;
-import java.awt.event.KeyEvent;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -51,6 +54,7 @@ public class DoUongFrame extends javax.swing.JFrame {
         NOTI_FAILED = LanguageHandle.getInstance().getValue("Drink", "NOTI_FAILED");
         CHOSSE_DELETE = LanguageHandle.getInstance().getValue("Drink", "CHOSSE_DELETE");
         REQUEST_DELETE = LanguageHandle.getInstance().getValue("Drink", "REQUEST_DELETE");
+        CHOSSE_FILE = LanguageHandle.getInstance().getValue("Drink", "CHOSSE_FILE");
     }
 
     private void configComponents() {
@@ -170,7 +174,12 @@ public class DoUongFrame extends javax.swing.JFrame {
             }
         });
 
-        lbIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/logo.png"))); // NOI18N
+        lbIcon.setText("...");
+        lbIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbIconMouseClicked(evt);
+            }
+        });
 
         btnThem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/add (1).png"))); // NOI18N
@@ -426,6 +435,9 @@ DefaultTableModel modelThongTinDU;
             DoUongModel doUongModel = new DoUongModel();
             doUongModel.setTenDU(txtTenDU.getText());
             doUongModel.setGia(Double.parseDouble(txtGia.getText()));
+            if (URL != null) {
+                doUongModel.setHinhAnh(ImageHandle.getInstance().readImage(URL));                
+            } 
             if ("".equals(txtGhiChu.getText())) {
                 return;
             } else {
@@ -438,6 +450,7 @@ DefaultTableModel modelThongTinDU;
             }
             loadTable();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
         }
 
     }//GEN-LAST:event_btnThemActionPerformed
@@ -449,6 +462,25 @@ DefaultTableModel modelThongTinDU;
     private void txtMaDUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaDUActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaDUActionPerformed
+
+    private void lbIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbIconMouseClicked
+        try {
+            // Lấy ảnh từ máy
+            JFileChooser f = new JFileChooser();
+            f.showOpenDialog(null);
+            f.setDialogTitle(CHOSSE_FILE);
+            File fileImg = f.getSelectedFile();
+            URL = fileImg.getAbsolutePath();
+            //Xử lí ảnh
+            if (URL != null) {
+                Image img = ImageHandle.getInstance().readImage2(URL);
+                img = ImageHandle.getInstance().resize(img, 100, 100);
+                lbIcon.setIcon(new ImageIcon(img));
+                lbIcon.setText("");
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_lbIconMouseClicked
 
     //Text
     private String TITLE;
@@ -470,6 +502,8 @@ DefaultTableModel modelThongTinDU;
     private String NOTI_FAILED;
     private String CHOSSE_DELETE;
     private String REQUEST_DELETE;
+    private String CHOSSE_FILE;
+    private String URL;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhap;
