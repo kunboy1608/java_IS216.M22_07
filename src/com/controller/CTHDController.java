@@ -120,4 +120,25 @@ public class CTHDController {
         }
         
     }
+    public void TimCTHD(String id) {
+        try {
+            String sql = "SELECT * FROM CTHD WHERE MaHD=?";
+            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            LinkedList<CTHDModel> list = new LinkedList<>();
+            CTHDModel kh;
+            while (rs.next()) {
+                kh = new CTHDModel();
+             kh.setMaHD(rs.getInt(1));
+                kh.setMADU(rs.getInt(2));
+                kh.setSoLuong(rs.getInt(3));
+                kh.setGia(rs.getInt(4));
+                list.add(kh);
+            }
+            DataContext.getInstance().setCTHDs(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

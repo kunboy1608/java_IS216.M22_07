@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+
 /**
  *
  * @author dang
@@ -44,9 +45,6 @@ public class GiamGiaFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbThongTinGG = new javax.swing.JTable();
-        txtTimKiem = new javax.swing.JTextField();
-        btTim = new javax.swing.JToggleButton();
-        btRefreshTim = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -92,58 +90,19 @@ public class GiamGiaFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbThongTinGG);
 
-        txtTimKiem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTimKiemActionPerformed(evt);
-            }
-        });
-        txtTimKiem.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtTimKiemKeyPressed(evt);
-            }
-        });
-
-        btTim.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btTim.setText("Tìm ");
-        btTim.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btTimActionPerformed(evt);
-            }
-        });
-
-        btRefreshTim.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btRefreshTim.setText("Refresh");
-        btRefreshTim.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRefreshTimActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btTim)
-                        .addGap(18, 18, 18)
-                        .addComponent(btRefreshTim))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btTim)
-                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btRefreshTim))
-                .addGap(18, 18, 18)
+                .addGap(46, 46, 46)
                 .addComponent(jScrollPane1))
         );
 
@@ -159,35 +118,85 @@ public class GiamGiaFrame extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Ngày bắt đầu ");
 
+        txtMaGiamGia.setEditable(false);
+
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("THÔNG TIN MÃ GIẢM GIÁ");
 
         jLabel6.setText("Ngày kết thúc");
 
+        btThem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/add (1).png"))); // NOI18N
+        btThem.setText("Thêm");
+        btThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btThemActionPerformed(evt);
+            }
+        });
+
+        btXoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/delete (1).png"))); // NOI18N
+        btXoa.setText("Xóa");
+        btXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btXoaActionPerformed(evt);
+            }
+        });
+
+        btCapNhap.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btCapNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/edit (2).png"))); // NOI18N
+        btCapNhap.setText("Cập Nhập");
+        btCapNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCapNhapActionPerformed(evt);
+            }
+        });
+
+        btReset.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/refresh-arrow.png"))); // NOI18N
+        btReset.setText("Refresh");
+        btReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btResetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NgKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtGiaTri, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMaGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NgBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtToiDa, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(58, 58, 58))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtGiaTri, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtToiDa, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(NgKetThuc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                                .addComponent(NgBatDau, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btThem, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btXoa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btReset)
+                            .addComponent(btCapNhap))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,42 +225,17 @@ public class GiamGiaFrame extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(NgKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btThem, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btXoa)
+                    .addComponent(btCapNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(btReset, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        btThem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btThem.setText("Thêm");
-        btThem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btThemActionPerformed(evt);
-            }
-        });
-
-        btXoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btXoa.setText("Xóa");
-        btXoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btXoaActionPerformed(evt);
-            }
-        });
-
-        btCapNhap.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btCapNhap.setText("Cập Nhập");
-        btCapNhap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCapNhapActionPerformed(evt);
-            }
-        });
-
-        btReset.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btReset.setText("Refresh");
-        btReset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btResetActionPerformed(evt);
-            }
-        });
-
         btThoat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/exit (2).png"))); // NOI18N
         btThoat.setText("Thoát");
         btThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,44 +248,26 @@ public class GiamGiaFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(btThem)
-                        .addGap(18, 18, 18)
-                        .addComponent(btXoa)
-                        .addGap(18, 18, 18)
-                        .addComponent(btCapNhap)
-                        .addGap(18, 18, 18)
-                        .addComponent(btReset))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btThoat)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btThoat)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btThem)
-                    .addComponent(btXoa)
-                    .addComponent(btCapNhap)
-                    .addComponent(btReset))
+                .addGap(88, 88, 88)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btThoat))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -310,7 +276,7 @@ public class GiamGiaFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 38, Short.MAX_VALUE))
+                .addGap(0, 37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,16 +287,15 @@ public class GiamGiaFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void loadTable() {
-        modelttKH = (DefaultTableModel) new DefaultTableModel();
-        try {
-            GiamGiaModel kh = new GiamGiaModel();
-            modelttKH = new DefaultTableModel();
-            String tieuDe[] = {"Mã Giảm Giá", "Giá Trị", "Tối Đa", "Ngày Bắt Đầu", "Ngày Kết Thúc"};
-            modelttKH.setColumnIdentifiers(tieuDe);
-            Object row[] = new Object[5];
-            int i = 0;
-            GiamGiaController.getInstance().LayDuLieu();
-            while (i < DataContext.getInstance().getGiamGias().size()) {
+        modelttKH = new DefaultTableModel();
+
+        String tieuDe[] = {"Mã Giảm Giá", "Giá Trị", "Tối Đa", "Ngày Bắt Đầu", "Ngày Kết Thúc"};
+        modelttKH.setColumnIdentifiers(tieuDe);
+        Object row[] = new Object[5];
+        GiamGiaController.getInstance().LayDuLieu();
+        int i = 0;
+        while (i < DataContext.getInstance().getGiamGias().size()) {
+            try {
                 row[0] = DataContext.getInstance().getGiamGias().get(i).getMaGiamGia();
                 row[1] = DataContext.getInstance().getGiamGias().get(i).getGiaTri();
                 row[2] = DataContext.getInstance().getGiamGias().get(i).getToiDa();
@@ -338,31 +303,34 @@ public class GiamGiaFrame extends javax.swing.JFrame {
                 row[4] = DataContext.getInstance().getGiamGias().get(i).getNgayKetThuc();
                 i++;
                 modelttKH.addRow(row);
+            } catch (Exception e) {
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
         tbThongTinGG.setModel(modelttKH);
         setVisible(true);
     }
 
 
     private void btThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThemActionPerformed
-        String giatri = txtGiaTri.getText();
-        String toida = txtToiDa.getText();
-        if (giatri.length() == 0 || toida.length() == 0) {
+       
+        if (txtGiaTri.getText().equals("") || txtToiDa.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Thông tin còn trống", "Lỗi", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
                 GiamGiaModel gg = new GiamGiaModel();
-                gg.setGiaTri(Integer.parseInt(giatri));
-                gg.setToiDa(Double.parseDouble(toida));
-                if (!NgBatDau.getDate().before(NgKetThuc.getDate())) {
-                    JOptionPane.showMessageDialog(null, "ngay bat dau phai som hon ngay ket thuc!", "", JOptionPane.WARNING_MESSAGE);
+                gg.setGiaTri(Integer.parseInt(txtGiaTri.getText()));
+                gg.setToiDa(Double.parseDouble(txtToiDa.getText()));
+                if (NgBatDau.getDate().after(NgKetThuc.getDate())) {
+                    JOptionPane.showMessageDialog(null, "Ngày bắt đầu không được trễ hơn ngày kết thúc!", "", JOptionPane.WARNING_MESSAGE);
                     return;
                 } else {
-                    gg.setNgayBatDau(NgBatDau.getDate());
-                    gg.setNgayKetThuc(NgKetThuc.getDate());
+                    java.util.Date ngaybd = new java.util.Date(NgBatDau.getDate().getTime());
+                    java.sql.Date ngbd = new java.sql.Date(ngaybd.getTime());
+                    gg.setNgayBatDau(ngbd);
+                    java.util.Date ngaykt = new java.util.Date(NgKetThuc.getDate().getTime());
+                    java.sql.Date ngkt = new java.sql.Date(ngaykt.getTime());
+                    gg.setNgayKetThuc(ngkt);
                 }
                 if (GiamGiaController.getInstance().ThemGiamGia(gg) == true) {
                     JOptionPane.showMessageDialog(this, "Thêm ma giam gia thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
@@ -392,18 +360,22 @@ public class GiamGiaFrame extends javax.swing.JFrame {
                 GiamGiaModel gg = new GiamGiaModel();
                 gg.setGiaTri(Integer.parseInt(giatri));
                 gg.setToiDa(Double.parseDouble(toida));
-                if (!NgBatDau.getDate().before(NgKetThuc.getDate())) {
-                    JOptionPane.showMessageDialog(null, "ngay bat dau phai som hon ngay ket thuc!", "", JOptionPane.WARNING_MESSAGE);
+                if (NgBatDau.getDate().after(NgKetThuc.getDate())) {
+                    JOptionPane.showMessageDialog(null, "Ngày bắt đầu không được trễ hơn ngày kết thúc!", "", JOptionPane.WARNING_MESSAGE);
                     return;
                 } else {
-                    gg.setNgayBatDau(NgBatDau.getDate());
-                    gg.setNgayKetThuc(NgKetThuc.getDate());
+                    java.util.Date ngaybd = new java.util.Date(NgBatDau.getDate().getTime());
+                    java.sql.Date ngbd = new java.sql.Date(ngaybd.getTime());
+                    gg.setNgayBatDau(ngbd);
+                    java.util.Date ngaykt = new java.util.Date(NgKetThuc.getDate().getTime());
+                    java.sql.Date ngkt = new java.sql.Date(ngaykt.getTime());
+                    gg.setNgayKetThuc(ngkt);
                 }
                 int maGG = Integer.parseInt(txtMaGiamGia.getText());
                 if (GiamGiaController.getInstance().SuaGiamGia(maGG, gg) == true) {
-                    JOptionPane.showMessageDialog(this, "Sua ma giam gia thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Sửa mã giảm giá thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Sua ma giam gia không thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Sửa mã giảm giá không thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 }
                 loadTable();
             } catch (Exception e) {
@@ -411,28 +383,6 @@ public class GiamGiaFrame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btCapNhapActionPerformed
-
-    /**
-     * Tìm kiếm bằng mã gi?m giá
-     *
-     */
-    private void btTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTimActionPerformed
-        modelttKH = (DefaultTableModel) tbThongTinGG.getModel();
-        String ma = txtTimKiem.getText();
-
-        modelttKH.setRowCount(0);
-        if (txtTimKiem.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Chưa nhập thông tin tìm kiếm", "Lỗi", JOptionPane.WARNING_MESSAGE);
-        } else {
-            try {
-                GiamGiaController.getInstance().TimGiamGia(ma);
-                loadTable();
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("Mã Giảm giá không tồn tại!");
-            }
-        }
-    }//GEN-LAST:event_btTimActionPerformed
 
     private void tbThongTinGGKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbThongTinGGKeyPressed
         // TODO add your handling code here:
@@ -445,8 +395,9 @@ public class GiamGiaFrame extends javax.swing.JFrame {
                 txtMaGiamGia.setText(tbThongTinGG.getValueAt(row, 0).toString());
                 txtGiaTri.setText(tbThongTinGG.getValueAt(row, 1).toString());
                 txtToiDa.setText(tbThongTinGG.getValueAt(row, 2).toString());
-                NgBatDau.setDate(new SimpleDateFormat("yyyy/mm/dd").parse(tbThongTinGG.getValueAt(row, 3).toString()));
-                NgKetThuc.setDate(new SimpleDateFormat("yyyy/mm/dd").parse(tbThongTinGG.getValueAt(row, 4).toString()));
+                NgBatDau.setDate(new SimpleDateFormat("yyyy-mm-dd").parse(tbThongTinGG.getValueAt(row, 3).toString()));
+                NgKetThuc.setDate(new SimpleDateFormat("yyyy-mm-dd").parse(tbThongTinGG.getValueAt(row, 4).toString()));
+
             }
 
         } catch (Exception e) {
@@ -454,43 +405,27 @@ public class GiamGiaFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tbThongTinGGMouseClicked
 
-    private void txtTimKiemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            try {
-                GiamGiaController.getInstance().TimGiamGia(txtMaGiamGia.getText());
-                loadTable();
-            } catch (Exception e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Mã không tồn tại", "Thông báo", JOptionPane.WARNING_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_txtTimKiemKeyPressed
-
-    private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTimKiemActionPerformed
-
     private void btResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btResetActionPerformed
         txtMaGiamGia.setText("");
         txtGiaTri.setText("");
         NgBatDau.setDate(null);
         NgKetThuc.setDate(null);
         txtToiDa.setText("");
-        txtTimKiem.setText("");
     }//GEN-LAST:event_btResetActionPerformed
 
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
+        GiamGiaController.getInstance().LayDuLieu();
         int maGG = Integer.parseInt(txtMaGiamGia.getText());
-        if (this.txtMaGiamGia.getText().length() == 0)
-            JOptionPane.showMessageDialog(null, "Bạn cần chọn ma giam gia để xóa", "Thông báo", 1);
+        if (maGG == 0)
+            JOptionPane.showMessageDialog(null, "Bạn cần chọn mã giảm giá để xóa", "Thông báo", 1);
         else {
             try {
-                int result = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn xóa khách hàng này", "Xác nhận", JOptionPane.YES_NO_OPTION);
+                int result = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn xóa mã giảm giá này", "Xác nhận", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     if (GiamGiaController.getInstance().XoaGiamGia(maGG) == true) {
-                        JOptionPane.showMessageDialog(this, "Xóa ma giam gia thành công", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Xóa mã giảm giá thành công", "Thông báo", JOptionPane.WARNING_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(this, "Xóa không thành công!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Xóa mã giảm giá không thành công!", "Thông báo", JOptionPane.WARNING_MESSAGE);
                     }
                 }
                 loadTable();
@@ -500,58 +435,14 @@ public class GiamGiaFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btXoaActionPerformed
 
-    private void btRefreshTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRefreshTimActionPerformed
-        txtTimKiem.setText("");
-        modelttKH = (DefaultTableModel) tbThongTinGG.getModel();
-        modelttKH.setRowCount(0);
-        loadTable();
-    }//GEN-LAST:event_btRefreshTimActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GiamGiaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GiamGiaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GiamGiaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GiamGiaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GiamGiaFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser NgBatDau;
     private com.toedter.calendar.JDateChooser NgKetThuc;
     private javax.swing.JButton btCapNhap;
-    private javax.swing.JButton btRefreshTim;
     private javax.swing.JButton btReset;
     private javax.swing.JButton btThem;
     private javax.swing.JButton btThoat;
-    private javax.swing.JToggleButton btTim;
     private javax.swing.JButton btXoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -567,7 +458,6 @@ public class GiamGiaFrame extends javax.swing.JFrame {
     private javax.swing.JTable tbThongTinGG;
     private javax.swing.JTextField txtGiaTri;
     private javax.swing.JTextField txtMaGiamGia;
-    private javax.swing.JTextField txtTimKiem;
     private javax.swing.JTextField txtToiDa;
     // End of variables declaration//GEN-END:variables
 }

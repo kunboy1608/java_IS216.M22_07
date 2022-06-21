@@ -60,13 +60,14 @@ public class AccountController {
         return false;
     }
 
-    public boolean SuaAccount(int id, AccountModel k) {
+    public boolean SuaAccount(String id, AccountModel k) {
         try {
 
             // Cau truy van SQL
-            String sql = "update Account set password=?, islocked=?, type=?";
+            String sql = "update Account set password=?, islocked=?, type=? where username = "+id;
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
+            ps.setString(1, id);
 
             // Gan bien vao cac dau  ?
             ps.setString(1, k.getPassword());
@@ -92,6 +93,7 @@ public class AccountController {
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
+            ps.setString(1, Username);
 
             if (ps.executeUpdate() != 1) {
                 return false;

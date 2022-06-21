@@ -69,7 +69,7 @@ public class GiamGiaController {
         try {
 
             // Cau truy van SQL
-            String sql = "update GiamGia set GiaTri=?, ToiDa=?, NgayBatDau=?, NgayKetThuc=? where magiamgia = ?" + id;
+            String sql = "update GiamGia set GiaTri=?, ToiDa=?, NgayBatDau=?, NgayKetThuc=? where Magiamgia =" + id;
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
