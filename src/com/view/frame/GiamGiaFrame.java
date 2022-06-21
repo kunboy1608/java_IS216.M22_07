@@ -10,9 +10,9 @@ import com.models.DataContext;
 import com.models.GiamGiaModel;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
+import java.sql.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
@@ -94,16 +94,16 @@ public class GiamGiaFrame extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 12, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jScrollPane1))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+                .addGap(76, 76, 76))
         );
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -252,22 +252,21 @@ public class GiamGiaFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btThoat)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                .addGap(53, 53, 53)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btThoat))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btThoat)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -275,17 +274,20 @@ public class GiamGiaFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 37, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     public void loadTable() {
         modelttKH = new DefaultTableModel();
 
@@ -311,37 +313,51 @@ public class GiamGiaFrame extends javax.swing.JFrame {
         setVisible(true);
     }
 
-
-    private void btThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThemActionPerformed
-       
-        if (txtGiaTri.getText().equals("") || txtToiDa.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Thông tin còn trống", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        } else {
-            try {
-                GiamGiaModel gg = new GiamGiaModel();
-                gg.setGiaTri(Integer.parseInt(txtGiaTri.getText()));
-                gg.setToiDa(Double.parseDouble(txtToiDa.getText()));
-                if (NgBatDau.getDate().after(NgKetThuc.getDate())) {
-                    JOptionPane.showMessageDialog(null, "Ngày bắt đầu không được trễ hơn ngày kết thúc!", "", JOptionPane.WARNING_MESSAGE);
-                    return;
-                } else {
-                    java.util.Date ngaybd = new java.util.Date(NgBatDau.getDate().getTime());
-                    java.sql.Date ngbd = new java.sql.Date(ngaybd.getTime());
-                    gg.setNgayBatDau(ngbd);
-                    java.util.Date ngaykt = new java.util.Date(NgKetThuc.getDate().getTime());
-                    java.sql.Date ngkt = new java.sql.Date(ngaykt.getTime());
-                    gg.setNgayKetThuc(ngkt);
-                }
-                if (GiamGiaController.getInstance().ThemGiamGia(gg) == true) {
-                    JOptionPane.showMessageDialog(this, "Thêm ma giam gia thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Thêm ma giam gia không thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                }
-                loadTable();
-            } catch (Exception e) {
-                e.printStackTrace();
+    public String checkError() {
+        if (txtGiaTri.getText().equals("")) {
+            return "Tên nhân viên còn trống";
+        }
+        if (txtToiDa.getText().equals("")) {
+            return "Tên nhân viên còn trống";
+        }
+        if (NgBatDau.getDate() == null) {
+            if (NgBatDau.isValid() == false) {
+                return "Ngày nhập không đúng";
             }
         }
+        if (NgKetThuc.getDate() == null) {
+            if (NgKetThuc.isValid() == false) {
+                return "Ngày nhập không đúng";
+            }
+        }
+        if (NgBatDau.getDate().after(NgKetThuc.getDate())) {
+            return "Ngày bắt đầu không được trễ hơn ngày kết thúc!";
+        }
+        return "";
+    }
+    private void btThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThemActionPerformed
+        StringBuilder sb = new StringBuilder();
+        var x = checkError();
+        if (!x.equals("")) {
+            JOptionPane.showConfirmDialog(null, x, "title", JOptionPane.DEFAULT_OPTION);
+            return;
+        }
+        try {
+            GiamGiaModel gg = new GiamGiaModel();
+            gg.setGiaTri(Integer.parseInt(txtGiaTri.getText()));
+            gg.setToiDa(Double.parseDouble(txtToiDa.getText()));
+            gg.setNgayBatDau(new java.sql.Date(NgBatDau.getDate().getTime()));
+            gg.setNgayKetThuc(new java.sql.Date(NgKetThuc.getDate().getTime()));
+            if (GiamGiaController.getInstance().ThemGiamGia(gg) == true) {
+                JOptionPane.showMessageDialog(this, "Thêm mã giảm giá thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm mã giảm giá không thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            }
+            loadTable();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_btThemActionPerformed
 
     private void btThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThoatActionPerformed
@@ -351,36 +367,29 @@ public class GiamGiaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btThoatActionPerformed
 
     private void btCapNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCapNhapActionPerformed
-        String giatri = txtGiaTri.getText();
-        String toida = txtToiDa.getText();
-        if (giatri.length() == 0 || toida.length() == 0) {
-            JOptionPane.showMessageDialog(this, "Thông tin còn trống", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        } else {
-            try {
-                GiamGiaModel gg = new GiamGiaModel();
-                gg.setGiaTri(Integer.parseInt(giatri));
-                gg.setToiDa(Double.parseDouble(toida));
-                if (NgBatDau.getDate().after(NgKetThuc.getDate())) {
-                    JOptionPane.showMessageDialog(null, "Ngày bắt đầu không được trễ hơn ngày kết thúc!", "", JOptionPane.WARNING_MESSAGE);
-                    return;
-                } else {
-                    java.util.Date ngaybd = new java.util.Date(NgBatDau.getDate().getTime());
-                    java.sql.Date ngbd = new java.sql.Date(ngaybd.getTime());
-                    gg.setNgayBatDau(ngbd);
-                    java.util.Date ngaykt = new java.util.Date(NgKetThuc.getDate().getTime());
-                    java.sql.Date ngkt = new java.sql.Date(ngaykt.getTime());
-                    gg.setNgayKetThuc(ngkt);
-                }
-                int maGG = Integer.parseInt(txtMaGiamGia.getText());
-                if (GiamGiaController.getInstance().SuaGiamGia(maGG, gg) == true) {
-                    JOptionPane.showMessageDialog(this, "Sửa mã giảm giá thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Sửa mã giảm giá không thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                }
-                loadTable();
-            } catch (Exception e) {
-                e.printStackTrace();
+       
+         StringBuilder sb = new StringBuilder();
+        var x = checkError();
+        if (!x.equals("")) {
+            JOptionPane.showConfirmDialog(null, x, "title", JOptionPane.DEFAULT_OPTION);
+            return;
+        }
+        try {
+            GiamGiaModel gg = new GiamGiaModel();
+            int gtr = Integer.parseInt(txtGiaTri.getText());
+            gg.setGiaTri(Integer.parseInt(txtGiaTri.getText()));
+            double td = Double.parseDouble(txtToiDa.getText());
+            gg.setToiDa(Double.parseDouble(txtToiDa.getText()));
+            gg.setNgayBatDau(new java.sql.Date(NgBatDau.getDate().getTime()));
+            gg.setNgayKetThuc(new java.sql.Date(NgKetThuc.getDate().getTime()));
+            if (GiamGiaController.getInstance().SuaGiamGia(Integer.parseInt(txtMaGiamGia.getText()), gg) == true) {
+                JOptionPane.showMessageDialog(this, "Thêm mã giảm giá thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm mã giảm giá không thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             }
+            loadTable();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_btCapNhapActionPerformed
 
@@ -395,8 +404,8 @@ public class GiamGiaFrame extends javax.swing.JFrame {
                 txtMaGiamGia.setText(tbThongTinGG.getValueAt(row, 0).toString());
                 txtGiaTri.setText(tbThongTinGG.getValueAt(row, 1).toString());
                 txtToiDa.setText(tbThongTinGG.getValueAt(row, 2).toString());
-                NgBatDau.setDate(new SimpleDateFormat("yyyy-mm-dd").parse(tbThongTinGG.getValueAt(row, 3).toString()));
-                NgKetThuc.setDate(new SimpleDateFormat("yyyy-mm-dd").parse(tbThongTinGG.getValueAt(row, 4).toString()));
+                NgBatDau.setDate((Date) tbThongTinGG.getModel().getValueAt(row, 3));
+                NgKetThuc.setDate((Date) tbThongTinGG.getModel().getValueAt(row, 4));
 
             }
 
@@ -414,15 +423,13 @@ public class GiamGiaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btResetActionPerformed
 
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
-        GiamGiaController.getInstance().LayDuLieu();
-        int maGG = Integer.parseInt(txtMaGiamGia.getText());
-        if (maGG == 0)
-            JOptionPane.showMessageDialog(null, "Bạn cần chọn mã giảm giá để xóa", "Thông báo", 1);
-        else {
+         if (txtMaGiamGia.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Bạn cần chọn chi nhánh để xóa", "Thông báo", 1);
+        } else {
             try {
                 int result = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn xóa mã giảm giá này", "Xác nhận", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
-                    if (GiamGiaController.getInstance().XoaGiamGia(maGG) == true) {
+                    if (GiamGiaController.getInstance().XoaGiamGia(Integer.parseInt(txtMaGiamGia.getText())) == true) {
                         JOptionPane.showMessageDialog(this, "Xóa mã giảm giá thành công", "Thông báo", JOptionPane.WARNING_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(this, "Xóa mã giảm giá không thành công!", "Thông báo", JOptionPane.WARNING_MESSAGE);

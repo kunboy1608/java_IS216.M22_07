@@ -71,7 +71,7 @@ public class DoUongController {
         try {
 
             // Cau truy van SQL
-            String sql = "update DoUong set TenDU=?, Gia=?, HinhAnh=?, GhiChu=?";
+            String sql = "update DoUong set TenDU=?, Gia=?, HinhAnh=?, GhiChu=? where MaDU="+id;
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 

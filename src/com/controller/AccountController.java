@@ -64,7 +64,7 @@ public class AccountController {
         try {
 
             // Cau truy van SQL
-            String sql = "update Account set password=?, islocked=?, type=? where username = "+id;
+            String sql = "update Account set password=?, islocked=?, type=? where username = '" + id + "'";
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
             ps.setString(1, id);
@@ -89,7 +89,7 @@ public class AccountController {
         try {
 
             // Cau truy van SQL
-            String sql = "delete from Account where username = " + Username;
+            String sql = "delete from Account where username = '" + Username + "'";
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
@@ -103,7 +103,8 @@ public class AccountController {
         }
         return true;
     }
-public void LayDuLieu() {
+
+    public void LayDuLieu() {
         try {
             String sql = "Select *  FROM Account";
 
@@ -123,5 +124,5 @@ public void LayDuLieu() {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-}
+    }
 }

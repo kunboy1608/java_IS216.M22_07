@@ -194,8 +194,11 @@ public class LoginFrame extends JFrame {
             //NhanVienFrame a = new NhanVienFrame();
            //AccountFrame a  = new AccountFrame();
            GiamGiaFrame a = new GiamGiaFrame();
+           //ChiNhanhFrame a = new ChiNhanhFrame();
+           //DoUongFrame a = new DoUongFrame();
             a.setVisible(true);
           //  MenuFrame.getInstance().setVisible(true);
+         // new ChiNhanhFrame().setVisible(true);
         }
     }
 

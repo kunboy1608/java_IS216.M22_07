@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author DO THAO QUYEN
+ * @author dang
  */
 public class DoUongFrame extends javax.swing.JFrame {
 
@@ -301,14 +301,12 @@ public class DoUongFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+DefaultTableModel modelThongTinDU;
     public void loadTable() {
-       
-        DefaultTableModel modelThongTinDU = new DefaultTableModel();
-
-        String tieuDe[] = {"Mã Đồ Uống", "Tên Đồ Uống", "Giá", "Hình Ảnh", "Ghi Chú"};
+        modelThongTinDU = new DefaultTableModel();
+        String tieuDe[] = {"Mã Đồ Uống", "Tên Đồ Uống", "Giá",  "Ghi Chú"};
         modelThongTinDU.setColumnIdentifiers(tieuDe);
-        Object row[] = new Object[5];
+        Object row[] = new Object[4];
         DoUongController.getInstance().LayDuLieu();
         int i = 0;
         while (i < DataContext.getInstance().getDoUongs().size()) {
@@ -316,19 +314,25 @@ public class DoUongFrame extends javax.swing.JFrame {
                 row[0] = DataContext.getInstance().getDoUongs().get(i).getMaDU();
                 row[1] = DataContext.getInstance().getDoUongs().get(i).getTenDU();
                 row[2] = DataContext.getInstance().getDoUongs().get(i).getGia();
-                row[3] = DataContext.getInstance().getDoUongs().get(i).getHinhAnh();
-                row[4] = DataContext.getInstance().getDoUongs().get(i).getGhiChu();
+                row[3] = DataContext.getInstance().getDoUongs().get(i).getGhiChu();
                 i++;
                 modelThongTinDU.addRow(row);
             } catch (Exception e) {
             }
         }
-
         tbThongTinDU.setModel(modelThongTinDU);
         setVisible(true);
     }
 
-
+ public String checkError() {
+        if (txtTenDU.getText().equals("")) {
+            return "Tên chi nhánh còn trống";
+        }
+        if (txtGia.getText().equals("")) {
+            return "Địa chỉ của chi nhánh còn trống";
+        }
+        return "";
+    }
     private void tbThongTinDUKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbThongTinDUKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_tbThongTinDUKeyPressed
@@ -356,15 +360,16 @@ public class DoUongFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btResetActionPerformed
 
     private void btCapNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCapNhapActionPerformed
-        String tenDU = txtTenDU.getText();
-        String gia = txtGia.getText();
-        if (tenDU.length() == 0 || gia.length() == 0) {
-            JOptionPane.showMessageDialog(this, "Nhập đủ thông tin");
-        } else {
-            try {
+         StringBuilder sb = new StringBuilder();
+        var x = checkError();
+        if (!x.equals("")) {
+            JOptionPane.showConfirmDialog(null, x, "title", JOptionPane.DEFAULT_OPTION);
+            return;
+        }
+        try {
                 DoUongModel doUongModel = new DoUongModel();
-                doUongModel.setTenDU(tenDU);
-                doUongModel.setGia(Double.parseDouble(gia));
+                doUongModel.setTenDU(txtTenDU.getText());
+                doUongModel.setGia(Double.parseDouble(txtGia.getText()));
                 if (txtGhiChu.getText() == "") {
                     return;
                 } else {
@@ -381,11 +386,11 @@ public class DoUongFrame extends javax.swing.JFrame {
                 e.printStackTrace();
                 System.out.println("Cập nhập thất bại");
             }
-        }
+        
     }//GEN-LAST:event_btCapNhapActionPerformed
 
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
-        if (this.txtMaDU.getText().length() == 0)
+        if (this.txtMaDU.getText().equals(""))
         JOptionPane.showMessageDialog(null, "Bạn cần chọn mã đồ uống để xóa", "Thông báo", 1);
         else {
             try {
@@ -411,14 +416,17 @@ public class DoUongFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btThoatActionPerformed
 
     private void btThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThemActionPerformed
-        if (txtTenDU.getText().equals("") || txtGia.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Thông tin còn trống", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        } else {
-            try {
+        StringBuilder sb = new StringBuilder();
+        var x = checkError();
+        if (!x.equals("")) {
+            JOptionPane.showConfirmDialog(null, x, "title", JOptionPane.DEFAULT_OPTION);
+            return;
+        }
+        try {
                 DoUongModel doUongModel = new DoUongModel();
                 doUongModel.setTenDU(txtTenDU.getText());
                 doUongModel.setGia(Double.parseDouble(txtGia.getText()));
-                if (txtGhiChu.getText()==" ") {
+                if (txtGhiChu.getText() == "") {
                     return;
                 } else {
                     doUongModel.setGhiChu(txtGhiChu.getText());
@@ -432,7 +440,7 @@ public class DoUongFrame extends javax.swing.JFrame {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        
     }//GEN-LAST:event_btThemActionPerformed
 
     private void txtGhiChuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGhiChuActionPerformed

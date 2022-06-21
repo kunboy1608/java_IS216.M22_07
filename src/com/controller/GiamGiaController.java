@@ -90,22 +90,18 @@ public class GiamGiaController {
     }
 
     public boolean XoaGiamGia(int id) {
-        try {
+         try {
+            String sql = "DELETE FROM GIAMGIA WHERE MaGIAMGIA = " + id;
 
-            // Cau truy van SQL
-            String sql = "delete from GiamGia where MaGiamGia = ?";
-
-            // Lay ket noi
-            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
-
-            ps.setInt(1, id);
-            if (ps.executeUpdate() != 1) {
+            Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            if (rs.next() == false) {
                 return false;
             }
+            return true;
         } catch (SQLException e) {
-            return false;
         }
-        return true;
+        return false;
     }
 
     public void LayDuLieu() {
