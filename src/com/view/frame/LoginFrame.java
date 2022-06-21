@@ -191,14 +191,7 @@ public class LoginFrame extends JFrame {
             lbNotification.setText(ERROR_MESSAGE);
         } else {
             this.dispose();
-            //NhanVienFrame a = new NhanVienFrame();
-           //AccountFrame a  = new AccountFrame();
-           GiamGiaFrame a = new GiamGiaFrame();
-           //ChiNhanhFrame a = new ChiNhanhFrame();
-           //DoUongFrame a = new DoUongFrame();
-            a.setVisible(true);
-          //  MenuFrame.getInstance().setVisible(true);
-         // new ChiNhanhFrame().setVisible(true);
+            new TrangChuJFrame().setVisible(true);
         }
     }
 

@@ -112,7 +112,7 @@ public class MenuFrame extends JFrame {
         initDrinkArea();
         initBillArea();
         initTableArea();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
     }
     

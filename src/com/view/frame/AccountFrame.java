@@ -6,9 +6,9 @@ package com.view.frame;
 
 import com.controller.AccountController;
 import com.handle.ImageHandle;
+import com.handle.LanguageHandle;
 import com.models.AccountModel;
 import com.models.DataContext;
-import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,8 +25,43 @@ public class AccountFrame extends javax.swing.JFrame {
      */
     public AccountFrame() {
         initComponents();
+        loadText();
+        configComponents();
         loadTable();
-        setVisible(true);
+    }
+
+    private void loadText() {
+        TITLE = LanguageHandle.getInstance().getValue("Account", "TITLE");
+        UPDATE = LanguageHandle.getInstance().getValue("Account", "UPDATE");
+        RESET = LanguageHandle.getInstance().getValue("Account", "RESET");
+        EXIT = LanguageHandle.getInstance().getValue("Account", "EXIT");
+        KIND = LanguageHandle.getInstance().getValue("Account", "KIND");
+        STATUS = LanguageHandle.getInstance().getValue("Account", "STATUS");
+        USERNAME = LanguageHandle.getInstance().getValue("Account", "USERNAME");
+        INFO = LanguageHandle.getInstance().getValue("Account", "INFO");
+        LOCK = LanguageHandle.getInstance().getValue("Account", "LOCK");
+        OPEN = LanguageHandle.getInstance().getValue("Account", "OPEN");
+        GUEST = LanguageHandle.getInstance().getValue("Account", "GUEST");
+        EMPLOYEE = LanguageHandle.getInstance().getValue("Account", "EMPLOYEE");
+        MANAGER = LanguageHandle.getInstance().getValue("Account", "MANAGER");
+        EXIT_MESSAGE = LanguageHandle.getInstance().getValue("Account", "EXIT_MESSAGE");
+        NOTIFICATION_TITLE = LanguageHandle.getInstance().getValue("Account", "NOTIFICATION_TITLE");
+        NOTI_SUCCESS = LanguageHandle.getInstance().getValue("Account", "NOTI_SUCCESS");
+        NOTI_FAILED = LanguageHandle.getInstance().getValue("Account", "NOTI_FAILED");
+    }
+
+    private void configComponents() {
+        setIconImage(ImageHandle.getInstance().getIconLogo());
+        setTitle(TITLE);
+        // Doi ngon ngu
+        btnCapNhap.setText(UPDATE);
+        btnReset.setText(RESET);
+        btnThoat.setText(EXIT);
+
+        lbLoai.setText(KIND);
+        lbTinhTrang.setText(STATUS);
+        lbTitle.setText(TITLE);
+        lbUsername.setText(USERNAME);
     }
 
     /**
@@ -38,34 +73,31 @@ public class AccountFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        labelUsername = new javax.swing.JLabel();
-        labelTinhTrang = new javax.swing.JLabel();
-        labelLoai = new javax.swing.JLabel();
+        lbUsername = new javax.swing.JLabel();
+        lbTinhTrang = new javax.swing.JLabel();
+        lbLoai = new javax.swing.JLabel();
         txtuser = new javax.swing.JTextField();
         cbtinhtrang = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
+        lbTitle = new javax.swing.JLabel();
         cbloai = new javax.swing.JComboBox<>();
-        btCapNhap = new javax.swing.JButton();
-        btThoat = new javax.swing.JButton();
+        btnCapNhap = new javax.swing.JButton();
+        btnThoat = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbThongTinTK = new javax.swing.JTable();
-        btReset = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
 
-        jLabel7.setText("jLabel7");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        lbUsername.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbUsername.setText("Tên Người Dùng ");
 
-        labelUsername.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        labelUsername.setText("Tên Người Dùng ");
+        lbTinhTrang.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbTinhTrang.setText("Tình Trạng");
 
-        labelTinhTrang.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        labelTinhTrang.setText("Tình Trạng");
-
-        labelLoai.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        labelLoai.setText("Loại");
+        lbLoai.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbLoai.setText("Loại");
 
         txtuser.setEditable(false);
         txtuser.addActionListener(new java.awt.event.ActionListener() {
@@ -76,17 +108,17 @@ public class AccountFrame extends javax.swing.JFrame {
 
         cbtinhtrang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mở", "Khóa" }));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("THÔNG TIN TÀI KHOẢN");
+        lbTitle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbTitle.setText("THÔNG TIN TÀI KHOẢN");
 
         cbloai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Khách", "Nhân viên", "Quản lý" }));
 
-        btCapNhap.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btCapNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/edit (2).png"))); // NOI18N
-        btCapNhap.setText("Cập Nhập");
-        btCapNhap.addActionListener(new java.awt.event.ActionListener() {
+        btnCapNhap.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCapNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/edit (2).png"))); // NOI18N
+        btnCapNhap.setText("Cập Nhập");
+        btnCapNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCapNhapActionPerformed(evt);
+                btnCapNhapActionPerformed(evt);
             }
         });
 
@@ -98,12 +130,12 @@ public class AccountFrame extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(labelUsername))
+                        .addComponent(lbUsername))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -112,39 +144,39 @@ public class AccountFrame extends javax.swing.JFrame {
                 .addContainerGap(33, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
+                .addComponent(lbTitle)
                 .addGap(58, 58, 58))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btCapNhap))
+                .addComponent(btnCapNhap))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(jLabel5)
+                .addComponent(lbTitle)
                 .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelUsername))
+                    .addComponent(lbUsername))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbtinhtrang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelTinhTrang))
+                    .addComponent(lbTinhTrang))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelLoai)
+                    .addComponent(lbLoai)
                     .addComponent(cbloai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                .addComponent(btCapNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnCapNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        btThoat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/exit (2).png"))); // NOI18N
-        btThoat.setText("Thoát");
-        btThoat.addActionListener(new java.awt.event.ActionListener() {
+        btnThoat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/exit (2).png"))); // NOI18N
+        btnThoat.setText("Thoát");
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btThoatActionPerformed(evt);
+                btnThoatActionPerformed(evt);
             }
         });
 
@@ -171,12 +203,12 @@ public class AccountFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbThongTinTK);
 
-        btReset.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/refresh-arrow.png"))); // NOI18N
-        btReset.setText("Refresh");
-        btReset.addActionListener(new java.awt.event.ActionListener() {
+        btnReset.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/refresh-arrow.png"))); // NOI18N
+        btnReset.setText("Refresh");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btResetActionPerformed(evt);
+                btnResetActionPerformed(evt);
             }
         });
 
@@ -188,9 +220,9 @@ public class AccountFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(btThoat)
+                        .addComponent(btnThoat)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btReset))
+                        .addComponent(btnReset))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -212,9 +244,9 @@ public class AccountFrame extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 28, Short.MAX_VALUE)
-                                .addComponent(btThoat))
+                                .addComponent(btnThoat))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btReset, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
@@ -241,7 +273,7 @@ public class AccountFrame extends javax.swing.JFrame {
 
     public void loadTable() {
         modelttKH = new DefaultTableModel();
-        String tieuDe[] = {"Tên Người Dùng ", "Tình Trạng", "Loại"};
+        String tieuDe[] = {USERNAME, STATUS, KIND};
         modelttKH.setColumnIdentifiers(tieuDe);
         Object row[] = new Object[3];
         AccountController.getInstance().LayDuLieu();
@@ -251,17 +283,17 @@ public class AccountFrame extends javax.swing.JFrame {
                 row[0] = DataContext.getInstance().getAccounts().get(i).getUserName();
                 Boolean tt = DataContext.getInstance().getAccounts().get(i).getIsLocked();
                 if (tt == true) {
-                    row[1] = "Khóa";
+                    row[1] = LOCK;
                 } else {
-                    row[1] = "Mở";
+                    row[1] = OPEN;
                 }
                 int loai = DataContext.getInstance().getAccounts().get(i).getType();
                 if (loai == 1) {
-                    row[2] = "Khách";
+                    row[2] = GUEST;
                 } else if (loai == 2) {
-                    row[2] = "Nhân viên";
+                    row[2] = EMPLOYEE;
                 } else if (loai == 3) {
-                    row[2] = "Quản lý";
+                    row[2] = MANAGER;
                 }
                 i++;
                 modelttKH.addRow(row);
@@ -274,38 +306,38 @@ public class AccountFrame extends javax.swing.JFrame {
     }
 
 
-    private void btThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThoatActionPerformed
-        int ret = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát", "Thoát", JOptionPane.YES_NO_OPTION);
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        int ret = JOptionPane.showConfirmDialog(null, EXIT_MESSAGE, EXIT, JOptionPane.YES_NO_OPTION);
         if (ret == JOptionPane.YES_OPTION)
             System.exit(0);
-    }//GEN-LAST:event_btThoatActionPerformed
+    }//GEN-LAST:event_btnThoatActionPerformed
 
-    private void btCapNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCapNhapActionPerformed
+    private void btnCapNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhapActionPerformed
         try {
             AccountModel accountModel = new AccountModel();
-            if (cbtinhtrang.getSelectedItem().equals("Khóa")) {
+            if (cbtinhtrang.getSelectedItem().equals(LOCK)) {
                 accountModel.setIsLocked(true);
-            } else if (cbtinhtrang.getSelectedItem().equals("Mở")) {
+            } else if (cbtinhtrang.getSelectedItem().equals(OPEN)) {
                 accountModel.setIsLocked(false);
             }
-            
-            if (cbloai.getSelectedItem().toString().equals("Khách")) {
+
+            if (cbloai.getSelectedItem().toString().equals(GUEST)) {
                 accountModel.setType(1);
-            } else if (cbloai.getSelectedItem().toString().equals("Nhân viên")) {
+            } else if (cbloai.getSelectedItem().toString().equals(EMPLOYEE)) {
                 accountModel.setType(2);
-            } else if (cbloai.getSelectedItem().toString().equals("Quản lý")) {
+            } else if (cbloai.getSelectedItem().toString().equals(MANAGER)) {
                 accountModel.setType(3);
             }
             if (AccountController.getInstance().SuaAccount(txtuser.getText(), accountModel) == true) {
-                JOptionPane.showMessageDialog(this, "Sửa tài khoản thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, NOTI_SUCCESS, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Sửa tài khoản không thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
             }
             loadTable();
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }//GEN-LAST:event_btCapNhapActionPerformed
+    }//GEN-LAST:event_btnCapNhapActionPerformed
 
     private void tbThongTinTKKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbThongTinTKKeyPressed
         // TODO add your handling code here:
@@ -320,11 +352,11 @@ public class AccountFrame extends javax.swing.JFrame {
                 String tt = tbThongTinTK.getValueAt(row, 1).toString();
                 cbtinhtrang.setSelectedItem(tt);
                 if (tbThongTinTK.getValueAt(row, 2).toString().trim().equals("Khách")) {
-                    cbloai.setSelectedItem("Khách");
+                    cbloai.setSelectedItem(GUEST);
                 } else if (tbThongTinTK.getValueAt(row, 2).toString().trim().equals("Nhân viên")) {
-                    cbloai.setSelectedItem("Nhân viên");
+                    cbloai.setSelectedItem(EMPLOYEE);
                 } else if (tbThongTinTK.getValueAt(row, 2).toString().trim().equals("Quản lý")) {
-                    cbloai.setSelectedItem("Quản lý");
+                    cbloai.setSelectedItem(MANAGER);
                 }
             }
         } catch (Exception e) {
@@ -332,35 +364,46 @@ public class AccountFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tbThongTinTKMouseClicked
 
-    private void btResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btResetActionPerformed
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         txtuser.setText("");
-//       cbtinhtrang.setSelectedIndex(WIDTH);
-//        cbloai.setSelectedItem(null);
-
-    }//GEN-LAST:event_btResetActionPerformed
+    }//GEN-LAST:event_btnResetActionPerformed
 
     private void txtuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtuserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtuserActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    // Text
+    private String TITLE;
+    private String UPDATE;
+    private String RESET;
+    private String EXIT;
+    private String KIND;
+    private String STATUS;
+    private String USERNAME;
+    private String INFO;
+    private String LOCK;
+    private String OPEN;
+    private String GUEST;
+    private String EMPLOYEE;
+    private String MANAGER;
+    private String EXIT_MESSAGE;
+    private String NOTIFICATION_TITLE;
+    private String NOTI_SUCCESS;
+    private String NOTI_FAILED;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btCapNhap;
-    private javax.swing.JButton btReset;
-    private javax.swing.JButton btThoat;
+    private javax.swing.JButton btnCapNhap;
+    private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnThoat;
     private javax.swing.JComboBox<String> cbloai;
     private javax.swing.JComboBox<String> cbtinhtrang;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelLoai;
-    private javax.swing.JLabel labelTinhTrang;
-    private javax.swing.JLabel labelUsername;
+    private javax.swing.JLabel lbLoai;
+    private javax.swing.JLabel lbTinhTrang;
+    private javax.swing.JLabel lbTitle;
+    private javax.swing.JLabel lbUsername;
     private javax.swing.JTable tbThongTinTK;
     private javax.swing.JTextField txtuser;
     // End of variables declaration//GEN-END:variables

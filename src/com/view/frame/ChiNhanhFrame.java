@@ -5,10 +5,10 @@
 package com.view.frame;
 
 import com.controller.ChiNhanhController;
-import com.controller.KhachHangController;
+import com.handle.ImageHandle;
+import com.handle.LanguageHandle;
 import com.models.ChiNhanhModel;
 import com.models.DataContext;
-import com.models.KhachHangModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,7 +24,44 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
     public ChiNhanhFrame() {
         initComponents();
         loadTable();
-        setVisible(true);
+        loadText();
+        configComponents();
+    }
+
+    private void loadText() {
+        TITLE = LanguageHandle.getInstance().getValue("Branch", "TITLE");
+        UPDATE = LanguageHandle.getInstance().getValue("Branch", "UPDATE");
+        RESET = LanguageHandle.getInstance().getValue("Branch", "RESET");
+        REFRESH = LanguageHandle.getInstance().getValue("Branch", "REFRESH");
+        EXIT = LanguageHandle.getInstance().getValue("Branch", "EXIT");
+        LIST_BRANCH = LanguageHandle.getInstance().getValue("Branch", "LIST_BRANCH");
+        ADDRESS = LanguageHandle.getInstance().getValue("Branch", "ADDRESS");
+        ID = LanguageHandle.getInstance().getValue("Branch", "ID");
+        INFO = LanguageHandle.getInstance().getValue("Branch", "INFO");
+        NAME = LanguageHandle.getInstance().getValue("Branch", "NAME");
+        DELETE = LanguageHandle.getInstance().getValue("Branch", "DELETE");
+        NOTIFICATION_TITLE = LanguageHandle.getInstance().getValue("Branch", "NOTIFICATION_TITLE");
+        NOTI_SUCCESS = LanguageHandle.getInstance().getValue("Branch", "NOTI_SUCCESS");
+        NOTI_FAILED = LanguageHandle.getInstance().getValue("Branch", "NOTI_FAILED");
+        ERR_NAME_EMPTY = LanguageHandle.getInstance().getValue("Branch", "ERR_NAME_EMPTY");
+        ERR_ADDRESS_EMPTY = LanguageHandle.getInstance().getValue("Branch", "ERR_ADDRESS_EMPTY");
+        CHOSSE_DELETE = LanguageHandle.getInstance().getValue("Branch", "CHOSSE_DELETE");
+        REQUEST_DELETE = LanguageHandle.getInstance().getValue("Branch", "REQUEST_DELETE");
+    }
+
+    private void configComponents() {
+        setIconImage(ImageHandle.getInstance().getIconLogo());
+        setTitle(TITLE);
+        // Doi ngon ngu
+        btnCapNhap.setText(UPDATE);
+        btnRefresh.setText(REFRESH);
+        btnXoa.setText(DELETE);
+
+        lbDanhSachChiNhanh.setText(LIST_BRANCH);
+        lbDiaChi.setText(ADDRESS);
+        lbMaCN.setText(ID);
+        lbTTChiNhanh.setText(INFO);
+        lbTenCN.setText(NAME);
     }
 
     /**
@@ -45,17 +82,17 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
         txtTenCN = new javax.swing.JTextField();
         txtDiaChi = new javax.swing.JTextField();
         lbTTChiNhanh = new javax.swing.JLabel();
-        btThem = new javax.swing.JButton();
-        btXoa = new javax.swing.JButton();
-        btCapNhap = new javax.swing.JButton();
-        btRefresh = new javax.swing.JButton();
+        btnThem = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
+        btnCapNhap = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
         boundary = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbChiNhanh = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
+        lbDanhSachChiNhanh = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -80,45 +117,45 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
         lbTTChiNhanh.setText("Thông tin Chi Nhánh");
         jPanel2.add(lbTTChiNhanh, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
 
-        btThem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/add (1).png"))); // NOI18N
-        btThem.setText("Thêm");
-        btThem.addActionListener(new java.awt.event.ActionListener() {
+        btnThem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/add (1).png"))); // NOI18N
+        btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btThemActionPerformed(evt);
+                btnThemActionPerformed(evt);
             }
         });
-        jPanel2.add(btThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, 30));
+        jPanel2.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, 30));
 
-        btXoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/delete (1).png"))); // NOI18N
-        btXoa.setText("Xóa");
-        btXoa.addActionListener(new java.awt.event.ActionListener() {
+        btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/delete (1).png"))); // NOI18N
+        btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btXoaActionPerformed(evt);
+                btnXoaActionPerformed(evt);
             }
         });
-        jPanel2.add(btXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, -1, 30));
+        jPanel2.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, -1, 30));
 
-        btCapNhap.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btCapNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/edit (2).png"))); // NOI18N
-        btCapNhap.setText("Cập Nhập");
-        btCapNhap.addActionListener(new java.awt.event.ActionListener() {
+        btnCapNhap.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCapNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/edit (2).png"))); // NOI18N
+        btnCapNhap.setText("Cập Nhập");
+        btnCapNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCapNhapActionPerformed(evt);
+                btnCapNhapActionPerformed(evt);
             }
         });
-        jPanel2.add(btCapNhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, -1, 30));
+        jPanel2.add(btnCapNhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, -1, 30));
 
-        btRefresh.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/refresh-arrow.png"))); // NOI18N
-        btRefresh.setText("Refresh ");
-        btRefresh.addActionListener(new java.awt.event.ActionListener() {
+        btnRefresh.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/refresh-arrow.png"))); // NOI18N
+        btnRefresh.setText("Refresh ");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRefreshActionPerformed(evt);
+                btnRefreshActionPerformed(evt);
             }
         });
-        jPanel2.add(btRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, -1, 30));
+        jPanel2.add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, -1, 30));
 
         boundary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/background2.png"))); // NOI18N
         jPanel2.add(boundary, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 480));
@@ -138,8 +175,8 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbChiNhanh);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("Danh sách chi nhánh");
+        lbDanhSachChiNhanh.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbDanhSachChiNhanh.setText("Danh sách chi nhánh");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -152,14 +189,14 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addComponent(jLabel5)))
+                        .addComponent(lbDanhSachChiNhanh)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jLabel5)
+                .addComponent(lbDanhSachChiNhanh)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
                 .addContainerGap())
@@ -203,7 +240,7 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
     public void loadTable() {
         modelChiNhanh = (DefaultTableModel) new DefaultTableModel();
         try {
-            String tieuDe[] = {"Mã Chi Nhánh", "Tên Chi Nhánh", "Địa Chỉ"};
+            String tieuDe[] = {ID, NAME, ADDRESS};
             modelChiNhanh.setColumnIdentifiers(tieuDe);
             Object row[] = new Object[3];
             int i = 0;
@@ -223,19 +260,19 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
 
     public String checkError() {
         if (txtTenCN.getText().equals("")) {
-            return "Tên chi nhánh còn trống";
+            return ERR_NAME_EMPTY;
         }
         if (txtDiaChi.getText().equals("")) {
-            return "Địa chỉ của chi nhánh còn trống";
+            return ERR_ADDRESS_EMPTY;
         }
         return "";
     }
 
-    private void btThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThemActionPerformed
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         StringBuilder sb = new StringBuilder();
         var x = checkError();
         if (!x.equals("")) {
-            JOptionPane.showConfirmDialog(null, x, "title", JOptionPane.DEFAULT_OPTION);
+            JOptionPane.showConfirmDialog(null, x, NOTIFICATION_TITLE, JOptionPane.DEFAULT_OPTION);
             return;
         }
         try {
@@ -243,20 +280,20 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
             cn.setTenCN(txtTenCN.getText());
             cn.setDiaChi(txtDiaChi.getText());
             if (ChiNhanhController.getInstance().ThemChiNhanh(cn) == true) {
-                JOptionPane.showMessageDialog(null, "Thêm chi nhánh thành công");
+                JOptionPane.showMessageDialog(null, NOTI_SUCCESS);
             } else {
-                JOptionPane.showMessageDialog(null, "Thêm chi nhánh không thành công");
+                JOptionPane.showMessageDialog(null, NOTI_FAILED);
             }
         } catch (Exception e) {
         }
         loadTable();
-    }//GEN-LAST:event_btThemActionPerformed
+    }//GEN-LAST:event_btnThemActionPerformed
 
-    private void btCapNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCapNhapActionPerformed
+    private void btnCapNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhapActionPerformed
         StringBuilder sb = new StringBuilder();
         var x = checkError();
         if (!x.equals("")) {
-            JOptionPane.showConfirmDialog(null, x, "title", JOptionPane.DEFAULT_OPTION);
+            JOptionPane.showConfirmDialog(null, x, NOTIFICATION_TITLE, JOptionPane.DEFAULT_OPTION);
             return;
         }
         try {
@@ -266,33 +303,33 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
             cn.setTenCN(txtTenCN.getText());
             cn.setDiaChi(txtDiaChi.getText());
             if (ChiNhanhController.getInstance().SuaChiNhanh(maCN, cn) == true) {
-                JOptionPane.showMessageDialog(null, "Cập nhập chi nhánh thành công");
+                JOptionPane.showMessageDialog(null, NOTI_SUCCESS);
             } else {
-                JOptionPane.showMessageDialog(null, "Cập nhập chi nhánh không thành công");
+                JOptionPane.showMessageDialog(null, NOTI_FAILED);
             }
         } catch (Exception e) {
         }
         loadTable();
-    }//GEN-LAST:event_btCapNhapActionPerformed
+    }//GEN-LAST:event_btnCapNhapActionPerformed
 
-    private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         if (txtMaCN.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Bạn cần chọn chi nhánh để xóa", "Thông báo", 1);
+            JOptionPane.showMessageDialog(null, CHOSSE_DELETE, NOTIFICATION_TITLE, 1);
         } else {
             try {
-                int result = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn xóa chi nhánh này", "Xác nhận", JOptionPane.YES_NO_OPTION);
+                int result = JOptionPane.showConfirmDialog(this, REQUEST_DELETE, NOTIFICATION_TITLE, JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     if (ChiNhanhController.getInstance().XoaChiNhanh(Integer.parseInt(txtMaCN.getText())) == true) {
-                        JOptionPane.showMessageDialog(null, "Xóa chi nhánh thành công");
+                        JOptionPane.showMessageDialog(null, NOTI_SUCCESS);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Xóa chi nhánh không thành công");
+                        JOptionPane.showMessageDialog(null, NOTI_FAILED);
                     }
                 }
             } catch (Exception e) {
             }
         }
         loadTable();
-    }//GEN-LAST:event_btXoaActionPerformed
+    }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tbChiNhanhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbChiNhanhMouseClicked
         try {
@@ -307,24 +344,43 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tbChiNhanhMouseClicked
 
-    private void btRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRefreshActionPerformed
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         txtMaCN.setText("");
         txtTenCN.setText("");
         txtDiaChi.setText("");
-    }//GEN-LAST:event_btRefreshActionPerformed
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
+    //Text
+    private String TITLE;
+    private String UPDATE;
+    private String RESET;
+    private String EXIT;
+    private String REFRESH;
+    private String LIST_BRANCH;
+    private String ADDRESS;
+    private String ID;
+    private String INFO;
+    private String NAME;
+    private String DELETE;
+    private String NOTIFICATION_TITLE;
+    private String NOTI_SUCCESS;
+    private String NOTI_FAILED;
+    private String ERR_NAME_EMPTY;
+    private String ERR_ADDRESS_EMPTY;
+    private String CHOSSE_DELETE;
+    private String REQUEST_DELETE;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel boundary;
-    private javax.swing.JButton btCapNhap;
-    private javax.swing.JButton btRefresh;
-    private javax.swing.JButton btThem;
-    private javax.swing.JButton btXoa;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JButton btnCapNhap;
+    private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbDanhSachChiNhanh;
     private javax.swing.JLabel lbDiaChi;
     private javax.swing.JLabel lbMaCN;
     private javax.swing.JLabel lbTTChiNhanh;

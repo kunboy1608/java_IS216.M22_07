@@ -21,6 +21,16 @@ public class ThongKeFrame extends javax.swing.JFrame {
      */
     public ThongKeFrame() {
         initComponents();
+        loadText();
+        configComponents();
+    }
+
+    private void loadText() {
+
+    }
+
+    private void configComponents() {
+
     }
 
     /**
@@ -38,7 +48,7 @@ public class ThongKeFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         HoaDontb = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         year.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +134,6 @@ public class ThongKeFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
     public void LoadTable() {
         DefaultTableModel modelHDKH = (DefaultTableModel) new DefaultTableModel();
 

@@ -16,7 +16,7 @@ public class RunApp {
     private RunApp() {
         configSystem();
         NetHandle.getInstance();
-        new LoginFrame().setVisible(true);        
+        new LoginFrame().setVisible(true);
     }
 
     private void configSystem() {
@@ -28,6 +28,6 @@ public class RunApp {
     }
 
     public static void main(String[] args) {
-        new RunApp();
+        java.awt.EventQueue.invokeLater(RunApp::new);
     }
 }

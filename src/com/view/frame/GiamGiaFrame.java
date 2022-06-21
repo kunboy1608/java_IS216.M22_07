@@ -6,6 +6,7 @@ package com.view.frame;
 
 import com.controller.GiamGiaController;
 import com.handle.ImageHandle;
+import com.handle.LanguageHandle;
 import com.models.DataContext;
 import com.models.GiamGiaModel;
 import java.awt.event.KeyEvent;
@@ -27,8 +28,50 @@ public class GiamGiaFrame extends javax.swing.JFrame {
      */
     public GiamGiaFrame() {
         initComponents();
+        loadText();
+        configComponents();
         loadTable();
-        setVisible(true);
+    }
+
+    private void loadText() {
+        TITLE = LanguageHandle.getInstance().getValue("Discount", "TITLE");
+        UPDATE = LanguageHandle.getInstance().getValue("Discount", "UPDATE");
+        RESET = LanguageHandle.getInstance().getValue("Discount", "RESET");
+        EXIT = LanguageHandle.getInstance().getValue("Discount", "EXIT");
+        REFRESH = LanguageHandle.getInstance().getValue("Discount", "REFRESH");
+        START_DATE = LanguageHandle.getInstance().getValue("Discount", "START_DATE");
+        END_DATE = LanguageHandle.getInstance().getValue("Discount", "END_DATE");
+        VALUE = LanguageHandle.getInstance().getValue("Discount", "VALUE");
+        ID = LanguageHandle.getInstance().getValue("Discount", "ID");
+        INFO = LanguageHandle.getInstance().getValue("Discount", "INFO");
+        MAX = LanguageHandle.getInstance().getValue("Discount", "MAX");
+        ADD = LanguageHandle.getInstance().getValue("Discount", "ADD");
+        NOTIFICATION_TITLE = LanguageHandle.getInstance().getValue("Discount", "NOTIFICATION_TITLE");
+        NOTI_SUCCESS = LanguageHandle.getInstance().getValue("Discount", "NOTI_SUCCESS");
+        NOTI_FAILED = LanguageHandle.getInstance().getValue("Discount", "NOTI_FAILED");
+        CHOSSE_DELETE = LanguageHandle.getInstance().getValue("Discount", "CHOSSE_DELETE");
+        REQUEST_DELETE = LanguageHandle.getInstance().getValue("Discount", "REQUEST_DELETE");
+        ERR_PRICE_EMPTY = LanguageHandle.getInstance().getValue("Discount", "ERR_PRICE_EMPTY");
+        ERR_MAX_EMPTY = LanguageHandle.getInstance().getValue("Discount", "ERR_MAX_EMPTY");
+        ERR_START_DATE = LanguageHandle.getInstance().getValue("Discount", "ERR_START_DATE");
+        ERR_ENMD_DATE = LanguageHandle.getInstance().getValue("Discount", "ERR_ENMD_DATE");
+        ERR_DATE = LanguageHandle.getInstance().getValue("Discount", "ERR_DATE");
+    }
+
+    private void configComponents() {
+        setIconImage(ImageHandle.getInstance().getIconLogo());
+        setTitle(TITLE);
+        btnCapNhap.setText(UPDATE);
+        btnReset.setText(REFRESH);
+        btnThem.setText(ADD);
+        btnXoa.setText(DELETE);
+
+        lbGiaTri.setText(VALUE);
+        lbMaGiamGia.setText(ID);
+        lbNgayBatDau.setText(START_DATE);
+        lbNgayKetThuc.setText(END_DATE);
+        lbThongTinGiamGia.setText(INFO);
+        lbToiDa.setText(MAX);
     }
 
     /**
@@ -40,32 +83,28 @@ public class GiamGiaFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbThongTinGG = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbMaGiamGia = new javax.swing.JLabel();
+        lbGiaTri = new javax.swing.JLabel();
+        lbToiDa = new javax.swing.JLabel();
+        lbNgayBatDau = new javax.swing.JLabel();
         txtMaGiamGia = new javax.swing.JTextField();
         txtGiaTri = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lbThongTinGiamGia = new javax.swing.JLabel();
+        lbNgayKetThuc = new javax.swing.JLabel();
         NgKetThuc = new com.toedter.calendar.JDateChooser();
         NgBatDau = new com.toedter.calendar.JDateChooser();
         txtToiDa = new javax.swing.JTextField();
-        btThem = new javax.swing.JButton();
-        btXoa = new javax.swing.JButton();
-        btCapNhap = new javax.swing.JButton();
-        btReset = new javax.swing.JButton();
-        btThoat = new javax.swing.JButton();
+        btnThem = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
+        btnCapNhap = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
 
-        jLabel7.setText("jLabel7");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tbThongTinGG.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,58 +145,58 @@ public class GiamGiaFrame extends javax.swing.JFrame {
                 .addGap(76, 76, 76))
         );
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setText("Mã giảm giá ");
+        lbMaGiamGia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbMaGiamGia.setText("Mã giảm giá ");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("Giá trị ");
+        lbGiaTri.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbGiaTri.setText("Giá trị ");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setText("Tối đa ");
+        lbToiDa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbToiDa.setText("Tối đa ");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setText("Ngày bắt đầu ");
+        lbNgayBatDau.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbNgayBatDau.setText("Ngày bắt đầu ");
 
         txtMaGiamGia.setEditable(false);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("THÔNG TIN MÃ GIẢM GIÁ");
+        lbThongTinGiamGia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbThongTinGiamGia.setText("THÔNG TIN MÃ GIẢM GIÁ");
 
-        jLabel6.setText("Ngày kết thúc");
+        lbNgayKetThuc.setText("Ngày kết thúc");
 
-        btThem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/add (1).png"))); // NOI18N
-        btThem.setText("Thêm");
-        btThem.addActionListener(new java.awt.event.ActionListener() {
+        btnThem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/add (1).png"))); // NOI18N
+        btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btThemActionPerformed(evt);
+                btnThemActionPerformed(evt);
             }
         });
 
-        btXoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/delete (1).png"))); // NOI18N
-        btXoa.setText("Xóa");
-        btXoa.addActionListener(new java.awt.event.ActionListener() {
+        btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/delete (1).png"))); // NOI18N
+        btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btXoaActionPerformed(evt);
+                btnXoaActionPerformed(evt);
             }
         });
 
-        btCapNhap.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btCapNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/edit (2).png"))); // NOI18N
-        btCapNhap.setText("Cập Nhập");
-        btCapNhap.addActionListener(new java.awt.event.ActionListener() {
+        btnCapNhap.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCapNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/edit (2).png"))); // NOI18N
+        btnCapNhap.setText("Cập Nhập");
+        btnCapNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCapNhapActionPerformed(evt);
+                btnCapNhapActionPerformed(evt);
             }
         });
 
-        btReset.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/refresh-arrow.png"))); // NOI18N
-        btReset.setText("Refresh");
-        btReset.addActionListener(new java.awt.event.ActionListener() {
+        btnReset.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/refresh-arrow.png"))); // NOI18N
+        btnReset.setText("Refresh");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btResetActionPerformed(evt);
+                btnResetActionPerformed(evt);
             }
         });
 
@@ -167,18 +206,18 @@ public class GiamGiaFrame extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
+                .addComponent(lbThongTinGiamGia)
                 .addGap(58, 58, 58))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
+                            .addComponent(lbGiaTri)
+                            .addComponent(lbMaGiamGia)
+                            .addComponent(lbToiDa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbNgayBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbNgayKetThuc))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtGiaTri, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,59 +228,50 @@ public class GiamGiaFrame extends javax.swing.JFrame {
                                 .addComponent(NgBatDau, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btThem, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btXoa)
+                        .addComponent(btnXoa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btReset)
-                            .addComponent(btCapNhap))))
+                            .addComponent(btnReset)
+                            .addComponent(btnCapNhap))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(jLabel5)
+                .addComponent(lbThongTinGiamGia)
                 .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtMaGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(lbMaGiamGia))
                         .addGap(42, 42, 42))
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtGiaTri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)))
+                        .addComponent(lbGiaTri)))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(lbToiDa)
                     .addComponent(txtToiDa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
+                    .addComponent(lbNgayBatDau)
                     .addComponent(NgBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
+                    .addComponent(lbNgayKetThuc)
                     .addComponent(NgKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btThem, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btXoa)
-                    .addComponent(btCapNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnXoa)
+                    .addComponent(btnCapNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(btReset, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        btThoat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/exit (2).png"))); // NOI18N
-        btThoat.setText("Thoát");
-        btThoat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btThoatActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -249,9 +279,7 @@ public class GiamGiaFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btThoat)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -264,8 +292,7 @@ public class GiamGiaFrame extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btThoat)))
+                        .addGap(48, 48, 48)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -291,7 +318,7 @@ public class GiamGiaFrame extends javax.swing.JFrame {
     public void loadTable() {
         modelttKH = new DefaultTableModel();
 
-        String tieuDe[] = {"Mã Giảm Giá", "Giá Trị", "Tối Đa", "Ngày Bắt Đầu", "Ngày Kết Thúc"};
+        String tieuDe[] = {ID, VALUE, MAX, START_DATE, END_DATE};
         modelttKH.setColumnIdentifiers(tieuDe);
         Object row[] = new Object[5];
         GiamGiaController.getInstance().LayDuLieu();
@@ -308,38 +335,37 @@ public class GiamGiaFrame extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-
         tbThongTinGG.setModel(modelttKH);
         setVisible(true);
     }
 
     public String checkError() {
         if (txtGiaTri.getText().equals("")) {
-            return "Tên nhân viên còn trống";
+            return ERR_PRICE_EMPTY;
         }
         if (txtToiDa.getText().equals("")) {
-            return "Tên nhân viên còn trống";
+            return ERR_MAX_EMPTY;
         }
         if (NgBatDau.getDate() == null) {
             if (NgBatDau.isValid() == false) {
-                return "Ngày nhập không đúng";
+                return ERR_START_DATE;
             }
         }
         if (NgKetThuc.getDate() == null) {
             if (NgKetThuc.isValid() == false) {
-                return "Ngày nhập không đúng";
+                return ERR_ENMD_DATE;
             }
         }
         if (NgBatDau.getDate().after(NgKetThuc.getDate())) {
-            return "Ngày bắt đầu không được trễ hơn ngày kết thúc!";
+            return ERR_DATE;
         }
         return "";
     }
-    private void btThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThemActionPerformed
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         StringBuilder sb = new StringBuilder();
         var x = checkError();
         if (!x.equals("")) {
-            JOptionPane.showConfirmDialog(null, x, "title", JOptionPane.DEFAULT_OPTION);
+            JOptionPane.showConfirmDialog(null, x, NOTIFICATION_TITLE, JOptionPane.DEFAULT_OPTION);
             return;
         }
         try {
@@ -349,29 +375,22 @@ public class GiamGiaFrame extends javax.swing.JFrame {
             gg.setNgayBatDau(new java.sql.Date(NgBatDau.getDate().getTime()));
             gg.setNgayKetThuc(new java.sql.Date(NgKetThuc.getDate().getTime()));
             if (GiamGiaController.getInstance().ThemGiamGia(gg) == true) {
-                JOptionPane.showMessageDialog(this, "Thêm mã giảm giá thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, NOTI_SUCCESS, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Thêm mã giảm giá không thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
             }
             loadTable();
         } catch (Exception e) {
-            e.printStackTrace();
         }
 
-    }//GEN-LAST:event_btThemActionPerformed
+    }//GEN-LAST:event_btnThemActionPerformed
 
-    private void btThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThoatActionPerformed
-        int ret = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát", "Thoát", JOptionPane.YES_NO_OPTION);
-        if (ret == JOptionPane.YES_OPTION)
-            System.exit(0);
-    }//GEN-LAST:event_btThoatActionPerformed
+    private void btnCapNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhapActionPerformed
 
-    private void btCapNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCapNhapActionPerformed
-       
-         StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         var x = checkError();
         if (!x.equals("")) {
-            JOptionPane.showConfirmDialog(null, x, "title", JOptionPane.DEFAULT_OPTION);
+            JOptionPane.showConfirmDialog(null, x, NOTIFICATION_TITLE, JOptionPane.DEFAULT_OPTION);
             return;
         }
         try {
@@ -383,15 +402,14 @@ public class GiamGiaFrame extends javax.swing.JFrame {
             gg.setNgayBatDau(new java.sql.Date(NgBatDau.getDate().getTime()));
             gg.setNgayKetThuc(new java.sql.Date(NgKetThuc.getDate().getTime()));
             if (GiamGiaController.getInstance().SuaGiamGia(Integer.parseInt(txtMaGiamGia.getText()), gg) == true) {
-                JOptionPane.showMessageDialog(this, "Thêm mã giảm giá thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, NOTI_SUCCESS, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Thêm mã giảm giá không thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
             }
             loadTable();
         } catch (Exception e) {
-            e.printStackTrace();
         }
-    }//GEN-LAST:event_btCapNhapActionPerformed
+    }//GEN-LAST:event_btnCapNhapActionPerformed
 
     private void tbThongTinGGKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbThongTinGGKeyPressed
         // TODO add your handling code here:
@@ -406,62 +424,80 @@ public class GiamGiaFrame extends javax.swing.JFrame {
                 txtToiDa.setText(tbThongTinGG.getValueAt(row, 2).toString());
                 NgBatDau.setDate((Date) tbThongTinGG.getModel().getValueAt(row, 3));
                 NgKetThuc.setDate((Date) tbThongTinGG.getModel().getValueAt(row, 4));
-
             }
-
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }//GEN-LAST:event_tbThongTinGGMouseClicked
 
-    private void btResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btResetActionPerformed
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         txtMaGiamGia.setText("");
         txtGiaTri.setText("");
         NgBatDau.setDate(null);
         NgKetThuc.setDate(null);
         txtToiDa.setText("");
-    }//GEN-LAST:event_btResetActionPerformed
+    }//GEN-LAST:event_btnResetActionPerformed
 
-    private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
-         if (txtMaGiamGia.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Bạn cần chọn chi nhánh để xóa", "Thông báo", 1);
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        if (txtMaGiamGia.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, CHOSSE_DELETE, NOTIFICATION_TITLE, 1);
         } else {
             try {
-                int result = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn xóa mã giảm giá này", "Xác nhận", JOptionPane.YES_NO_OPTION);
+                int result = JOptionPane.showConfirmDialog(this, REQUEST_DELETE, NOTIFICATION_TITLE, JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     if (GiamGiaController.getInstance().XoaGiamGia(Integer.parseInt(txtMaGiamGia.getText())) == true) {
-                        JOptionPane.showMessageDialog(this, "Xóa mã giảm giá thành công", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(this, NOTI_SUCCESS, NOTIFICATION_TITLE, JOptionPane.WARNING_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(this, "Xóa mã giảm giá không thành công!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.WARNING_MESSAGE);
                     }
                 }
                 loadTable();
             } catch (Exception e) {
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.WARNING_MESSAGE);
             }
         }
-    }//GEN-LAST:event_btXoaActionPerformed
-
+    }//GEN-LAST:event_btnXoaActionPerformed
+    //Text
+    private String TITLE;
+    private String UPDATE;
+    private String RESET;
+    private String EXIT;
+    private String REFRESH;
+    private String DELETE;
+    private String START_DATE;
+    private String END_DATE;
+    private String VALUE;
+    private String ID;
+    private String INFO;
+    private String MAX;
+    private String ADD;
+    private String NOTIFICATION_TITLE;
+    private String NOTI_SUCCESS;
+    private String NOTI_FAILED;
+    private String CHOSSE_DELETE;
+    private String REQUEST_DELETE;
+    private String ERR_PRICE_EMPTY;
+    private String ERR_MAX_EMPTY;
+    private String ERR_START_DATE;
+    private String ERR_ENMD_DATE;
+    private String ERR_DATE;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser NgBatDau;
     private com.toedter.calendar.JDateChooser NgKetThuc;
-    private javax.swing.JButton btCapNhap;
-    private javax.swing.JButton btReset;
-    private javax.swing.JButton btThem;
-    private javax.swing.JButton btThoat;
-    private javax.swing.JButton btXoa;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton btnCapNhap;
+    private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbGiaTri;
+    private javax.swing.JLabel lbMaGiamGia;
+    private javax.swing.JLabel lbNgayBatDau;
+    private javax.swing.JLabel lbNgayKetThuc;
+    private javax.swing.JLabel lbThongTinGiamGia;
+    private javax.swing.JLabel lbToiDa;
     private javax.swing.JTable tbThongTinGG;
     private javax.swing.JTextField txtGiaTri;
     private javax.swing.JTextField txtMaGiamGia;

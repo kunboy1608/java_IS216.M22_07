@@ -3,23 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Git/src/com/view/frame/KhachHangFrame.java</file>
-            <file>file:/D:/Git/src/com/view/frame/HoaDonKhachHangFrame.java</file>
-            <file>file:/D:/Git/src/com/view/frame/ThongKeFrame.java</file>
-            <file>file:/D:/Git/src/com/view/frame/NhanVienFrame.java</file>
-            <file>file:/D:/Git/src/com/controller/DoUongController.java</file>
-            <file>file:/D:/Git/src/com/controller/CTHDController.java</file>
-            <file>file:/D:/Git/src/com/view/frame/DoUongFrame.java</file>
-            <file>file:/D:/Git/src/com/view/frame/MenuFrame.java</file>
-            <file>file:/D:/Git/src/com/controller/GiamGiaController.java</file>
-            <file>file:/D:/Git/src/com/view/frame/GiamGiaFrame.java</file>
-            <file>file:/D:/Git/src/com/view/frame/TrangChuJFrame.java</file>
-            <file>file:/D:/Git/src/com/view/frame/ChiNhanhFrame.java</file>
-            <file>file:/D:/Git/src/com/view/frame/AccountFrame.java</file>
-            <file>file:/D:/Git/src/com/controller/AccountController.java</file>
-            <file>file:/D:/Git/src/com/view/frame/HomeFrame.java</file>
-            <file>file:/D:/Git/src/com/view/frame/LoginFrame.java</file>
-            <file>file:/D:/Git/src/com/boot/RunApp.java</file>
+            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/KhachHangFrame.java</file>
+            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/NhanVienFrame.java</file>
         </group>
     </open-files>
 </project-private>
