@@ -91,13 +91,11 @@ public class NhanVienController {
 
     public boolean XoaNhanVien(int id) {
         try {
-            String sql = "DELETE FROM NHANVIEN WHERE MaNV = ?";
+            String sql = "DELETE FROM NHANVIEN WHERE MaNV = " + id;
 
-            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
-
-            ps.setInt(1, id);
-
-            if (ps.executeUpdate() != 1) {
+            Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            if (rs.next() == false) {
                 return false;
             }
             return true;

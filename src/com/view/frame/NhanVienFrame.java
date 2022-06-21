@@ -4,15 +4,17 @@
  */
 package com.view.frame;
 
+import com.controller.ChiNhanhController;
+import com.controller.GiamGiaController;
 import com.controller.KhachHangController;
 import com.controller.NhanVienController;
+import com.models.ChiNhanhModel;
 import com.models.DataContext;
+import com.models.GiamGiaModel;
 import com.models.NhanVienModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,6 +31,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
     public NhanVienFrame() {
         initComponents();
         LoadTable();
+        loadMaCN();
         setVisible(true);
     }
 
@@ -121,6 +124,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
         lbTenCN.setText("Tên Chi Nhánh");
         jPanel2.add(lbTenCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 205, 85, -1));
 
+        txtTenCN.setText("UIT");
         txtTenCN.setEnabled(false);
         jPanel2.add(txtTenCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 202, 146, -1));
 
@@ -286,19 +290,32 @@ public class NhanVienFrame extends javax.swing.JFrame {
                 i++;
                 listNV.addRow(row);
             } catch (Exception e) {
-                e.printStackTrace();
             }
         }
         tbNV.setModel(listNV);
         setVisible(true);
     }
 
+    public void loadMaCN() {
+        try {
+            ChiNhanhController.getInstance().LayDuLieu();
+            for (ChiNhanhModel i : DataContext.getInstance().getChiNhanhs()) {
+                int maCN = i.getMaCN();
+                cbMaCN.addItem(String.valueOf(maCN));
+            }
+        } catch (Exception e) {
+        }
+
+    }
+
     public String checkError() {
         if (txtTenNV.getText().equals("")) {
             return "Tên nhân viên còn trống";
         }
-        if (NgayVL.getDate() == null || NgayVL.isValid()) {
-            return "Ngày nhập không đúng";
+        if (NgayVL.getDate() == null) {
+            if (NgayVL.isValid() == false) {
+                return "Ngày nhập không đúng";
+            }
         }
         if (txtCCCD.getText().equals("") || txtCCCD.getText().length() != 13) {
             return "CCCD nhập không đúng định dạng";
@@ -327,20 +344,20 @@ public class NhanVienFrame extends javax.swing.JFrame {
                 nv.setMaCN(3);
             }
             //Nam: 0, Nữ: 1
-            if (cbGioiTinh.getSelectedItem().equals("Nam")) {
+            if (cbGioiTinh.getSelectedIndex() == 0) {
                 nv.setGioiTinh(0);
             } else {
                 nv.setGioiTinh(1);
             }
             nv.setCCCD(txtCCCD.getText());
             if (NhanVienController.getInstance().ThemNhanVien(nv) == true) {
-                JOptionPane.showConfirmDialog(null, "Thêm nhân viên thành công");
+                JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công");
             } else {
                 JOptionPane.showMessageDialog(this, "Thêm nhân viên không thành công");
+                return;
             }
             LoadTable();
         } catch (Exception e) {
-            e.printStackTrace();
         }
 
     }//GEN-LAST:event_btThemActionPerformed
@@ -361,21 +378,14 @@ public class NhanVienFrame extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(null, x, "title", JOptionPane.DEFAULT_OPTION);
             return;
         }
-
         try {
             NhanVienModel nv = new NhanVienModel();
+            String maCN = cbMaCN.getSelectedItem().toString();
             nv.setTenNV(tenNV);
-            //1. UIT 2. Trung tâm 3. Miền Bắc
-            if (cbMaCN.getSelectedItem().equals("1")) {
-                nv.setMaCN(1);
-            } else if (cbMaCN.getSelectedItem().equals("2")) {
-                nv.setMaCN(2);
-            } else {
-                nv.setMaCN(3);
-            }
+            nv.setMaCN(Integer.parseInt(maCN));
             nv.setCCCD(cccd);
             //Nam: 0, Nữ: 1
-            if (cbGioiTinh.getSelectedItem().equals("Nam")) {
+            if (cbGioiTinh.getSelectedIndex() == 0) {
                 nv.setGioiTinh(0);
             } else {
                 nv.setGioiTinh(1);
@@ -383,27 +393,26 @@ public class NhanVienFrame extends javax.swing.JFrame {
             nv.setNgayVL(new java.sql.Date(NgayVL.getDate().getTime()));
             int maNV = Integer.parseInt(txtMaNV.getText());
             if (NhanVienController.getInstance().SuaNhanVien(maNV, nv) == true) {
-                JOptionPane.showConfirmDialog(null, "Cập nhập nhân viên thành công");
+                JOptionPane.showMessageDialog(null, "Cập nhập nhân viên thành công");
             } else {
-                JOptionPane.showConfirmDialog(null, "Cập nhập nhân viên khong thành công");
+                JOptionPane.showMessageDialog(null, "Cập nhập nhân viên khong thành công");
             }
             LoadTable();
         } catch (Exception e) {
-            e.printStackTrace();
         }
 
     }//GEN-LAST:event_btCapNhapActionPerformed
 
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
-        NhanVienController.getInstance().LayDuLieu();
-        int maNV = Integer.parseInt(txtMaNV.getText());
-        if (maNV == 0)
+
+        if (txtMaNV.getText().equals(0))
             JOptionPane.showMessageDialog(null, "Bạn cần chọn nhân viên để xóa", "Thông báo", 1);
         else {
             try {
+                NhanVienController.getInstance().LayDuLieu();
                 int result = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn xóa nhân viên này", "Xác nhận", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
-                    if (NhanVienController.getInstance().XoaNhanVien(maNV) == true) {
+                    if (NhanVienController.getInstance().XoaNhanVien(Integer.parseInt(txtMaNV.getText())) == true) {
                         JOptionPane.showMessageDialog(null, "Xóa nhân viên thành công");
                     } else {
                         JOptionPane.showMessageDialog(null, "Xóa nhân viên khong thành công");
@@ -411,7 +420,6 @@ public class NhanVienFrame extends javax.swing.JFrame {
                 }
                 LoadTable();
             } catch (Exception e) {
-                e.printStackTrace();
             }
         }
     }//GEN-LAST:event_btXoaActionPerformed
@@ -421,8 +429,8 @@ public class NhanVienFrame extends javax.swing.JFrame {
         txtTenNV.setText("");
         txtCCCD.setText("");
         cbGioiTinh.setSelectedIndex(0);
-        txtTenCN.setText("");
         txtMaNV.setText("");
+        NgayVL.setDate(null);
     }//GEN-LAST:event_btRefreshNVActionPerformed
 
     private void tbNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbNVMouseClicked
@@ -446,7 +454,6 @@ public class NhanVienFrame extends javax.swing.JFrame {
                 LoadTable();
             }
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }//GEN-LAST:event_tbNVMouseClicked
 

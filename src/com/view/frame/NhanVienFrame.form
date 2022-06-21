@@ -211,6 +211,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtTenCN">
               <Properties>
+                <Property name="text" type="java.lang.String" value="UIT"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Constraints>
