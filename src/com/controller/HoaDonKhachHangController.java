@@ -72,16 +72,13 @@ public class HoaDonKhachHangController {
         try {
 
             // Cau truy van SQL
-            String sql = "update HOADONKHACHHANG set MaGiamGia=?, SDTKH=?, MaNV=?, NgapLap=?, TongTien=? WHERE MaHD =" + id;
+            String sql = "update HOADONKHACHHANG set SDTKH=?,TongTien=? WHERE MaHD =" + id;
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             // Gan bien vao cac dau  ?
-            ps.setInt(1, k.getMaGiamGia());
-            ps.setString(2, k.getSDTKH());
-            ps.setInt(3, k.getMaNV());
-            ps.setDate(4, (Date) k.getNgayLap());
-            ps.setDouble(5, k.getTongTien());
+            ps.setString(1, k.getSDTKH());
+            ps.setDouble(2, k.getTongTien());
 
             // Kiem tra xem thuc hien co thanh cong hay khong
             if (ps.executeUpdate() != 1) {
@@ -107,10 +104,10 @@ public class HoaDonKhachHangController {
             if (ps.executeUpdate() != 1) {
                 return false;
             }
+            return true;
         } catch (SQLException e) {
             return false;
         }
-        return true;
     }
 
     public void LayDuLieu() {

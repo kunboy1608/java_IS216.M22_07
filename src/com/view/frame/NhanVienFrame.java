@@ -349,6 +349,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
             } else {
                 nv.setGioiTinh(1);
             }
+            nv.setNgayVL(new java.sql.Date(NgayVL.getDate().getTime()));
             nv.setCCCD(txtCCCD.getText());
             if (NhanVienController.getInstance().ThemNhanVien(nv) == true) {
                 JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công");
@@ -405,7 +406,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
 
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
 
-        if (txtMaNV.getText().equals(0))
+        if (txtMaNV.getText().equals(""))
             JOptionPane.showMessageDialog(null, "Bạn cần chọn nhân viên để xóa", "Thông báo", 1);
         else {
             try {
@@ -413,15 +414,16 @@ public class NhanVienFrame extends javax.swing.JFrame {
                 int result = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn xóa nhân viên này", "Xác nhận", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     if (NhanVienController.getInstance().XoaNhanVien(Integer.parseInt(txtMaNV.getText())) == true) {
-                        JOptionPane.showMessageDialog(null, "Xóa nhân viên thành công");
+                        JOptionPane.showMessageDialog(this, "Xóa nhân viên thành công");
                     } else {
                         JOptionPane.showMessageDialog(null, "Xóa nhân viên khong thành công");
                     }
                 }
-                LoadTable();
             } catch (Exception e) {
             }
         }
+        
+                LoadTable();
     }//GEN-LAST:event_btXoaActionPerformed
 
     private void btRefreshNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRefreshNVActionPerformed
