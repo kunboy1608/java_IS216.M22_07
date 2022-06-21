@@ -46,11 +46,10 @@ public class NhanVienController {
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
             // Gan bien vao cac dau  ?
-            //ps.setInt(1, layMaNV());
             ps.setInt(1, nv.getMaCN());
             ps.setString(2, nv.getTenNV());
             ps.setInt(3, nv.getGioiTinh());
-            ps.setDate(4, new java.sql.Date(nv.getNgayVL().getTime()));
+            ps.setDate(4, (Date) nv.getNgayVL());
             ps.setString(5, nv.getCCCD());
 
             // Kiem tra xem thuc hien co thanh cong hay khong
@@ -68,7 +67,7 @@ public class NhanVienController {
         try {
 
             // Cau truy van SQL
-            String sql = "update NHANVIEN set MaCN = ?, TenNV=?, GioiTinh=?,NgayVL=?, CCCD=? where MaNV = '" + id + " '";
+            String sql = "update NHANVIEN set MaCN = ?, TenNV=?, GioiTinh=?,NgayVL=?, CCCD=? where MaNV =" + id;
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
@@ -76,7 +75,7 @@ public class NhanVienController {
             ps.setInt(1, nv.getMaCN());
             ps.setString(2, nv.getTenNV());
             ps.setInt(3, nv.getGioiTinh());
-            ps.setDate(4, new java.sql.Date(nv.getNgayVL().getTime()));
+            ps.setDate(4, (Date) nv.getNgayVL());
             ps.setString(5, nv.getCCCD());
             
             // Kiem tra xem thuc hien co thanh cong hay khong
@@ -101,8 +100,8 @@ public class NhanVienController {
             if (ps.executeUpdate() != 1) {
                 return false;
             }
+            return true;
         } catch (SQLException e) {
-            return false;
         }
         return false;
     }
