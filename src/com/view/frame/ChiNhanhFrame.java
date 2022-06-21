@@ -249,6 +249,7 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
             }
         } catch (Exception e) {
         }
+        loadTable();
     }//GEN-LAST:event_btThemActionPerformed
 
     private void btCapNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCapNhapActionPerformed
@@ -271,6 +272,7 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
             }
         } catch (Exception e) {
         }
+        loadTable();
     }//GEN-LAST:event_btCapNhapActionPerformed
 
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
@@ -286,10 +288,10 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Xóa chi nhánh không thành công");
                     }
                 }
-                loadTable();
             } catch (Exception e) {
             }
         }
+        loadTable();
     }//GEN-LAST:event_btXoaActionPerformed
 
     private void tbChiNhanhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbChiNhanhMouseClicked
