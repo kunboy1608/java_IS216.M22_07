@@ -29,32 +29,32 @@ public class DoUongFrame extends javax.swing.JFrame {
      */
     public DoUongFrame() {
         initComponents();
-        loadTable();
         loadText();
         configComponents();
+        loadTable();                
     }
 
     private void loadText() {
-        TITLE = LanguageHandle.getInstance().getValue("Drink", "TITLE");
-        UPDATE = LanguageHandle.getInstance().getValue("Drink", "UPDATE");
-        RESET = LanguageHandle.getInstance().getValue("Drink", "RESET");
-        EXIT = LanguageHandle.getInstance().getValue("Drink", "EXIT");
-        REFRESH = LanguageHandle.getInstance().getValue("Drink", "REFRESH");
-        DELETE = LanguageHandle.getInstance().getValue("Drink", "DELETE");
-        NOTE = LanguageHandle.getInstance().getValue("Drink", "NOTE");
-        PRICE = LanguageHandle.getInstance().getValue("Drink", "PRICE");
-        IMAGE = LanguageHandle.getInstance().getValue("Drink", "IMAGE");
-        INFO = LanguageHandle.getInstance().getValue("Drink", "INFO");
-        ID = LanguageHandle.getInstance().getValue("Drink", "ID");
-        NAME = LanguageHandle.getInstance().getValue("Drink", "NAME");
-        ERR_NAME_EMPTY = LanguageHandle.getInstance().getValue("Drink", "ERR_NAME_EMPTY");
-        ERR_PRICE_EMPTY = LanguageHandle.getInstance().getValue("Drink", "ERR_PRICE_EMPTY");
-        NOTIFICATION_TITLE = LanguageHandle.getInstance().getValue("Drink", "NOTIFICATION_TITLE");
-        NOTI_SUCCESS = LanguageHandle.getInstance().getValue("Drink", "NOTI_SUCCESS");
-        NOTI_FAILED = LanguageHandle.getInstance().getValue("Drink", "NOTI_FAILED");
-        CHOSSE_DELETE = LanguageHandle.getInstance().getValue("Drink", "CHOSSE_DELETE");
-        REQUEST_DELETE = LanguageHandle.getInstance().getValue("Drink", "REQUEST_DELETE");
-        CHOSSE_FILE = LanguageHandle.getInstance().getValue("Drink", "CHOSSE_FILE");
+        TITLE = LanguageHandle.getInstance().getValue("Drinks", "TITLE");
+        UPDATE = LanguageHandle.getInstance().getValue("Drinks", "UPDATE");
+        RESET = LanguageHandle.getInstance().getValue("Drinks", "RESET");
+        EXIT = LanguageHandle.getInstance().getValue("Drinks", "EXIT");
+        REFRESH = LanguageHandle.getInstance().getValue("Drinks", "REFRESH");
+        DELETE = LanguageHandle.getInstance().getValue("Drinks", "DELETE");
+        NOTE = LanguageHandle.getInstance().getValue("Drinks", "NOTE");
+        PRICE = LanguageHandle.getInstance().getValue("Drinks", "PRICE");
+        IMAGE = LanguageHandle.getInstance().getValue("Drinks", "IMAGE");
+        INFO = LanguageHandle.getInstance().getValue("Drinks", "INFO");
+        ID = LanguageHandle.getInstance().getValue("Drinks", "ID");
+        NAME = LanguageHandle.getInstance().getValue("Drinks", "NAME");
+        ERR_NAME_EMPTY = LanguageHandle.getInstance().getValue("Drinks", "ERR_NAME_EMPTY");
+        ERR_PRICE_EMPTY = LanguageHandle.getInstance().getValue("Drinks", "ERR_PRICE_EMPTY");
+        NOTIFICATION_TITLE = LanguageHandle.getInstance().getValue("Drinks", "NOTIFICATION_TITLE");
+        NOTI_SUCCESS = LanguageHandle.getInstance().getValue("Drinks", "NOTI_SUCCESS");
+        NOTI_FAILED = LanguageHandle.getInstance().getValue("Drinks", "NOTI_FAILED");
+        CHOSSE_DELETE = LanguageHandle.getInstance().getValue("Drinks", "CHOSSE_DELETE");
+        REQUEST_DELETE = LanguageHandle.getInstance().getValue("Drinks", "REQUEST_DELETE");
+        CHOSSE_FILE = LanguageHandle.getInstance().getValue("Drinks", "CHOSSE_FILE");
     }
 
     private void configComponents() {

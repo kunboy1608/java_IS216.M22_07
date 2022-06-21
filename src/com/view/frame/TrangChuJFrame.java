@@ -58,7 +58,7 @@ public class TrangChuJFrame extends javax.swing.JFrame {
         SELL = LanguageHandle.getInstance().getValue("Home", "SELL");
         STAT = LanguageHandle.getInstance().getValue("Home", "STAT");
         CUSTOMER = LanguageHandle.getInstance().getValue("Home", "CUSTOMER");
-        MANAGE_DRINKS = LanguageHandle.getInstance().getValue("Home", "CUSTOMER");
+        MANAGE_DRINKS = LanguageHandle.getInstance().getValue("Home", "MANAGE_DRINKS");
     }
 
     private void configComponents() {

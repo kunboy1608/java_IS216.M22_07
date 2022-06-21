@@ -75,28 +75,28 @@
         <Branch id="CHOSSE_DELETE">Chọn chi nhánh để xóa</Branch>
         <Branch id="REQUEST_DELETE">Bạn có chắc chắn xóa</Branch>
     </Branch>
-    <Dinks>
-        <Dinks id="TITLE">Quản lí đồ uống - COFFE EXPRESS</Dinks>
-        <Dinks id="UPDATE">Cập nhật</Dinks>
-        <Dinks id="RESET">Làm trống</Dinks>
-        <Dinks id="EXIT">Thoát</Dinks>
-        <Dinks id="REFRESH">Làm mới</Dinks>
-        <Dinks id="DELETE">Xóa</Dinks>
-        <Dinks id="NOTE">Ghi chú</Dinks>
-        <Dinks id="PRICE">Giá</Dinks>
-        <Dinks id="IMAGE">Hình ảnh</Dinks>
-        <Dinks id="INFO">Thông tin</Dinks>        
-        <Dinks id="ID">Mã đồ uống</Dinks>
-        <Dinks id="NAME">Tên đồ uống</Dinks>
-        <Dinks id="NOTIFICATION_TITLE">Thông báo</Dinks>
-        <Dinks id="NOTI_SUCCESS">Thành công</Dinks>
-        <Dinks id="NOTI_FAILED">Thất bại</Dinks>        
-        <Dinks id="ERR_NAME_EMPTY">Tên đồ uống còn trống</Dinks>
-        <Dinks id="ERR_PRICE_EMPTY">Giá còn trống</Dinks>
-        <Dinks id="CHOSSE_DELETE">Chọn đồ uống để xóa</Dinks>
-        <Dinks id="REQUEST_DELETE">Bạn có chắc chắn xóa</Dinks> 
+    <Drinks>
+        <Drinks id="TITLE">Quản lí đồ uống - COFFE EXPRESS</Drinks>
+        <Drinks id="UPDATE">Cập nhật</Drinks>
+        <Drinks id="RESET">Làm trống</Drinks>
+        <Drinks id="EXIT">Thoát</Drinks>
+        <Drinks id="REFRESH">Làm mới</Drinks>
+        <Drinks id="DELETE">Xóa</Drinks>
+        <Drinks id="NOTE">Ghi chú</Drinks>
+        <Drinks id="PRICE">Giá</Drinks>
+        <Drinks id="IMAGE">Hình ảnh</Drinks>
+        <Drinks id="INFO">Thông tin</Drinks>        
+        <Drinks id="ID">Mã đồ uống</Drinks>
+        <Drinks id="NAME">Tên đồ uống</Drinks>
+        <Drinks id="NOTIFICATION_TITLE">Thông báo</Drinks>
+        <Drinks id="NOTI_SUCCESS">Thành công</Drinks>
+        <Drinks id="NOTI_FAILED">Thất bại</Drinks>        
+        <Drinks id="ERR_NAME_EMPTY">Tên đồ uống còn trống</Drinks>
+        <Drinks id="ERR_PRICE_EMPTY">Giá còn trống</Drinks>
+        <Drinks id="CHOSSE_DELETE">Chọn đồ uống để xóa</Drinks>
+        <Drinks id="REQUEST_DELETE">Bạn có chắc chắn xóa</Drinks> 
         <Drinks id="CHOSSE_FILE">Chọn ảnh</Drinks>
-    </Dinks>
+    </Drinks>
     <Discount>
         <Discount id="TITLE">Giảm giá - COFFE EXPRESS</Discount>
         <Discount id="UPDATE">Cập nhật</Discount>

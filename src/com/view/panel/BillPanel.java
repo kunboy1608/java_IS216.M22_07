@@ -296,7 +296,7 @@ public class BillPanel extends Container {
 
     private void addFooter() {
         content += """                               
-            <h4>Pass WIFI: Ai em gà vler</h4>
+            <h4>Pass WIFI: COFEEXPESS</h4>
             <h3>Vui lòng khách đến vừa lòng khách đi</h3>
             <h6>Designer: HoangDP</h6>
             <h6>Email: 19520838@gm.uit.edu.vn</h6>
