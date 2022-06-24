@@ -198,6 +198,8 @@ public class LoginFrame extends JFrame {
     private void ChangeLanguage() {
         LanguageHandle.getInstance().ChangeLanguage();
         lbNotification.setText(CHANGE_LANGUAGE);
+        this.dispose();
+        new LoginFrame().setVisible(true);
     }
 
     private static final int LOGIN_HEIGHT = 562;

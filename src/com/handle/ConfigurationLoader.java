@@ -119,6 +119,10 @@ public class ConfigurationLoader {
         return _instance;
     }
 
+    public void refresh() {
+        _instance = new ConfigurationLoader();
+    }
+
     public void exportFileXML() {
         try {
             File file = new File(urlConfig);
@@ -147,10 +151,10 @@ public class ConfigurationLoader {
             var e = (NodeList) doc.getElementsByTagName("language").item(1);
             if (e.item(0).getTextContent().equals("vi-vn")) {
                 e.item(0).setTextContent("en-us");
-            }else{
+            } else {
                 e.item(0).setTextContent("vi-vn");
             }
-            
+
             DOMSource source = new DOMSource(doc);
             FileWriter writer = new FileWriter(new File(urlConfig));
             StreamResult result = new StreamResult(writer);
@@ -158,7 +162,7 @@ public class ConfigurationLoader {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             transformer.transform(source, result);
-            
+
         } catch (TransformerException | IOException ex) {
             Logger.getLogger(ConfigurationLoader.class.getName()).log(Level.SEVERE, null, ex);
         }

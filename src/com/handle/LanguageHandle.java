@@ -16,7 +16,7 @@ public final class LanguageHandle {
     private static final LanguageHandle _instance = new LanguageHandle();
     private Document doc;
 
-    private LanguageHandle() {        
+    private LanguageHandle() {
         LoadLangue();
     }
 
@@ -26,6 +26,8 @@ public final class LanguageHandle {
 
     public void ChangeLanguage() {
         ConfigurationLoader.getInstance().changLanguage();
+        ConfigurationLoader.getInstance().refresh();
+        LoadLangue();
     }
 
     public String getValue(String tag, String id) {
