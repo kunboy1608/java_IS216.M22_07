@@ -18,6 +18,7 @@
         <Home id="MANAGE_DRINKS">Drink Manager</Home>   
         <Home id="MANAGER">Manager</Home>
         <Home id="GUEST">Guest</Home> 
+        <Home id="BILL">Bill</Home>
     </Home>
     <Menu>
         <Menu id="TITLE">Menu - COFFE EXPRESS</Menu>

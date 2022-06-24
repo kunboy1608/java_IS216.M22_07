@@ -4,30 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/config/lang/en-us.xml</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/controller/KhachHangController.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/HomePageFrame.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/GiamGiaFrame.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/handle/NetHandle.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/controller/GiamGiaController.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/NhanVienFrame.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/MenuFrame.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/models/GiamGiaModel.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/config/lang/vi-vn.xml</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/panel/ChatPanel.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/models/AccountModel.java</file>
             <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/DoUongFrame.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/models/ChiNhanhModel.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/HoaDonKhachHangFrame.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/ChiNhanhFrame.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/models/CTHDModel.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/controller/NhanVienController.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/controller/HoaDonKhachHangController.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/LoginFrame.java</file>
+            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/HomePageFrame.java</file>
             <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/KhachHangFrame.java</file>
             <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/AccountFrame.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/ThongKeFrame.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/panel/BillPanel.java</file>
-            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/models/KhachHangModel.java</file>
+            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/NhanVienFrame.java</file>
+            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/config/lang/vi-vn.xml</file>
+            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/ChiNhanhFrame.java</file>
+            <file>file:/D:/DaiHoc/HocKi6/LapTrinhJava/DoAn/java_IS216.M22_07/src/com/view/frame/LoginFrame.java</file>
         </group>
     </open-files>
 </project-private>

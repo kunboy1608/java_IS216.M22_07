@@ -62,6 +62,7 @@ public class HomePageFrame extends JFrame {
         MANAGE_DRINKS = LanguageHandle.getInstance().getValue("Home", "MANAGE_DRINKS");
         MANAGER = LanguageHandle.getInstance().getValue("Home", "MANAGER");
         GUEST = LanguageHandle.getInstance().getValue("Home", "GUEST");
+        BILL = LanguageHandle.getInstance().getValue("Home", "BILL");
     }
 
     private void initComponents() {
@@ -73,6 +74,7 @@ public class HomePageFrame extends JFrame {
         btnThongKe = new JButton();
         btnMenu = new JButton();
         btnDoUong = new JButton();
+        btnHoaDon= new JButton();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setIconImage(ImageHandle.getInstance().getIconLogo());
@@ -141,7 +143,14 @@ public class HomePageFrame extends JFrame {
                 new DoUongFrame().setVisible(true);
             }
         });
-
+        
+        btnHoaDon.setText(BILL);
+        btnHoaDon.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                new HoaDonKhachHangFrame().setVisible(true);
+            }
+        });
         // Layout
         Container mainCon = new Container();
         mainCon.setLayout(new GridLayout(2, 0, 10, 10));
@@ -152,6 +161,7 @@ public class HomePageFrame extends JFrame {
         mainCon.add(btnNhanVien);
         mainCon.add(btnTaiKhoan);
         mainCon.add(btnThongKe);
+        mainCon.add(btnHoaDon);
 
         Container topCon = new Container();
         topCon.setLayout(new BorderLayout());
@@ -185,6 +195,7 @@ public class HomePageFrame extends JFrame {
     private String MANAGE_DRINKS;
     private String MANAGER;
     private String GUEST;
+    private String BILL;
 
     private JButton btnChiNhanh;
     private JButton btnDoUong;
@@ -193,6 +204,7 @@ public class HomePageFrame extends JFrame {
     private JButton btnNhanVien;
     private JButton btnTaiKhoan;
     private JButton btnThongKe;
+    private JButton btnHoaDon;
     private JLabel lbAccount;
     // End of variables declaration                   
 }
