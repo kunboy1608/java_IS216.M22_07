@@ -121,7 +121,7 @@ public class LoginFrame extends JFrame {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 ChangeLanguage();
             }
-        });             
+        });
 
         leftCon = new Container();
         midCon = new Container();
@@ -191,7 +191,7 @@ public class LoginFrame extends JFrame {
             lbNotification.setText(ERROR_MESSAGE);
         } else {
             this.dispose();
-            new TrangChuJFrame().setVisible(true);
+            new HomePageFrame().setVisible(true);
         }
     }
 

@@ -7,7 +7,6 @@ package com.controller;
 import com.handle.ConnectionHandle;
 import com.models.ChiNhanhModel;
 import com.models.DataContext;
-import com.models.KhachHangModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -4,7 +4,7 @@
  */
 package com.models;
 
-import java.util.Date;
+import java.sql.Date;
 
 
 /**

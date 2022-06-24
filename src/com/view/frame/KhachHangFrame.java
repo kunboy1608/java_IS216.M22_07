@@ -9,7 +9,6 @@ import com.handle.ImageHandle;
 import com.handle.LanguageHandle;
 import com.models.DataContext;
 import com.models.KhachHangModel;
-import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -86,11 +85,6 @@ public class KhachHangFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbThongTinKH = new javax.swing.JTable();
-        lbDSKhachHang = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         lbSDT = new javax.swing.JLabel();
         lbTenKH = new javax.swing.JLabel();
@@ -105,9 +99,85 @@ public class KhachHangFrame extends javax.swing.JFrame {
         btnCapNhap = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbThongTinKH = new javax.swing.JTable();
+        lbDSKhachHang = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbSDT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbSDT.setText("Số Điện Thoại");
+        jPanel3.add(lbSDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+
+        lbTenKH.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbTenKH.setText("Tên Khách Hàng");
+        jPanel3.add(lbTenKH, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+
+        lbGioiTinh.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbGioiTinh.setText("Giới Tính");
+        jPanel3.add(lbGioiTinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 80, -1));
+
+        lbTongDiem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbTongDiem.setText("Tổng Điểm");
+        jPanel3.add(lbTongDiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 80, -1));
+
+        txtSDT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSDTActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtSDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 156, -1));
+        jPanel3.add(txtTenKH, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 156, -1));
+
+        cbGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
+        jPanel3.add(cbGioiTinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, -1));
+        jPanel3.add(txtTongDiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 156, -1));
+
+        lbTTKhachHang.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbTTKhachHang.setText("THÔNG TIN KHÁCH HÀNG");
+        jPanel3.add(lbTTKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+
+        btnThem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/add (1).png"))); // NOI18N
+        btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, 30));
+
+        btnCapNhap.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCapNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/edit (2).png"))); // NOI18N
+        btnCapNhap.setText("Cập Nhập");
+        btnCapNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhapActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnCapNhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, -1, 30));
+
+        btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/delete (1).png"))); // NOI18N
+        btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, -1, 30));
+
+        btnReset.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/refresh-arrow.png"))); // NOI18N
+        btnReset.setText("Refresh");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 100, 30));
 
         tbThongTinKH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -135,127 +205,30 @@ public class KhachHangFrame extends javax.swing.JFrame {
         lbDSKhachHang.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbDSKhachHang.setText("Danh sách Khách Hàng");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(lbDSKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbDSKhachHang)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
-
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lbSDT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lbSDT.setText("Số Điện Thoại");
-        jPanel3.add(lbSDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
-
-        lbTenKH.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lbTenKH.setText("Tên Khách Hàng");
-        jPanel3.add(lbTenKH, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
-
-        lbGioiTinh.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lbGioiTinh.setText("Giới Tính");
-        jPanel3.add(lbGioiTinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 80, -1));
-
-        lbTongDiem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lbTongDiem.setText("Tổng Điểm");
-        jPanel3.add(lbTongDiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 80, -1));
-        jPanel3.add(txtSDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 156, -1));
-        jPanel3.add(txtTenKH, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 156, -1));
-
-        cbGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
-        jPanel3.add(cbGioiTinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
-        jPanel3.add(txtTongDiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 156, -1));
-
-        lbTTKhachHang.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lbTTKhachHang.setText("THÔNG TIN KHÁCH HÀNG");
-        jPanel3.add(lbTTKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
-
-        btnThem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/add (1).png"))); // NOI18N
-        btnThem.setText("Thêm");
-        btnThem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, 30));
-
-        btnCapNhap.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnCapNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/edit (2).png"))); // NOI18N
-        btnCapNhap.setText("Cập Nhập");
-        btnCapNhap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCapNhapActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnCapNhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, -1, 30));
-
-        btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/delete (1).png"))); // NOI18N
-        btnXoa.setText("Xóa");
-        btnXoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoaActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, -1, 30));
-
-        btnReset.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/refresh-arrow.png"))); // NOI18N
-        btnReset.setText("Refresh");
-        btnReset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResetActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 100, 30));
-
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/background2.png"))); // NOI18N
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 490));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbDSKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbDSKhachHang)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -430,6 +403,10 @@ public class KhachHangFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
+    private void txtSDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSDTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSDTActionPerformed
+
     private String TITLE;
     private String UPDATE;
     private String RESET;
@@ -463,9 +440,6 @@ public class KhachHangFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> cbGioiTinh;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbDSKhachHang;

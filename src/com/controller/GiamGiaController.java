@@ -8,17 +8,15 @@ import com.handle.ConnectionHandle;
 import com.handle.Utilities;
 import com.models.DataContext;
 import com.models.GiamGiaModel;
-import com.models.HoaDonKhachHangModel;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.midi.SysexMessage;
 
 /**
  *
@@ -90,7 +88,7 @@ public class GiamGiaController {
     }
 
     public boolean XoaGiamGia(int id) {
-         try {
+        try {
             String sql = "DELETE FROM GIAMGIA WHERE MaGIAMGIA = " + id;
 
             Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
@@ -128,12 +126,11 @@ public class GiamGiaController {
     }
 
     public GiamGiaModel layMaGiamGia() {
-        GiamGiaModel sale = new GiamGiaModel();
         LayDuLieu();
-        GiamGiaController.getInstance().LayDuLieu();
-        String date = Utilities.getInstance().getTime();
+        Date d = new Date(System.currentTimeMillis());
         for (GiamGiaModel GiamGia : DataContext.getInstance().getGiamGias()) {
-            if (GiamGia.getNgayBatDau().before(Date.valueOf(date)) && GiamGia.getNgayBatDau().after(Date.valueOf(date))) {
+            if (GiamGia.getNgayBatDau().before(d)
+                    && GiamGia.getNgayBatDau().after(d)) {
                 System.out.println(GiamGia.getMaGiamGia());
                 return GiamGia;
             }

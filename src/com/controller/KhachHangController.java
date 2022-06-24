@@ -7,7 +7,6 @@ package com.controller;
 import com.handle.ConnectionHandle;
 import com.models.DataContext;
 import com.models.KhachHangModel;
-import com.models.NhanVienModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -89,12 +88,12 @@ public class KhachHangController {
         try {
 
             // Cau truy van SQL
-            String sql = "delete from KhachHang where SDTKH = ?" ;
+            String sql = "delete from KhachHang where SDTKH = ?";
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
             ps.setString(1, SDTKH);
-            
+
             if (ps.executeUpdate() != 1) {
                 return false;
             }
@@ -126,7 +125,7 @@ public class KhachHangController {
         }
 
     }
-    
+
     public void TimKhachHang(String id) {
         try {
             String sql = "SELECT * FROM KHACHHANG WHERE SDTKH=?";
@@ -147,5 +146,18 @@ public class KhachHangController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public Boolean congDiem(String id, int value) {
+        try {
+            String sql = "Update KhachHang set TongDiem=TongDiem+? where SDTKH=?";
+            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
+            ps.setInt(1, value);
+            ps.setString(2, id);
+            return ps.executeUpdate() >= 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

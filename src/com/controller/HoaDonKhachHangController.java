@@ -5,7 +5,6 @@
 package com.controller;
 
 import com.handle.ConnectionHandle;
-import com.models.CTHDModel;
 import com.models.DataContext;
 import com.models.HoaDonKhachHangModel;
 import java.sql.Date;
@@ -50,11 +49,15 @@ public class HoaDonKhachHangController {
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
 
-            // Gan bien vao cac dau  ?
-            ps.setString(1, k.getSDTKH());
-            ps.setInt(2, k.getMaGiamGia());
+            // Gan bien vao cac dau  ?            
+            if (k.getMaGiamGia() != -1) {
+                ps.setInt(1, k.getMaGiamGia());                
+            } else {                
+                ps.setNull(1, java.sql.Types.NULL);
+            }
+            ps.setString(2, k.getSDTKH());
             ps.setInt(3, k.getMaNV());
-            ps.setDate(4, (Date) k.getNgayLap());
+            ps.setDate(4, k.getNgayLap());
             ps.setDouble(5, k.getTongTien());
 
             ResultSet rs = ps.executeQuery();

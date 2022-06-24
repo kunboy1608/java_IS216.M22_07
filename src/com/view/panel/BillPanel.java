@@ -5,12 +5,16 @@
 package com.view.panel;
 
 import com.controller.CTHDController;
+import com.controller.GiamGiaController;
 import com.controller.HoaDonKhachHangController;
+import com.controller.KhachHangController;
 import com.handle.ConnectionHandle;
 import com.handle.LanguageHandle;
 import com.handle.Utilities;
 import com.models.CTHDModel;
+import com.models.DataContext;
 import com.models.DoUongModel;
+import com.models.GiamGiaModel;
 import com.models.HoaDonKhachHangModel;
 import com.utilities.CommonFont;
 import com.utilities.NonBorder;
@@ -21,10 +25,12 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.HeadlessException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.print.PrinterException;
 import java.sql.SQLException;
+import java.sql.Date;
 import javax.swing.JLabel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -100,7 +106,9 @@ public class BillPanel extends Container {
         btnPay.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                java.sql.Savepoint savePoint = null;
                 try {
+                    // Xac nhan co thanh toan khong
                     if (dtm.getRowCount() == 0) {
                         JOptionPane.showConfirmDialog(
                                 null,
@@ -110,6 +118,7 @@ public class BillPanel extends Container {
                         );
                         return;
                     }
+                    // Hoi co in hoa don khong
                     if (JOptionPane.showConfirmDialog(
                             null,
                             PRINT_MESSAGE,
@@ -118,25 +127,39 @@ public class BillPanel extends Container {
                     ) == 0) {
                         printBill();
                     }
+                    // Tao diem Savepoint
+                    ConnectionHandle.getInstance().getConnection().setAutoCommit(false);
+                    savePoint = ConnectionHandle.getInstance().getConnection().setSavepoint();
+
+                    //Thanh toan
                     pay();
+
+                    // Thong bao thanh cong
                     JOptionPane.showConfirmDialog(
                             null,
                             PAY_SUCCESS,
                             PAY_TITLE,
                             JOptionPane.DEFAULT_OPTION
                     );
-                } catch (SQLException ex) {
-                    JOptionPane.showConfirmDialog(
-                            null,
-                            PAY_FAILED,
-                            PAY_TITLE,
-                            JOptionPane.DEFAULT_OPTION
-                    );
+                    // Commit                    
+                    ConnectionHandle.getInstance().getConnection().commit();
+                    ConnectionHandle.getInstance().getConnection().setAutoCommit(true);
+                } catch (HeadlessException | SQLException ex) {
+                    try {
+                        ConnectionHandle.getInstance().getConnection().rollback(savePoint);
+                        JOptionPane.showConfirmDialog(
+                                null,
+                                PAY_FAILED,
+                                PAY_TITLE,
+                                JOptionPane.DEFAULT_OPTION
+                        );
+                    } catch (SQLException ex1) {
+                        Logger.getLogger(BillPanel.class.getName()).log(Level.SEVERE, null, ex1);
+                    }
                 }
             }
         });
         botCon.add(btnPay);
-
         add(botCon, BorderLayout.SOUTH);
     }
 
@@ -198,52 +221,60 @@ public class BillPanel extends Container {
     }
 
     public void pay() throws SQLException {
-        try {
-            // Tinh tong hoa don
-            ConnectionHandle.getInstance().getConnection().setAutoCommit(false);
-            var x = ConnectionHandle.getInstance().getConnection().setSavepoint();
-            double tongTien = 0;
-            for (int i = 0; i < dtm.getRowCount(); i++) {
-                double sum = Float.parseFloat(dtm.getValueAt(i, 2).toString())
-                        * Integer.parseInt(dtm.getValueAt(i, 3).toString());
-                tongTien += sum;
-            }
-            // Them hoa don
-            int maHD = HoaDonKhachHangController.getInstance().ThemHoaDonKhachHang(
-                    new HoaDonKhachHangModel(
-                            0,
-                            "SDT",
-                            1,
-                            null,
-                            tongTien,
-                            1
-                    )
-            );
-            // Kiem tra them hoa do nco thanh cong hay khong
-            if (maHD == -1) {
-                ConnectionHandle.getInstance().getConnection().rollback(x);
-            }
 
-            // Them CTHD
-            for (int i = 0; i < dtm.getRowCount(); i++) {
-                CTHDController.getInstance().ThemCTHD(new CTHDModel(
-                        Integer.parseInt(dtm.getValueAt(i, 0).toString()),
-                        maHD,
-                        Integer.parseInt(dtm.getValueAt(i, 3).toString()),
-                        Double.parseDouble(dtm.getValueAt(i, 2).toString())
-                ));
-            }
+        // Tinh tong hoa don
+        double tongTien = 0;
+        for (int i = 0; i < dtm.getRowCount(); i++) {
+            double sum = Float.parseFloat(dtm.getValueAt(i, 2).toString())
+                    * Integer.parseInt(dtm.getValueAt(i, 3).toString());
+            tongTien += sum;
+        }
 
-            // Commit
-            ConnectionHandle.getInstance().getConnection().commit();
-        } catch (com.microsoft.sqlserver.jdbc.SQLServerException ex) {
-            ConnectionHandle.getInstance().getConnection().rollback();
-            Logger.getLogger(BillPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            ConnectionHandle.getInstance().getConnection().rollback();
-            Logger.getLogger(BillPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            ConnectionHandle.getInstance().getConnection().setAutoCommit(true);
+        // Nhap so dien thoai
+        String sdt = JOptionPane.showInputDialog("Nhap so sdt").trim();
+        if (sdt.trim().equals("")) {
+            sdt = null;
+        } else {
+            if (!KhachHangController.getInstance().congDiem(sdt, (int) (tongTien / 1000))) {
+                throw new SQLException("Wrong SDTKH");
+            }
+        }
+
+        // Kiem tra giam gia
+        GiamGiaModel gg = GiamGiaController.getInstance().layMaGiamGia();
+        if (gg != null) {
+            double soTienGiam = tongTien * (gg.getGiaTri() / 100);
+            if (soTienGiam > gg.getToiDa()
+                    && gg.getToiDa() != 0) {
+                soTienGiam = gg.getToiDa();
+            }
+            tongTien -= soTienGiam;
+        }
+        // Them hoa don
+        int maHD = HoaDonKhachHangController.getInstance().ThemHoaDonKhachHang(
+                new HoaDonKhachHangModel(
+                        gg == null ? -1 : gg.getMaGiamGia(),
+                        sdt,
+                        DataContext.getInstance().getUser().getMaNV(),
+                        new Date(System.currentTimeMillis()),
+                        tongTien,
+                        1
+                )
+        );
+
+        // Kiem tra them hoa do nco thanh cong hay khong
+        if (maHD == -1) {
+            throw new SQLException("Can not insert into HoaDonKhachHang");
+        }
+
+        // Them CTHD
+        for (int i = 0; i < dtm.getRowCount(); i++) {
+            CTHDController.getInstance().ThemCTHD(new CTHDModel(
+                    Integer.parseInt(dtm.getValueAt(i, 0).toString()),
+                    maHD,
+                    Integer.parseInt(dtm.getValueAt(i, 3).toString()),
+                    Double.parseDouble(dtm.getValueAt(i, 2).toString())
+            ));
         }
     }
 
@@ -325,7 +356,20 @@ public class BillPanel extends Container {
             content += "</tr>";
             tongTien += sum;
         }
-        content += "</table><div>Tổng tiền: " + tongTien + " đ</div>";
+        content += "</table>";
+        
+        // Kiem tra giam gia
+        GiamGiaModel gg = GiamGiaController.getInstance().layMaGiamGia();
+        if (gg != null) {
+            double soTienGiam = tongTien * (gg.getGiaTri() / 100);
+            if (soTienGiam > gg.getToiDa()
+                    && gg.getToiDa() != 0) {
+                soTienGiam = gg.getToiDa();
+            }
+            tongTien -= soTienGiam;
+            content += "<div>:Giảm giá: " + soTienGiam + " đ</div>";
+        }        
+        content += "<div>Tổng tiền: " + tongTien + " đ</div>";
 
         addFooter();
         bill.setText(content);

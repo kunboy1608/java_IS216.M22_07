@@ -5,9 +5,9 @@
         <Login id="USERNAME">User name</Login>
         <Login id="ERROR_MESSAGE">Incorrect information or Account is Locked</Login>
         <Login id="LOGIN">Login</Login>
-        <Login id="CHANGE_LANGUAGE">Restart to change language</Login>        
+        <Login id="CHANGE_LANGUAGE">Khởi động lại để đổi ngôn ngữ</Login>        
     </Login>
-    <Menu>
+    <Home>
         <Home id="TITLE">HOME  - COFFE EXPRESS</Home>
         <Home id="EMPLOYEE">Employee</Home>
         <Home id="ACCOUNT">Account</Home>
@@ -15,8 +15,11 @@
         <Home id="SELL">Sale</Home>
         <Home id="STAT">Bistatistic</Home>
         <Home id="CUSTOMER">Customer</Home>
-        <Home id="MANAGE_DRINKS">Drink Manager</Home>
-    </Menu>
+        <Home id="MANAGE_DRINKS">Drink Manager</Home>   
+        <Home id="MANAGER">Manager</Home>
+        <Home id="GUEST">Guest</Home> 
+    </Home>
+    <Menu>
         <Menu id="TITLE">Menu - COFFE EXPRESS</Menu>
         <Menu id="TABLE">Table</Menu>
     </Menu>
@@ -54,7 +57,7 @@
         <Account id="NOTI_SUCCESS">Success</Account>
         <Account id="NOTI_FAILED">Failed</Account>
     </Account>
-     <Branch>
+    <Branch>
         <Branch id="TITLE">Branch information</Branch>
         <Branch id="UPDATE">Update</Branch>
         <Branch id="RESET">Reset</Branch>  
@@ -74,28 +77,28 @@
         <Branch id="CHOSSE_DELETE">Click branch to delete</Branch>
         <Branch id="REQUEST_DELETE">Are you sure?</Branch>
     </Branch>
-    <Dinks>
-        <Dinks id="TITLE">Drink Manager - COFFE EXPRESS</Dinks>
-        <Dinks id="UPDATE">Update</Dinks>
-        <Dinks id="RESET">Reset</Dinks>
-        <Dinks id="EXIT">Exit</Dinks>
-        <Dinks id="REFRESH">Refresh</Dinks>
-        <Dinks id="DELETE">Delete</Dinks>
-        <Dinks id="NOTE">Note</Dinks>
-        <Dinks id="PRICE">Cost</Dinks>
-        <Dinks id="IMAGE">Image</Dinks>
-        <Dinks id="INFO">Information</Dinks>        
-        <Dinks id="ID">Drink ID</Dinks>
-        <Dinks id="NAME">Drink Name</Dinks>
-        <Dinks id="NOTIFICATION_TITLE">Notification</Dinks>
-        <Dinks id="NOTI_SUCCESS">Sucess</Dinks>
-        <Dinks id="NOTI_FAILED">Failed</Dinks>        
-        <Dinks id="ERR_NAME_EMPTY">Drink name is empty</Dinks>
-        <Dinks id="ERR_PRICE_EMPTY">Cost is empty</Dinks>
-        <Dinks id="CHOSSE_DELETE">Click drink to delete</Dinks>
-        <Dinks id="REQUEST_DELETE">Are you want to delete?</Dinks> 
+    <Drinks>
+        <Drinks id="TITLE">Drink Manager - COFFE EXPRESS</Drinks>
+        <Drinks id="UPDATE">Update</Drinks>
+        <Drinks id="RESET">Reset</Drinks>
+        <Drinks id="EXIT">Exit</Drinks>
+        <Drinks id="REFRESH">Refresh</Drinks>
+        <Drinks id="DELETE">Delete</Drinks>
+        <Drinks id="NOTE">Note</Drinks>
+        <Drinks id="PRICE">Cost</Drinks>
+        <Drinks id="IMAGE">Image</Drinks>
+        <Drinks id="INFO">Information</Drinks>        
+        <Drinks id="ID">Drink ID</Drinks>
+        <Drinks id="NAME">Drink Name</Drinks>
+        <Drinks id="NOTIFICATION_TITLE">Notification</Drinks>
+        <Drinks id="NOTI_SUCCESS">Sucess</Drinks>
+        <Drinks id="NOTI_FAILED">Failed</Drinks>        
+        <Drinks id="ERR_NAME_EMPTY">Drink name is empty</Drinks>
+        <Drinks id="ERR_PRICE_EMPTY">Cost is empty</Drinks>
+        <Drinks id="CHOSSE_DELETE">Click drink to delete</Drinks>
+        <Drinks id="REQUEST_DELETE">Are you want to delete?</Drinks> 
         <Drinks id="CHOSSE_FILE">Click image</Drinks>
-    </Dinks>
+    </Drinks>
     <Discount>
         <Discount id="TITLE">Discount - COFFE EXPRESS</Discount>
         <Discount id="UPDATE">Update</Discount>
@@ -189,7 +192,7 @@
         <Employee id="SEX">Sex</Employee>
         <Employee id="ID_BRANCH">Brach ID</Employee>        
         <Employee id="ID_EMPLOYEE">Employee ID</Employee>
-        <Employee id="DATE_WORK">Ngày vào làm</Employee>
+        <Employee id="DATE_WORK">Working date</Employee>
         <Employee id="INFO_EMPLOYEE">Employee information</Employee>
         <Employee id="NAME_BRANCH">Brach name</Employee>
         <Employee id="NAME_EMPLOYEE">Employee name</Employee>

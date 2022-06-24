@@ -16,6 +16,8 @@
         <Home id="STAT">Thống kê</Home>
         <Home id="CUSTOMER">Khách hàng</Home>
         <Home id="MANAGE_DRINKS">Quản lí đồ uống</Home>
+        <Home id="MANAGER">Quản lí</Home>
+        <Home id="GUEST">Khách</Home>
     </Home>
     <Menu>
         <Menu id="TITLE">Thực đơn - COFFE EXPRESS</Menu>
@@ -37,7 +39,7 @@
         <Bill id="NOTHING">Chưa gọi món</Bill>
     </Bill>
     <Account>
-        <Account id="TITLE">Quản lý tài khoản</Account>
+        <Account id="TITLE">Quản lý tài khoản - COFFE EXPRESS</Account>
         <Account id="UPDATE">Cập nhật</Account>
         <Account id="RESET">Làm trống</Account>
         <Account id="EXIT">Thoát</Account>
@@ -56,7 +58,7 @@
         <Account id="NOTI_FAILED">Thất bại</Account>
     </Account>
     <Branch>
-        <Branch id="TITLE">Thông tin chi nhánh</Branch>
+        <Branch id="TITLE">Quản lý chi nhánh - COFFE EXPRESS</Branch>
         <Branch id="UPDATE">Cập nhật</Branch>
         <Branch id="RESET">Làm trống</Branch>  
         <Branch id="EXIT">Thoát</Branch>      
@@ -76,7 +78,7 @@
         <Branch id="REQUEST_DELETE">Bạn có chắc chắn xóa</Branch>
     </Branch>
     <Drinks>
-        <Drinks id="TITLE">Quản lí đồ uống - COFFE EXPRESS</Drinks>
+        <Drinks id="TITLE">Quản lý đồ uống - COFFE EXPRESS</Drinks>
         <Drinks id="UPDATE">Cập nhật</Drinks>
         <Drinks id="RESET">Làm trống</Drinks>
         <Drinks id="EXIT">Thoát</Drinks>
@@ -98,7 +100,7 @@
         <Drinks id="CHOSSE_FILE">Chọn ảnh</Drinks>
     </Drinks>
     <Discount>
-        <Discount id="TITLE">Giảm giá - COFFE EXPRESS</Discount>
+        <Discount id="TITLE">Quản lý Giảm giá - COFFE EXPRESS</Discount>
         <Discount id="UPDATE">Cập nhật</Discount>
         <Discount id="RESET">Làm trống</Discount>
         <Discount id="EXIT">Thoát</Discount>
@@ -123,7 +125,7 @@
         <Discount id="ERR_DATE">Ngày bắt đầu không được trễ hơn ngày kết thúc</Discount>        
     </Discount>
     <BillFrame>
-        <BillFrame id="TITLE"></BillFrame>
+        <BillFrame id="TITLE">Quản lý hóa đơn - COFFE EXPRESS</BillFrame>
         <BillFrame id="UPDATE">Cập nhật</BillFrame>
         <BillFrame id="RESET">Làm trống</BillFrame>
         <BillFrame id="EXIT">Thoát</BillFrame>
@@ -152,7 +154,7 @@
         <BillFrame id="ERR_SUM_WRONG">Tổng tiền không hợp lệ</BillFrame>     
     </BillFrame>
     <Customer>
-        <Customer id="TITLE"></Customer>
+        <Customer id="TITLE">Quản lý khách hàng - COFFE EXPRESS</Customer>
         <Customer id="UPDATE">Cập nhật</Customer>
         <Customer id="RESET">Làm trống</Customer>
         <Customer id="EXIT">Thoát</Customer>
@@ -179,7 +181,7 @@
         <Customer id="FEMALE">Nữ</Customer> 
     </Customer>
     <Employee>
-        <Employee id="TITLE">Quản lí nhân viên - COFFE EXPRESS</Employee>
+        <Employee id="TITLE">Quản lý nhân viên - COFFE EXPRESS</Employee>
         <Employee id="UPDATE">Cập nhật</Employee>
         <Employee id="RESET">Làm trống</Employee>
         <Employee id="EXIT">Thoát</Employee>
