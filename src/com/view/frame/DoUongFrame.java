@@ -56,14 +56,16 @@ public class DoUongFrame extends javax.swing.JFrame {
         CHOSSE_DELETE = LanguageHandle.getInstance().getValue("Drinks", "CHOSSE_DELETE");
         REQUEST_DELETE = LanguageHandle.getInstance().getValue("Drinks", "REQUEST_DELETE");
         CHOSSE_FILE = LanguageHandle.getInstance().getValue("Drinks", "CHOSSE_FILE");
+        ADD = LanguageHandle.getInstance().getValue("Drinks", "ADD");
     }
 
     private void configComponents() {
         setIconImage(ImageHandle.getInstance().getIconLogo());
         setTitle(TITLE);
         btnCapNhap.setText(UPDATE);
-        btnReset.setText(RESET);
+        btnReset.setText(REFRESH);
         btnXoa.setText(DELETE);
+        btnThem.setText(ADD);
 
         lbGhiChu.setText(NOTE);
         lbGia.setText(PRICE);
@@ -489,6 +491,7 @@ DefaultTableModel modelThongTinDU;
     private String REQUEST_DELETE;
     private String CHOSSE_FILE;
     private String URL;
+    private String ADD;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhap;

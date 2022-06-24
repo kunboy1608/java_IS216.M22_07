@@ -47,6 +47,7 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
         ERR_ADDRESS_EMPTY = LanguageHandle.getInstance().getValue("Branch", "ERR_ADDRESS_EMPTY");
         CHOSSE_DELETE = LanguageHandle.getInstance().getValue("Branch", "CHOSSE_DELETE");
         REQUEST_DELETE = LanguageHandle.getInstance().getValue("Branch", "REQUEST_DELETE");
+        ADD = LanguageHandle.getInstance().getValue("Branch", "ADD");
     }
 
     private void configComponents() {
@@ -56,6 +57,8 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
         btnCapNhap.setText(UPDATE);
         btnRefresh.setText(REFRESH);
         btnXoa.setText(DELETE);
+        btnThem.setText(ADD);
+        
         lbDiaChi.setText(ADDRESS);
         lbMaCN.setText(ID);
         lbTTChiNhanh.setText(INFO);
@@ -339,6 +342,7 @@ public class ChiNhanhFrame extends javax.swing.JFrame {
     private String ERR_ADDRESS_EMPTY;
     private String CHOSSE_DELETE;
     private String REQUEST_DELETE;
+    private String ADD;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhap;

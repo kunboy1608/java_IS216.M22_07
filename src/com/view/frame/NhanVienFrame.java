@@ -25,8 +25,8 @@ public class NhanVienFrame extends javax.swing.JFrame {
      * Creates new form KhachHangFrame01
      */
     public NhanVienFrame() {
-        initComponents();
         loadText();
+        initComponents();
         LoadTable();
         loadMaCN();
         configComponents();
@@ -58,6 +58,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
         ERR_NAME_EMPLOYEE_EMPTY = LanguageHandle.getInstance().getValue("Employee", "ERR_NAME_EMPLOYEE_EMPTY");
         ERR_DATE_WRONG = LanguageHandle.getInstance().getValue("Employee", "ERR_DATE_WRONG");
         ERR_CCCD = LanguageHandle.getInstance().getValue("Employee", "ERR_CCCD");
+        ADD = LanguageHandle.getInstance().getValue("Employee", "ADD");
     }
 
     private void configComponents() {
@@ -72,6 +73,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
         btnRefreshNV.setText(REFRESH);
         btnThem.setText(ADD);
         btnXoa.setText(DELETE);
+        
         lbCCCD.setText(CCCD);
         lbDSNhanVien.setText(LIST_EMPLOYEE);
         lbGioiTinh.setText(SEX);
@@ -349,7 +351,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
                             .get(cbMaCN.getSelectedIndex())
                             .getMaCN()
             );
-            
+
             //Nam: 0, Nữ: 1
             if (cbGioiTinh.getSelectedIndex() == 0) {
                 nv.setGioiTinh(0);

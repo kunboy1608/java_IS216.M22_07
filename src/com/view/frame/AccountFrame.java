@@ -34,6 +34,7 @@ public class AccountFrame extends javax.swing.JFrame {
         TITLE = LanguageHandle.getInstance().getValue("Account", "TITLE");
         UPDATE = LanguageHandle.getInstance().getValue("Account", "UPDATE");
         RESET = LanguageHandle.getInstance().getValue("Account", "RESET");
+        REFRESH = LanguageHandle.getInstance().getValue("Account", "REFRESH");
         EXIT = LanguageHandle.getInstance().getValue("Account", "EXIT");
         KIND = LanguageHandle.getInstance().getValue("Account", "KIND");
         STATUS = LanguageHandle.getInstance().getValue("Account", "STATUS");
@@ -55,17 +56,17 @@ public class AccountFrame extends javax.swing.JFrame {
         setTitle(TITLE);
         // Doi ngon ngu
         btnCapNhap.setText(UPDATE);
-        btnReset.setText(RESET);        
+        btnReset.setText(REFRESH);
         lbLoai.setText(KIND);
         lbTinhTrang.setText(STATUS);
         lbTitle.setText(TITLE);
         lbUsername.setText(USERNAME);
-        
+
         cbloai.removeAllItems();
         cbloai.addItem(GUEST);
         cbloai.addItem(EMPLOYEE);
         cbloai.addItem(MANAGER);
-        
+
         cbtinhtrang.removeAllItems();
         cbtinhtrang.addItem(OPEN);
         cbtinhtrang.addItem(LOCK);
@@ -329,6 +330,7 @@ public class AccountFrame extends javax.swing.JFrame {
     private String TITLE;
     private String UPDATE;
     private String RESET;
+    private String REFRESH;
     private String EXIT;
     private String KIND;
     private String STATUS;

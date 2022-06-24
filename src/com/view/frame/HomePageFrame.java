@@ -32,26 +32,22 @@ public class HomePageFrame extends JFrame {
 
     private void phanQuyen() {
         UserModel um = DataContext.getInstance().getUser();
-        btnChiNhanh.setEnabled(false);
-        btnKhachHang.setEnabled(false);
-        btnNhanVien.setEnabled(false);
-        btnThongKe.setEnabled(false);
-        btnMenu.setEnabled(false);
-        btnTaiKhoan.setEnabled(false);
-        btnDoUong.setEnabled(false);
-        if (um.getPosition().contains("Khách")) {
 
+        if (um.getPosition().contains("Khách")) {
+            btnChiNhanh.setVisible(false);
+            btnKhachHang.setVisible(false);
+            btnNhanVien.setVisible(false);
+            btnThongKe.setVisible(false);
+            btnMenu.setVisible(false);
+            btnTaiKhoan.setVisible(false);
+            btnDoUong.setVisible(false);
         } else if (um.getPosition().contains("Nhân viên")) {
-            btnMenu.setEnabled(true);
-            btnKhachHang.setEnabled(true);
+            btnChiNhanh.setVisible(false);
+            btnNhanVien.setVisible(false);
+            btnThongKe.setVisible(false);
+            btnTaiKhoan.setVisible(false);
+            btnDoUong.setVisible(false);
         } else if (um.getPosition().contains("Quản lí")) {
-            btnChiNhanh.setEnabled(true);
-            btnKhachHang.setEnabled(true);
-            btnNhanVien.setEnabled(true);
-            btnThongKe.setEnabled(true);
-            btnMenu.setEnabled(true);
-            btnTaiKhoan.setEnabled(true);
-            btnDoUong.setEnabled(true);
         }
     }
 
@@ -149,10 +145,10 @@ public class HomePageFrame extends JFrame {
         // Layout
         Container mainCon = new Container();
         mainCon.setLayout(new GridLayout(2, 0, 10, 10));
-        mainCon.add(btnChiNhanh);
-        mainCon.add(btnDoUong);
         mainCon.add(btnKhachHang);
         mainCon.add(btnMenu);
+        mainCon.add(btnChiNhanh);
+        mainCon.add(btnDoUong);
         mainCon.add(btnNhanVien);
         mainCon.add(btnTaiKhoan);
         mainCon.add(btnThongKe);

@@ -56,6 +56,7 @@
         <Account id="NOTIFICATION_TITLE">Thông báo</Account>
         <Account id="NOTI_SUCCESS">Thành công</Account>
         <Account id="NOTI_FAILED">Thất bại</Account>
+        <Account id="REFRESH">Làm mới</Account>
     </Account>
     <Branch>
         <Branch id="TITLE">Quản lý chi nhánh - COFFE EXPRESS</Branch>
@@ -76,6 +77,7 @@
         <Branch id="ERR_ADDRESS_EMPTY">Địa chỉ còn trống</Branch>
         <Branch id="CHOSSE_DELETE">Chọn chi nhánh để xóa</Branch>
         <Branch id="REQUEST_DELETE">Bạn có chắc chắn xóa</Branch>
+        <Branch id="ADD">Thêm</Branch>
     </Branch>
     <Drinks>
         <Drinks id="TITLE">Quản lý đồ uống - COFFE EXPRESS</Drinks>
@@ -98,6 +100,7 @@
         <Drinks id="CHOSSE_DELETE">Chọn đồ uống để xóa</Drinks>
         <Drinks id="REQUEST_DELETE">Bạn có chắc chắn xóa</Drinks> 
         <Drinks id="CHOSSE_FILE">Chọn ảnh</Drinks>
+        <Drinks id="ADD">Thêm</Drinks>
     </Drinks>
     <Discount>
         <Discount id="TITLE">Quản lý Giảm giá - COFFE EXPRESS</Discount>
