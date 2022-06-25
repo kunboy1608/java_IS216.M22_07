@@ -341,7 +341,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
                 return ERR_DATE_WRONG;
             }
         }
-        if (txtCCCD.getText().length() < 9 || txtCCCD.getText().length() > 13) {
+        if (!(txtCCCD.getText().length() == 9 || txtCCCD.getText().length() == 12)) {
             return ERR_CCCD;
         }
         return "";

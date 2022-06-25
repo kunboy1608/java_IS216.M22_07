@@ -268,7 +268,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
                 return ERR_NUMBER_WRONG;
             }
         }
-        if (txtSDT.getText().length() < 9 || txtSDT.getText().length() > 11) {
+        if (txtSDT.getText().length() != 10) {
             return ERR_NUMBER_WRONG;
         }
 
@@ -291,7 +291,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
 
     public void loadTable() {
         modelttKH = (DefaultTableModel) new DefaultTableModel();
-        try {            
+        try {
             modelttKH = new DefaultTableModel();
             String tieuDe[] = {PHONE_NUMBER, NAME_CUSTOMER, SEX, SUM_POINTS};
             modelttKH.setColumnIdentifiers(tieuDe);
@@ -318,7 +318,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         String sdt = txtSDT.getText();
-        String tenKH = txtTenKH.getText();        
+        String tenKH = txtTenKH.getText();
         var x = checkError();
         if (!x.equals("")) {
             JOptionPane.showConfirmDialog(null, x, NOTIFICATION_TITLE, JOptionPane.DEFAULT_OPTION);
@@ -341,7 +341,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, NOTI_FAILED);
             }
             loadTable();
-        } catch (Exception e) {            
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, NOTI_FAILED);
         }
     }//GEN-LAST:event_btnThemActionPerformed
