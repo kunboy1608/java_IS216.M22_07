@@ -24,9 +24,13 @@ public class ChiNhanhController {
 
     private static ChiNhanhController _instance;
 
-    public static synchronized ChiNhanhController getInstance() {
+    public static ChiNhanhController getInstance() {
         if (_instance == null) {
-            _instance = new ChiNhanhController();
+            synchronized (ChiNhanhController.class) {
+                if (_instance == null) {
+                    _instance = new ChiNhanhController();
+                }
+            }
         }
         return _instance;
     }

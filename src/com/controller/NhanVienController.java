@@ -24,9 +24,13 @@ public class NhanVienController {
 
     private static NhanVienController _instance;
 
-    public static synchronized NhanVienController getInstance() {
+    public static NhanVienController getInstance() {
         if (_instance == null) {
-            _instance = new NhanVienController();
+            synchronized (NhanVienController.class) {
+                if (_instance == null) {
+                    _instance = new NhanVienController();
+                }
+            }
         }
         return _instance;
     }
@@ -50,7 +54,7 @@ public class NhanVienController {
             ps.setInt(3, nv.getGioiTinh());
             ps.setDate(4, (Date) nv.getNgayVL());
             ps.setString(5, nv.getCCCD());
-            
+
             // Kiem tra xem thuc hien co thanh cong hay khong
             return ps.executeUpdate() == 1;
         } catch (SQLException ex) {
@@ -73,7 +77,7 @@ public class NhanVienController {
             ps.setInt(3, nv.getGioiTinh());
             ps.setDate(4, (Date) nv.getNgayVL());
             ps.setString(5, nv.getCCCD());
-            
+
             // Kiem tra xem thuc hien co thanh cong hay khong
             if (ps.executeUpdate() != 1) {
                 return false;

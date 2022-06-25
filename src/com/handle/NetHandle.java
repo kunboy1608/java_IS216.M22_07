@@ -35,8 +35,12 @@ public class NetHandle extends Thread {
 
     public static NetHandle getInstance() {
         if (_instance == null) {
-            _instance = new NetHandle();
-            _instance.start();
+            synchronized (NetHandle.class) {
+                if (_instance == null) {
+                    _instance = new NetHandle();
+                    _instance.start();
+                }
+            }
         }
         return _instance;
     }

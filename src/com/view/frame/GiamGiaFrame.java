@@ -9,6 +9,8 @@ import com.handle.ImageHandle;
 import com.handle.LanguageHandle;
 import com.models.DataContext;
 import com.models.GiamGiaModel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -54,6 +56,7 @@ public class GiamGiaFrame extends javax.swing.JFrame {
         ERR_START_DATE = LanguageHandle.getInstance().getValue("Discount", "ERR_START_DATE");
         ERR_ENMD_DATE = LanguageHandle.getInstance().getValue("Discount", "ERR_ENMD_DATE");
         ERR_DATE = LanguageHandle.getInstance().getValue("Discount", "ERR_DATE");
+        DELETE = LanguageHandle.getInstance().getValue("Discount", "DELETE");
     }
 
     private void configComponents() {
@@ -70,6 +73,30 @@ public class GiamGiaFrame extends javax.swing.JFrame {
         lbNgayKetThuc.setText(END_DATE);
         lbThongTinGiamGia.setText(INFO);
         lbToiDa.setText(MAX);
+        
+        txtGiaTri.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!((c >= '0') && (c <= '9')
+                        || (c == KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE))) {
+                    e.consume();
+                }
+            }
+        });
+        
+        txtToiDa.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!((c >= '0') && (c <= '9')
+                        || (c == KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE))) {
+                    e.consume();
+                }
+            }
+        });
     }
 
     /**

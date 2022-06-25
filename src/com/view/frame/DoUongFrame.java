@@ -10,8 +10,9 @@ import com.handle.LanguageHandle;
 import com.models.DataContext;
 import com.models.DoUongModel;
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.File;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -73,6 +74,18 @@ public class DoUongFrame extends javax.swing.JFrame {
         lbInfo.setText(INFO);
         lbMaDU.setText(ID);
         lbTenDU.setText(NAME);
+
+        txtGia.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!((c >= '0') && (c <= '9')
+                        || (c == KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE))) {
+                    e.consume();
+                }
+            }
+        });
     }
 
     /**

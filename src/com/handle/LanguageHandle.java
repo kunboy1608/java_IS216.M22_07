@@ -13,7 +13,7 @@ import org.w3c.dom.Element;
  */
 public final class LanguageHandle {
 
-    private static final LanguageHandle _instance = new LanguageHandle();
+    private static LanguageHandle _instance;
     private Document doc;
 
     private LanguageHandle() {
@@ -41,6 +41,13 @@ public final class LanguageHandle {
     }
 
     public static LanguageHandle getInstance() {
+        if (_instance == null) {
+            synchronized (LanguageHandle.class) {
+                if (_instance == null) {
+                    _instance = new LanguageHandle();
+                }
+            }
+        }
         return _instance;
     }
 }

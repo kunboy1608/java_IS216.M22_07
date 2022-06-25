@@ -38,7 +38,11 @@ public class KhachHangModel {
     }
 
     public void setTenKH(String TenKH) {
-        this.TenKH = TenKH.trim();
+        if (TenKH != null) {
+            this.TenKH = TenKH.trim();
+        } else {
+            this.TenKH = null;
+        }
     }
 
     public int getGioiTinh() {

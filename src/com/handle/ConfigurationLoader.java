@@ -112,9 +112,13 @@ public class ConfigurationLoader {
         return info;
     }
 
-    public static synchronized ConfigurationLoader getInstance() {
+    public static ConfigurationLoader getInstance() {
         if (_instance == null) {
-            _instance = new ConfigurationLoader();
+            synchronized (ConfigurationLoader.class) {
+                if (_instance == null) {
+                    _instance = new ConfigurationLoader();
+                }
+            }
         }
         return _instance;
     }

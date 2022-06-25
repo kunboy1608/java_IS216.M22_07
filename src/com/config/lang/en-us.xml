@@ -41,7 +41,7 @@
         <Bill id="NOTHING">Nothing to print</Bill>        
     </Bill>
     <Account>
-        <Account id="TITLE">Account Manager</Account>
+        <Account id="TITLE">Account Manager  - COFFE EXPRESS</Account>
         <Account id="UPDATE">Update</Account>
         <Account id="RESET">Reset</Account>
         <Account id="EXIT">Exit</Account>
@@ -61,7 +61,7 @@
         <Account id="REFRESH">Refresh</Account>
     </Account>
     <Branch>
-        <Branch id="TITLE">Branch information</Branch>
+        <Branch id="TITLE">Branch information  - COFFE EXPRESS</Branch>
         <Branch id="UPDATE">Update</Branch>
         <Branch id="RESET">Reset</Branch>  
         <Branch id="EXIT">Exit</Branch>      

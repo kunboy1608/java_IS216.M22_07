@@ -16,7 +16,6 @@ public class Utilities {
     private static Utilities _instance;
 
     private Utilities() {
-
     }
 
     public static synchronized Utilities getInstance() {

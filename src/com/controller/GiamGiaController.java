@@ -5,7 +5,6 @@
 package com.controller;
 
 import com.handle.ConnectionHandle;
-import com.handle.Utilities;
 import com.models.DataContext;
 import com.models.GiamGiaModel;
 import java.sql.Date;
@@ -16,7 +15,6 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.sound.midi.SysexMessage;
 
 /**
  *
@@ -26,9 +24,13 @@ public class GiamGiaController {
 
     private static GiamGiaController _instance;
 
-    public static synchronized GiamGiaController getInstance() {
+    public static GiamGiaController getInstance() {
         if (_instance == null) {
-            _instance = new GiamGiaController();
+            synchronized (GiamGiaController.class) {
+                if (_instance == null) {
+                    _instance = new GiamGiaController();
+                }
+            }
         }
         return _instance;
     }

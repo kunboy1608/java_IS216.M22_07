@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class ConnectionHandle {
 
-    private static final ConnectionHandle _instance = new ConnectionHandle();
+    private static ConnectionHandle _instance;
     private Connection con;
     private String[] sInfo;
     private String[] user;
@@ -142,6 +142,13 @@ public class ConnectionHandle {
     }
 
     public static ConnectionHandle getInstance() {
+        if (_instance == null) {
+            synchronized (ConnectionHandle.class) {
+                if (_instance == null) {
+                    _instance = new ConnectionHandle();
+                }
+            }
+        }
         return _instance;
     }
 }

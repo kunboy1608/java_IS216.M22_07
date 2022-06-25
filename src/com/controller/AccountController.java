@@ -23,9 +23,13 @@ public class AccountController {
 
     private static AccountController _instance;
 
-    public static synchronized AccountController getInstance() {
+    public static  AccountController getInstance() {
         if (_instance == null) {
-            _instance = new AccountController();
+            synchronized (AccountController.class) {
+                if (_instance == null) {
+                    _instance = new AccountController();
+                }
+            }
         }
         return _instance;
     }

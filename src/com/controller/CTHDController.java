@@ -20,20 +20,24 @@ import java.util.logging.Logger;
  * @author kunbo
  */
 public class CTHDController {
-    
+
     private static CTHDController _instance;
-    
-    public static synchronized CTHDController getInstance() {
+
+    public static CTHDController getInstance() {
         if (_instance == null) {
-            _instance = new CTHDController();
+            synchronized (CTHDController.class) {
+                if (_instance == null) {
+                    _instance = new CTHDController();
+                }
+            }
         }
         return _instance;
     }
-    
+
     private CTHDController() {
-        
+
     }
-    
+
     public boolean ThemCTHD(CTHDModel ct) {
         try {
 
@@ -55,7 +59,7 @@ public class CTHDController {
         }
         return false;
     }
-    
+
     public boolean SuaCTHD(int id, CTHDModel k) {
         try {
 
@@ -78,7 +82,7 @@ public class CTHDController {
         }
         return false;
     }
-    
+
     public boolean XoaCTHD(int id) {
         try {
 
@@ -87,7 +91,7 @@ public class CTHDController {
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
-            
+
             ps.setInt(1, id);
             if (ps.executeUpdate() <= 0) {
                 return false;
@@ -101,7 +105,7 @@ public class CTHDController {
     public void LayDuLieu() {
         try {
             String sql = "Select *  FROM CTHD";
-            
+
             Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
             ResultSet rs = ps.executeQuery(sql);
             LinkedList<CTHDModel> list = new LinkedList<>();
@@ -115,9 +119,10 @@ public class CTHDController {
                 list.add(kh);
             }
             DataContext.getInstance().setCTHDs(list);
-        } catch (SQLException e) {            
-        }        
+        } catch (SQLException e) {
+        }
     }
+
     public void TimCTHD(String id) {
         try {
             String sql = "SELECT * FROM CTHD WHERE MaHD=?";
@@ -128,14 +133,14 @@ public class CTHDController {
             CTHDModel kh;
             while (rs.next()) {
                 kh = new CTHDModel();
-             kh.setMaHD(rs.getInt(1));
+                kh.setMaHD(rs.getInt(1));
                 kh.setMADU(rs.getInt(2));
                 kh.setSoLuong(rs.getInt(3));
                 kh.setGia(rs.getInt(4));
                 list.add(kh);
             }
             DataContext.getInstance().setCTHDs(list);
-        } catch (Exception e) {            
+        } catch (Exception e) {
         }
     }
 }

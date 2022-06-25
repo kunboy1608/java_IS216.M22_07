@@ -24,9 +24,13 @@ public class HoaDonKhachHangController {
 
     private static HoaDonKhachHangController _instance;
 
-    public static synchronized HoaDonKhachHangController getInstance() {
+    public static HoaDonKhachHangController getInstance() {
         if (_instance == null) {
-            _instance = new HoaDonKhachHangController();
+            synchronized (HoaDonKhachHangController.class) {
+                if (_instance == null) {
+                    _instance = new HoaDonKhachHangController();
+                }
+            }
         }
         return _instance;
     }
@@ -51,8 +55,8 @@ public class HoaDonKhachHangController {
 
             // Gan bien vao cac dau  ?            
             if (k.getMaGiamGia() != -1) {
-                ps.setInt(1, k.getMaGiamGia());                
-            } else {                
+                ps.setInt(1, k.getMaGiamGia());
+            } else {
                 ps.setNull(1, java.sql.Types.NULL);
             }
             ps.setString(2, k.getSDTKH());

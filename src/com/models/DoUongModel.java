@@ -48,7 +48,11 @@ public class DoUongModel implements Serializable {
     }
 
     public void setTenDU(String TenDU) {
-        this.TenDU = TenDU.trim();
+        if (TenDU != null) {
+            this.TenDU = TenDU.trim();
+        } else {
+            this.TenDU = null;
+        }
     }
 
     public double getGia() {
@@ -83,7 +87,11 @@ public class DoUongModel implements Serializable {
     }
 
     public void setGhiChu(String GhiChu) {
-        this.GhiChu = GhiChu.trim();
+        if (GhiChu != null) {
+            this.GhiChu = GhiChu.trim();
+        } else {
+            this.GhiChu = null;
+        }
     }
 
 }

@@ -6,12 +6,12 @@ package com.models;
 
 import java.sql.Date;
 
-
 /**
  *
  * @author dang
  */
 public class HoaDonKhachHangModel {
+
     private int MaGiamGia;
     private String SDTKH;
     private int MaNV;
@@ -44,7 +44,11 @@ public class HoaDonKhachHangModel {
     }
 
     public void setSDTKH(String SDTKH) {
-        this.SDTKH = SDTKH.trim();
+        if (SDTKH != null) {
+            this.SDTKH = SDTKH.trim();
+        } else {
+            this.SDTKH = null;
+        }
     }
 
     public int getMaNV() {
@@ -78,6 +82,5 @@ public class HoaDonKhachHangModel {
     public void setMaHD(int MaHD) {
         this.MaHD = MaHD;
     }
-
 
 }

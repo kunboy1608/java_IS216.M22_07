@@ -52,7 +52,11 @@ public class NhanVienModel {
     }
 
     public void setTenNV(String TenNV) {
-        this.TenNV = TenNV.trim();
+        if (TenNV != null) {
+            this.TenNV = TenNV.trim();
+        } else {
+            this.TenNV = null;
+        }
     }
 
     public int getGioiTinh() {
@@ -76,7 +80,10 @@ public class NhanVienModel {
     }
 
     public void setCCCD(String CCCD) {
-        this.CCCD = CCCD.trim();
+        if (CCCD != null) {
+            this.CCCD = CCCD.trim();
+        } else {
+            this.CCCD = null;
+        }
     }
-
 }

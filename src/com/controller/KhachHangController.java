@@ -23,9 +23,13 @@ public class KhachHangController {
 
     private static KhachHangController _instance;
 
-    public static synchronized KhachHangController getInstance() {
+    public static KhachHangController getInstance() {
         if (_instance == null) {
-            _instance = new KhachHangController();
+            synchronized (KhachHangController.class) {
+                if (_instance == null) {
+                    _instance = new KhachHangController();
+                }
+            }
         }
         return _instance;
     }
@@ -48,7 +52,7 @@ public class KhachHangController {
             ps.setString(2, k.getTenKH());
             ps.setInt(3, k.getGioiTinh());
             ps.setInt(4, k.getTongDiem());
-            
+
             // Kiem tra xem thuc hien co thanh cong hay khong
             return ps.executeUpdate() == 1;
         } catch (SQLException ex) {

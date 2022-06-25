@@ -30,7 +30,11 @@ public class AccountModel {
     }
 
     public void setUserName(String UserName) {
-        this.UserName = UserName.trim();
+        if (UserName != null) {
+            this.UserName = UserName.trim();
+        } else {
+            this.UserName = null;
+        }
     }
 
     public String getPassword() {

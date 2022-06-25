@@ -9,6 +9,7 @@ package com.models;
  * @author DO THAO QUYEN
  */
 public class ChiNhanhModel {
+
     //1. UIT 2. Trung tâm 3. Miền Bắc
     private int MaCN;
     private String TenCN;
@@ -36,7 +37,11 @@ public class ChiNhanhModel {
     }
 
     public void setTenCN(String TenCN) {
-        this.TenCN = TenCN.trim();
+        if (TenCN != null) {
+            this.TenCN = TenCN.trim();
+        } else {
+            this.TenCN = null;
+        }
     }
 
     public String getDiaChi() {
@@ -44,7 +49,11 @@ public class ChiNhanhModel {
     }
 
     public void setDiaChi(String DiaChi) {
-        this.DiaChi = DiaChi.trim();
+        if (DiaChi != null) {
+            this.DiaChi = DiaChi.trim();
+        } else {
+            this.DiaChi = null;
+        }
     }
-    
+
 }
