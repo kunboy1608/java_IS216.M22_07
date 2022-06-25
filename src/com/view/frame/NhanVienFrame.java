@@ -92,7 +92,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
                 char c = e.getKeyChar();
                 if (!((c >= '0') && (c <= '9')
                         || (c == KeyEvent.VK_BACK_SPACE)
-                        || (c == KeyEvent.VK_DELETE))) {                    
+                        || (c == KeyEvent.VK_DELETE))) {
                     e.consume();
                 }
             }
@@ -341,7 +341,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
                 return ERR_DATE_WRONG;
             }
         }
-        if (txtCCCD.getText().equals("") || txtCCCD.getText().length() != 13) {
+        if (txtCCCD.getText().length() < 9 || txtCCCD.getText().length() > 13) {
             return ERR_CCCD;
         }
         return "";
