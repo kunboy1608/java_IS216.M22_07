@@ -19,7 +19,7 @@ public class AccountModel {
     }
 
     public AccountModel(String UserName, String Password, Boolean IsLocked, int Type) {
-        this.UserName = UserName;
+        this.UserName = UserName.trim();
         this.Password = Password;
         this.IsLocked = IsLocked;
         this.Type = Type;
@@ -30,7 +30,7 @@ public class AccountModel {
     }
 
     public void setUserName(String UserName) {
-        this.UserName = UserName;
+        this.UserName = UserName.trim();
     }
 
     public String getPassword() {

@@ -17,11 +17,11 @@ public class UserModel extends NhanVienModel {
 
     public UserModel(String Position, String Password, int MaNV, int MaCN, String TenNV, int GioiTinh, Date NgayVL, String CCCD) {
         super(MaNV, MaCN, TenNV, GioiTinh, NgayVL, CCCD);
-        this.Position = Position;
+        this.Position = Position.trim();
         this.Password = Password;
     }
 
     public String getPosition() {
-        return Position;
+        return Position.trim();
     }
 }

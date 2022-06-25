@@ -19,8 +19,8 @@ public class KhachHangModel {
     }
 
     public KhachHangModel(String SDT, String TenKH, int GioiTinh, int TongDiem) {
-        this.SDTKH = SDT;
-        this.TenKH = TenKH;
+        this.SDTKH = SDT.trim();
+        this.TenKH = TenKH.trim();
         this.GioiTinh = GioiTinh;
         this.TongDiem = TongDiem;
     }
@@ -30,7 +30,7 @@ public class KhachHangModel {
     }
 
     public void setSDTKH(String SDT) {
-        this.SDTKH = SDT;
+        this.SDTKH = SDT.trim();
     }
 
     public String getTenKH() {
@@ -38,7 +38,7 @@ public class KhachHangModel {
     }
 
     public void setTenKH(String TenKH) {
-        this.TenKH = TenKH;
+        this.TenKH = TenKH.trim();
     }
 
     public int getGioiTinh() {

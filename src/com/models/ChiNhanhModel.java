@@ -19,8 +19,8 @@ public class ChiNhanhModel {
 
     public ChiNhanhModel(int MaCN, String TenCN, String DiaChi) {
         this.MaCN = MaCN;
-        this.TenCN = TenCN;
-        this.DiaChi = DiaChi;
+        this.TenCN = TenCN.trim();
+        this.DiaChi = DiaChi.trim();
     }
 
     public int getMaCN() {
@@ -36,7 +36,7 @@ public class ChiNhanhModel {
     }
 
     public void setTenCN(String TenCN) {
-        this.TenCN = TenCN;
+        this.TenCN = TenCN.trim();
     }
 
     public String getDiaChi() {
@@ -44,7 +44,7 @@ public class ChiNhanhModel {
     }
 
     public void setDiaChi(String DiaChi) {
-        this.DiaChi = DiaChi;
+        this.DiaChi = DiaChi.trim();
     }
     
 }

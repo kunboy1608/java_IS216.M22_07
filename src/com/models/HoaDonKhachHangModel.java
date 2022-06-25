@@ -24,7 +24,7 @@ public class HoaDonKhachHangModel {
 
     public HoaDonKhachHangModel(int MaGiamGia, String SDTKH, int MaNV, Date NgayLap, double TongTien, int MaHD) {
         this.MaGiamGia = MaGiamGia;
-        this.SDTKH = SDTKH;
+        this.SDTKH = SDTKH.trim();
         this.MaNV = MaNV;
         this.NgayLap = NgayLap;
         this.TongTien = TongTien;
@@ -44,7 +44,7 @@ public class HoaDonKhachHangModel {
     }
 
     public void setSDTKH(String SDTKH) {
-        this.SDTKH = SDTKH;
+        this.SDTKH = SDTKH.trim();
     }
 
     public int getMaNV() {

@@ -25,10 +25,10 @@ public class NhanVienModel {
     public NhanVienModel(int MaNV, int MaCN, String TenNV, int GioiTinh, Date NgayVL, String CCCD) {
         this.MaNV = MaNV;
         this.MaCN = MaCN;
-        this.TenNV = TenNV;
+        this.TenNV = TenNV.trim();
         this.GioiTinh = GioiTinh;
         this.NgayVL = NgayVL;
-        this.CCCD = CCCD;
+        this.CCCD = CCCD.trim();
     }
 
     public int getMaNV() {
@@ -52,7 +52,7 @@ public class NhanVienModel {
     }
 
     public void setTenNV(String TenNV) {
-        this.TenNV = TenNV;
+        this.TenNV = TenNV.trim();
     }
 
     public int getGioiTinh() {
@@ -76,7 +76,7 @@ public class NhanVienModel {
     }
 
     public void setCCCD(String CCCD) {
-        this.CCCD = CCCD;
+        this.CCCD = CCCD.trim();
     }
 
 }
