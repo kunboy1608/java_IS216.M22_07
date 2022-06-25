@@ -63,6 +63,7 @@ public class HomePageFrame extends JFrame {
         MANAGER = LanguageHandle.getInstance().getValue("Home", "MANAGER");
         GUEST = LanguageHandle.getInstance().getValue("Home", "GUEST");
         BILL = LanguageHandle.getInstance().getValue("Home", "BILL");
+        DISCOUNT = LanguageHandle.getInstance().getValue("Home", "DISCOUNT");
     }
 
     private void initComponents() {
@@ -75,6 +76,7 @@ public class HomePageFrame extends JFrame {
         btnMenu = new JButton();
         btnDoUong = new JButton();
         btnHoaDon = new JButton();
+        btnGiamGia = new JButton();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setIconImage(ImageHandle.getInstance().getIconLogo());
@@ -157,6 +159,20 @@ public class HomePageFrame extends JFrame {
                 new HoaDonKhachHangFrame().setVisible(true);
             }
         });
+        
+        btnGiamGia.setIcon(new ImageIcon(
+                ImageHandle.getInstance().resize(
+                        ImageHandle.getInstance().readImage("/com/resource/discount.png"),
+                        128,
+                        128
+                ))); // NOI18N
+        btnGiamGia.setText(DISCOUNT);
+        btnGiamGia.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                new GiamGiaFrame().setVisible(true);
+            }
+        });
         // Layout
         Container mainCon = new Container();
         mainCon.setLayout(new GridLayout(2, 0, 10, 10));
@@ -168,6 +184,7 @@ public class HomePageFrame extends JFrame {
         mainCon.add(btnTaiKhoan);
         mainCon.add(btnThongKe);
         mainCon.add(btnHoaDon);
+        mainCon.add(btnGiamGia);
 
         Container topCon = new Container();
         topCon.setLayout(new BorderLayout());
@@ -202,6 +219,7 @@ public class HomePageFrame extends JFrame {
     private String MANAGER;
     private String GUEST;
     private String BILL;
+    private String DISCOUNT;
 
     private JButton btnChiNhanh;
     private JButton btnDoUong;
@@ -211,6 +229,7 @@ public class HomePageFrame extends JFrame {
     private JButton btnTaiKhoan;
     private JButton btnThongKe;
     private JButton btnHoaDon;
+    private JButton btnGiamGia;
     private JLabel lbAccount;
     // End of variables declaration                   
 }

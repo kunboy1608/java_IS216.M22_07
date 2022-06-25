@@ -58,6 +58,7 @@
         <Account id="NOTI_FAILED">Thất bại</Account>
         <Account id="REFRESH">Làm mới</Account>
         <Home id="BILL">Hóa đơn</Home>
+        <Home id="DISCOUNT">Giảm giá</Home>
     </Account>
     <Branch>
         <Branch id="TITLE">Quản lý chi nhánh - COFFE EXPRESS</Branch>

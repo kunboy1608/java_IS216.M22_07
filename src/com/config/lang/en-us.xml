@@ -19,6 +19,7 @@
         <Home id="MANAGER">Manager</Home>
         <Home id="GUEST">Guest</Home> 
         <Home id="BILL">Bill</Home>
+        <Home id="DISCOUNT">Discount</Home>
     </Home>
     <Menu>
         <Menu id="TITLE">Menu - COFFE EXPRESS</Menu>
