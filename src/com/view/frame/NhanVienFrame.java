@@ -349,8 +349,6 @@ public class NhanVienFrame extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         String tenNV = txtTenNV.getText();
-        String cccd = txtCCCD.getText();
-        StringBuilder sb = new StringBuilder();
         var x = checkError();
         if (!x.equals("")) {
             JOptionPane.showConfirmDialog(null, x, NOTIFICATION_TITLE, JOptionPane.DEFAULT_OPTION);
@@ -374,7 +372,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
             }
             nv.setNgayVL(new java.sql.Date(NgayVL.getDate().getTime()));
             nv.setCCCD(txtCCCD.getText());
-            if (NhanVienController.getInstance().ThemNhanVien(nv) == true) {
+            if (NhanVienController.getInstance().ThemNhanVien(nv)) {
                 JOptionPane.showMessageDialog(null, NOTI_SUCCESS);
             } else {
                 JOptionPane.showMessageDialog(this, NOTI_FAILED);
@@ -416,7 +414,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
             }
             nv.setNgayVL(new java.sql.Date(NgayVL.getDate().getTime()));
             int maNV = Integer.parseInt(txtMaNV.getText());
-            if (NhanVienController.getInstance().SuaNhanVien(maNV, nv) == true) {
+            if (NhanVienController.getInstance().SuaNhanVien(maNV, nv)) {
                 JOptionPane.showMessageDialog(null, NOTI_SUCCESS);
             } else {
                 JOptionPane.showMessageDialog(null, NOTI_FAILED);

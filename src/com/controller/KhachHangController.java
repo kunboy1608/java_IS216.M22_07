@@ -48,12 +48,9 @@ public class KhachHangController {
             ps.setString(2, k.getTenKH());
             ps.setInt(3, k.getGioiTinh());
             ps.setInt(4, k.getTongDiem());
-
+            
             // Kiem tra xem thuc hien co thanh cong hay khong
-            if (ps.executeUpdate() != 1) {
-                return false;
-            }
-            return true;
+            return ps.executeUpdate() == 1;
         } catch (SQLException ex) {
             Logger.getLogger(KhachHangController.class.getName()).log(Level.SEVERE, null, ex);
         }

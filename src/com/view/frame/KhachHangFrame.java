@@ -291,8 +291,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
 
     public void loadTable() {
         modelttKH = (DefaultTableModel) new DefaultTableModel();
-        try {
-            KhachHangModel kh = new KhachHangModel();
+        try {            
             modelttKH = new DefaultTableModel();
             String tieuDe[] = {PHONE_NUMBER, NAME_CUSTOMER, SEX, SUM_POINTS};
             modelttKH.setColumnIdentifiers(tieuDe);
@@ -319,8 +318,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         String sdt = txtSDT.getText();
-        String tenKH = txtTenKH.getText();
-        StringBuilder sb = new StringBuilder();
+        String tenKH = txtTenKH.getText();        
         var x = checkError();
         if (!x.equals("")) {
             JOptionPane.showConfirmDialog(null, x, NOTIFICATION_TITLE, JOptionPane.DEFAULT_OPTION);
@@ -337,13 +335,13 @@ public class KhachHangFrame extends javax.swing.JFrame {
                 kh.setGioiTinh(1);
             }
             kh.setTongDiem(Integer.parseInt(txtTongDiem.getText()));
-            if (KhachHangController.getInstance().SuaKhachHang(sdt, kh) == true) {
+            if (KhachHangController.getInstance().ThemKhachHang(kh)) {
                 JOptionPane.showMessageDialog(null, NOTI_SUCCESS);
             } else {
                 JOptionPane.showMessageDialog(null, NOTI_FAILED);
             }
             loadTable();
-        } catch (Exception e) {
+        } catch (Exception e) {            
             JOptionPane.showMessageDialog(null, NOTI_FAILED);
         }
     }//GEN-LAST:event_btnThemActionPerformed
