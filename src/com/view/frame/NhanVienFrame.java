@@ -461,7 +461,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
             int row = this.tbNV.getSelectedRow();
             if (row >= 0 && row <= tbNV.getRowCount()) {
                 String maCN = tbNV.getValueAt(row, 0).toString();
-                cbMaCN.addItem(maCN);
+                cbMaCN.setSelectedItem(maCN);
                 String tencn = NhanVienController.getInstance().hienthiTenCN(Integer.parseInt(maCN));
                 txtTenCN.setText(tencn);
                 txtMaNV.setText(tbNV.getValueAt(row, 1).toString());
