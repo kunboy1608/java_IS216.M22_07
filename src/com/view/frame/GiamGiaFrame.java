@@ -431,7 +431,7 @@ public class GiamGiaFrame extends javax.swing.JFrame {
             try {
                 int result = JOptionPane.showConfirmDialog(this, REQUEST_DELETE, NOTIFICATION_TITLE, JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
-                    if (GiamGiaController.getInstance().XoaGiamGia(Integer.parseInt(txtMaGiamGia.getText())) == true) {
+                    if (GiamGiaController.getInstance().XoaGiamGia(Integer.parseInt(txtMaGiamGia.getText()))) {
                         JOptionPane.showMessageDialog(this, NOTI_SUCCESS, NOTIFICATION_TITLE, JOptionPane.WARNING_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.WARNING_MESSAGE);

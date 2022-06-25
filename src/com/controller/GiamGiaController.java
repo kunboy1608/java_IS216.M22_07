@@ -91,11 +91,12 @@ public class GiamGiaController {
 
     public boolean XoaGiamGia(int id) {
         try {
-            String sql = "DELETE FROM GIAMGIA WHERE MaGIAMGIA = " + id;
+            String sql = "DELETE FROM GIAMGIA WHERE MaGIAMGIA = ?";
 
-            Statement ps = ConnectionHandle.getInstance().getConnection().createStatement();
-            ResultSet rs = ps.executeQuery(sql);
-            if (rs.next() == false) {
+            PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
+            ps.setInt(1, id);
+
+            if (ps.executeUpdate() != 1) {
                 return false;
             }
             return true;
