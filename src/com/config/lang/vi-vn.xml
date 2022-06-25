@@ -200,7 +200,7 @@
         <Employee id="DATE_WORK">Ngày vào làm</Employee>
         <Employee id="INFO_EMPLOYEE">Thông tin nhân viên</Employee>
         <Employee id="NAME_BRANCH">Tên chi nhánh</Employee>
-        <Employee id="NAME_EMPLOYEE">Tên khách hàng</Employee>
+        <Employee id="NAME_EMPLOYEE">Tên nhân viên</Employee>
         <Employee id="ADD">Thêm</Employee>
         <Employee id="NOTIFICATION_TITLE">Thông báo</Employee>
         <Employee id="NOTI_SUCCESS">Thành công</Employee>
