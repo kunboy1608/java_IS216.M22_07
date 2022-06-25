@@ -361,13 +361,13 @@ public class BillPanel extends Container {
         // Kiem tra giam gia
         GiamGiaModel gg = GiamGiaController.getInstance().layMaGiamGia();
         if (gg != null) {
-            double soTienGiam = tongTien * (gg.getGiaTri() / 100);
+            double soTienGiam = tongTien * (gg.getGiaTri() / 100.0f);
             if (soTienGiam > gg.getToiDa()
                     && gg.getToiDa() != 0) {
                 soTienGiam = gg.getToiDa();
             }
             tongTien -= soTienGiam;
-            content += "<div>:Giảm giá: " + soTienGiam + " đ</div>";
+            content += "<div>Giảm giá: " + soTienGiam + " đ</div>";
         }        
         content += "<div>Tổng tiền: " + tongTien + " đ</div>";
 

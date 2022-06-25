@@ -301,10 +301,8 @@ public class HoaDonKhachHangFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    DefaultTableModel modelHDKH, modelCTHD;
-
     public void loadTableHD() {
-        modelHDKH = (DefaultTableModel) new DefaultTableModel();
+        modelHDKH = new DefaultTableModel();
         try {
             HoaDonKhachHangModel kh = new HoaDonKhachHangModel();
             modelHDKH = new DefaultTableModel();
@@ -356,24 +354,24 @@ public class HoaDonKhachHangFrame extends javax.swing.JFrame {
         return "";
     }
 
-    public void loadTableCTHD() {
-        modelCTHD = (DefaultTableModel) new DefaultTableModel();
+    public void loadTableCTHD(int ma) {
         try {
-            CTHDModel kh = new CTHDModel();
             modelCTHD = new DefaultTableModel();
             String tieuDe[] = {ID_BILL, ID_DRINK, QUANTILE, PRICE};
             modelCTHD.setColumnIdentifiers(tieuDe);
-            Object row[] = new Object[4];
-            int i = 0;
             CTHDController.getInstance().LayDuLieu();
-            while (i < DataContext.getInstance().getCTHDs().size()) {
-                row[0] = DataContext.getInstance().getCTHDs().get(i).getMaHD();
-                row[1] = DataContext.getInstance().getCTHDs().get(i).getMADU();
-                row[2] = DataContext.getInstance().getCTHDs().get(i).getSoLuong();
-                row[3] = DataContext.getInstance().getCTHDs().get(i).getGia();
-                i++;
-                modelCTHD.addRow(row);
+            int mahd = Integer.parseInt(txtMaHD.getText().trim());
+            for (CTHDModel cthd : DataContext.getInstance().getCTHDs()) {
+                if (mahd == cthd.getMaHD()) {
+                    modelCTHD.addRow(new Object[]{
+                        cthd.getMaHD(),
+                        cthd.getMADU(),
+                        cthd.getSoLuong(),
+                        cthd.getGia()
+                    });
+                }
             }
+            tbCTHD.setModel(modelHDKH);
         } catch (Exception e) {
         }
         tbCTHD.setModel(modelCTHD);
@@ -404,6 +402,9 @@ public class HoaDonKhachHangFrame extends javax.swing.JFrame {
 
     private void tbHDKHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbHDKHMouseClicked
         int row = this.tbHDKH.getSelectedRow();
+        if (!(row >= 0 && row <= tbHDKH.getRowCount())) {
+            return;
+        }
         try {
             if (row >= 0 && row <= tbHDKH.getRowCount()) {
                 txtMaHD.setText(tbHDKH.getValueAt(row, 0).toString());
@@ -413,27 +414,8 @@ public class HoaDonKhachHangFrame extends javax.swing.JFrame {
                 NgayLap.setDate((Date) tbHDKH.getModel().getValueAt(row, 4));
                 txtTongTien.setText(tbHDKH.getValueAt(row, 5).toString());
             }
-            loadTableHD();
+            loadTableCTHD(Integer.parseInt(tbHDKH.getValueAt(row, 0).toString()));
         } catch (Exception e) {
-        }
-
-        tbCTHD.removeAll();
-        Object row1[] = new Object[3];
-        if (row >= 0 && row <= tbHDKH.getRowCount()) {
-            try {
-                CTHDController.getInstance().LayDuLieu();
-                String mahd = txtMaHD.getText();
-                for (CTHDModel cthd : DataContext.getInstance().getCTHDs()) {
-                    if (mahd.equals(cthd.getMaHD())) {
-                        row1[0] = cthd.getMADU();
-                        row1[1] = cthd.getSoLuong();
-                        row1[2] = cthd.getGia();
-                        modelCTHD.addRow(row1);
-                    }
-                }
-                tbCTHD.setModel(modelCTHD);
-            } catch (Exception e) {
-            }
         }
     }//GEN-LAST:event_tbHDKHMouseClicked
 
@@ -456,14 +438,13 @@ public class HoaDonKhachHangFrame extends javax.swing.JFrame {
             int result = JOptionPane.showConfirmDialog(this, REQUEST_DELETE, NOTIFICATION_TITLE, JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.YES_OPTION) {
                 if (CTHDController.getInstance().XoaCTHD(maHD)
-                        && HoaDonKhachHangController.getInstance().XoaHoaDonKhachHang(maHD) == true) {
+                        && HoaDonKhachHangController.getInstance().XoaHoaDonKhachHang(maHD)) {
                     JOptionPane.showMessageDialog(null, NOTI_SUCCESS);
                 } else {
                     JOptionPane.showMessageDialog(null, NOTI_FAILED);
                 }
             }
             loadTableHD();
-            loadTableCTHD();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
         }
@@ -478,7 +459,6 @@ public class HoaDonKhachHangFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cbMaNVActionPerformed
 
     private void btnCapNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhapActionPerformed
-        StringBuilder sb = new StringBuilder();
         var x = checkError();
         if (!x.equals("")) {
             JOptionPane.showConfirmDialog(null, x, NOTIFICATION_TITLE, JOptionPane.DEFAULT_OPTION);
@@ -539,6 +519,8 @@ public class HoaDonKhachHangFrame extends javax.swing.JFrame {
     private String ERR_NUMBER_WRONG;
     private String ERR_SUM_EMPTY;
     private String ERR_SUM_WRONG;
+
+    private DefaultTableModel modelHDKH, modelCTHD;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser NgayLap;

@@ -129,8 +129,8 @@ public class GiamGiaController {
         LayDuLieu();
         Date d = new Date(System.currentTimeMillis());
         for (GiamGiaModel GiamGia : DataContext.getInstance().getGiamGias()) {
-            if (GiamGia.getNgayBatDau().before(d)
-                    && GiamGia.getNgayBatDau().after(d)) {
+            if (GiamGia.getNgayKetThuc().after(d)
+                    && GiamGia.getNgayBatDau().before(d)) {
                 System.out.println(GiamGia.getMaGiamGia());
                 return GiamGia;
             }

@@ -9,6 +9,8 @@ import com.handle.ImageHandle;
 import com.handle.LanguageHandle;
 import com.models.DataContext;
 import com.models.KhachHangModel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,7 +29,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         initComponents();
         loadText();
         loadTable();
-        
+
         configComponents();
     }
 
@@ -62,11 +64,11 @@ public class KhachHangFrame extends javax.swing.JFrame {
     private void configComponents() {
         setIconImage(ImageHandle.getInstance().getIconLogo());
         setTitle(TITLE);
-        
+
         cbGioiTinh.removeAllItems();
         cbGioiTinh.addItem(MALE);
         cbGioiTinh.addItem(FEMALE);
-        
+
         btnCapNhap.setText(UPDATE);
         btnReset.setText(REFRESH);
         btnThem.setText(ADD);
@@ -79,6 +81,28 @@ public class KhachHangFrame extends javax.swing.JFrame {
         lbTenKH.setText(NAME_CUSTOMER);
         lbTongDiem.setText(SUM_POINTS);
 
+        txtSDT.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!((c >= '0') && (c <= '9')
+                        || (c == KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE))) {
+                    e.consume();
+                }
+            }
+        });
+        txtTongDiem.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!((c >= '0') && (c <= '9')
+                        || (c == KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE))) {
+                    e.consume();
+                }
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -364,7 +388,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
             if (row >= 0 && row <= tbThongTinKH.getRowCount()) {
                 txtSDT.setText(tbThongTinKH.getValueAt(row, 0).toString());
                 txtTenKH.setText(tbThongTinKH.getValueAt(row, 1).toString());
-                if (tbThongTinKH.getValueAt(row, 2).toString().trim().equals("0")) {
+                if (tbThongTinKH.getValueAt(row, 2).toString().trim().equals(MALE)) {
                     cbGioiTinh.setSelectedItem(MALE);
                 } else {
                     cbGioiTinh.setSelectedItem(FEMALE);

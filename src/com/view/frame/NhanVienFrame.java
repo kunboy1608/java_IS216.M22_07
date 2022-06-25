@@ -11,6 +11,8 @@ import com.handle.LanguageHandle;
 import com.models.ChiNhanhModel;
 import com.models.DataContext;
 import com.models.NhanVienModel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -73,7 +75,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
         btnRefreshNV.setText(REFRESH);
         btnThem.setText(ADD);
         btnXoa.setText(DELETE);
-        
+
         lbCCCD.setText(CCCD);
         lbDSNhanVien.setText(LIST_EMPLOYEE);
         lbGioiTinh.setText(SEX);
@@ -83,6 +85,18 @@ public class NhanVienFrame extends javax.swing.JFrame {
         lbTTNhanVien.setText(INFO_EMPLOYEE);
         lbTenCN.setText(NAME_BRANCH);
         lbTenNV.setText(NAME_EMPLOYEE);
+
+        txtCCCD.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!((c >= '0') && (c <= '9')
+                        || (c == KeyEvent.VK_BACK_SPACE)
+                        || (c == KeyEvent.VK_DELETE))) {                    
+                    e.consume();
+                }
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -455,7 +469,7 @@ public class NhanVienFrame extends javax.swing.JFrame {
                 txtMaNV.setText(tbNV.getValueAt(row, 1).toString());
                 txtTenNV.setText(tbNV.getValueAt(row, 2).toString());
                 //0: Nam 1: Nữ
-                if (tbNV.getValueAt(row, 3).toString().trim().equals("0")) {
+                if (tbNV.getValueAt(row, 3).toString().trim().equals(MALE)) {
                     cbGioiTinh.setSelectedItem(MALE);
                 } else {
                     cbGioiTinh.setSelectedItem(FEMALE);

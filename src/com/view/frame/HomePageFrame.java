@@ -74,7 +74,7 @@ public class HomePageFrame extends JFrame {
         btnThongKe = new JButton();
         btnMenu = new JButton();
         btnDoUong = new JButton();
-        btnHoaDon= new JButton();
+        btnHoaDon = new JButton();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setIconImage(ImageHandle.getInstance().getIconLogo());
@@ -143,7 +143,13 @@ public class HomePageFrame extends JFrame {
                 new DoUongFrame().setVisible(true);
             }
         });
-        
+
+        btnHoaDon.setIcon(new ImageIcon(
+                ImageHandle.getInstance().resize(
+                        ImageHandle.getInstance().readImage("/com/resource/invoice.png"),
+                        128,
+                        128
+                ))); // NOI18N
         btnHoaDon.setText(BILL);
         btnHoaDon.addMouseListener(new MouseAdapter() {
             @Override

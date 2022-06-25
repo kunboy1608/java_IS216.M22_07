@@ -49,6 +49,8 @@ public class LoginFrame extends JFrame {
         loadResource();
         initComponents();
         arangeComponents();
+        txtUsername.setText("098765432101");
+        txtPassword.setText("12345678");
     }
 
     private void loadResource() {

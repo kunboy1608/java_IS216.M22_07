@@ -184,7 +184,7 @@ create table NHANVIEN (
    TENNV                nvarchar(256)        null,
    GIOITINH             int                  null,
    NGAYVL               datetime             null,
-   CCCD                 char(13)             null,
+   CCCD                 char(13)             null unique,
    constraint PK_NHANVIEN primary key (MANV)
 )
 go
