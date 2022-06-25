@@ -22,7 +22,7 @@ Tóm tắt chức năng
 	* Giảm giá		
 	* Danh sách các chi nhánh
 	* Danh sách đồ uống
-	* Tài khoản(Account)		
+	* Tài khoản (Account)		
 * Quản lý sẽ được cấp mục sau:	
 	* Hóa đơn khách hàng, chi tiết hóa đơn(Chỉ xem, cập nhập và xóa hóa đơn)
 	* Danh sách khách hàng(thêm, xóa, sửa)
@@ -50,8 +50,8 @@ Tóm tắt chức năng
 	* JDK 17
 * Hình ảnh xem trước:
 
-<img alt="Login Frame" scr="img/login.png"/>
+![Login-Frame](img/login.png)
 
-<img alt="Sale Frame" scr="img/sale.png"/>
+![Sale-Frame](img/sale.png)
 
-<img alt="Home Frame" scr="img/homepage.png"/>
+![Home-Frame](img/homepage.png)
