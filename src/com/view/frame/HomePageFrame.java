@@ -28,6 +28,7 @@ public class HomePageFrame extends JFrame {
         loadText();
         initComponents();
         phanQuyen();
+        pack();
     }
 
     private void phanQuyen() {
@@ -41,12 +42,16 @@ public class HomePageFrame extends JFrame {
             btnMenu.setVisible(false);
             btnTaiKhoan.setVisible(false);
             btnDoUong.setVisible(false);
+            btnGiamGia.setVisible(false);
+            btnHoaDon.setVisible(false);
         } else if (um.getPosition().contains("Nhân viên")) {
             btnChiNhanh.setVisible(false);
             btnNhanVien.setVisible(false);
             btnThongKe.setVisible(false);
             btnTaiKhoan.setVisible(false);
             btnDoUong.setVisible(false);
+            btnGiamGia.setVisible(false);
+            btnHoaDon.setVisible(false);
         } else if (um.getPosition().contains("Quản lí")) {
         }
     }
@@ -67,7 +72,6 @@ public class HomePageFrame extends JFrame {
     }
 
     private void initComponents() {
-
         btnKhachHang = new JButton();
         btnNhanVien = new JButton();
         btnTaiKhoan = new JButton();
@@ -79,7 +83,7 @@ public class HomePageFrame extends JFrame {
         btnGiamGia = new JButton();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setIconImage(ImageHandle.getInstance().getIconLogo());
+        setIconImage(ImageHandle.getInstance().getIconLogo());        
         setTitle(TITLE);
 
         btnKhachHang.setIcon(new ImageIcon(ImageHandle.getInstance().readImage("/com/resource/rating.png")));
@@ -175,7 +179,7 @@ public class HomePageFrame extends JFrame {
         });
         // Layout
         Container mainCon = new Container();
-        mainCon.setLayout(new GridLayout(2, 0, 10, 10));
+        mainCon.setLayout(new GridLayout(3, 3, 10, 10));
         mainCon.add(btnKhachHang);
         mainCon.add(btnMenu);
         mainCon.add(btnChiNhanh);

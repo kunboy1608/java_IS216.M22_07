@@ -15,6 +15,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -357,11 +358,15 @@ DefaultTableModel modelThongTinDU;
                         .filter(du -> du.getMaDU()
                         == Integer.parseInt(tbThongTinDU.getValueAt(row, 0).toString())
                         ).findFirst().get().getHinhAnh();
-                lbIcon.setIcon(new ImageIcon(ImageHandle.getInstance().resize(
-                        img,
-                        lbIcon.getWidth(),
-                        lbIcon.getHeight()
-                )));
+                if (img != null) {
+                    lbIcon.setIcon(new ImageIcon(ImageHandle.getInstance().resize(
+                            img,
+                            lbIcon.getWidth(),
+                            lbIcon.getHeight()
+                    )));
+                } else {
+                    lbIcon.setIcon(null);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -376,7 +381,6 @@ DefaultTableModel modelThongTinDU;
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnCapNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhapActionPerformed
-        StringBuilder sb = new StringBuilder();
         var x = checkError();
         if (!x.equals("")) {
             JOptionPane.showConfirmDialog(null, x, NOTIFICATION_TITLE, JOptionPane.DEFAULT_OPTION);
@@ -386,11 +390,7 @@ DefaultTableModel modelThongTinDU;
             DoUongModel doUongModel = new DoUongModel();
             doUongModel.setTenDU(txtTenDU.getText());
             doUongModel.setGia(Double.parseDouble(txtGia.getText()));
-            if ("".equals(txtGhiChu.getText())) {
-                return;
-            } else {
-                doUongModel.setGhiChu(txtGhiChu.getText());
-            }
+            doUongModel.setGhiChu(txtGhiChu.getText());
 
             if (DoUongController.getInstance().SuaDoUong(Integer.parseInt(txtMaDU.getText()), doUongModel) == true) {
                 JOptionPane.showMessageDialog(this, NOTI_SUCCESS, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
@@ -401,7 +401,6 @@ DefaultTableModel modelThongTinDU;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
         }
-
     }//GEN-LAST:event_btnCapNhapActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -411,7 +410,7 @@ DefaultTableModel modelThongTinDU;
             try {
                 int result = JOptionPane.showConfirmDialog(this, REQUEST_DELETE, NOTIFICATION_TITLE, JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
-                    if (DoUongController.getInstance().XoaDoUong(Integer.parseInt(txtMaDU.getText())) == true) {
+                    if (DoUongController.getInstance().XoaDoUong(Integer.parseInt(txtMaDU.getText().trim()))) {
                         JOptionPane.showMessageDialog(this, NOTI_SUCCESS, NOTIFICATION_TITLE, JOptionPane.WARNING_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.WARNING_MESSAGE);
@@ -425,7 +424,6 @@ DefaultTableModel modelThongTinDU;
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-
         var x = checkError();
         if (!x.equals("")) {
             JOptionPane.showConfirmDialog(null, x, NOTIFICATION_TITLE, JOptionPane.DEFAULT_OPTION);
@@ -434,22 +432,19 @@ DefaultTableModel modelThongTinDU;
         try {
             DoUongModel doUongModel = new DoUongModel();
             doUongModel.setTenDU(txtTenDU.getText());
+            doUongModel.setGhiChu(txtGhiChu.getText());
             doUongModel.setGia(Double.parseDouble(txtGia.getText()));
             if (URL != null) {
-                doUongModel.setHinhAnh(ImageHandle.getInstance().readImage(URL));
+                doUongModel.setHinhAnh((new ImageIcon(URL)).getImage());
             }
-            if ("".equals(txtGhiChu.getText())) {
-                return;
-            } else {
-                doUongModel.setGhiChu(txtGhiChu.getText());
-            }
-            if (DoUongController.getInstance().ThemDoUong(doUongModel) == true) {
+            if (DoUongController.getInstance().ThemDoUong(doUongModel)) {
                 JOptionPane.showMessageDialog(this, NOTI_SUCCESS, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
             }
             loadTable();
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(this, NOTI_FAILED, NOTIFICATION_TITLE, JOptionPane.INFORMATION_MESSAGE);
         }
 
@@ -472,6 +467,7 @@ DefaultTableModel modelThongTinDU;
             File fileImg = f.getSelectedFile();
             URL = fileImg.getAbsolutePath();
             //Xử lí ảnh
+            System.out.println(URL);
             if (URL != null) {
                 Image img = ImageHandle.getInstance().readImage2(URL);
                 img = ImageHandle.getInstance().resize(img, 100, 100);

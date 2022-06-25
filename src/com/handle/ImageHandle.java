@@ -44,8 +44,12 @@ public class ImageHandle {
     }
 
     public Image resize(Image originalImage, int targetWidth, int targetHeight) {
-        Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH);
-        return resultingImage;
+        try {
+            Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH);
+            return resultingImage;
+        } catch (java.lang.NullPointerException e) {
+            return null;
+        }        
     }
 
     public Image resize(BufferedImage originalBufferedImage, int targetWidth, int targetHeight) {
@@ -117,6 +121,7 @@ public class ImageHandle {
             return null;
         }
     }
+
     public Image readImage2(String URL) {
         try {
             File f = new File(URL);

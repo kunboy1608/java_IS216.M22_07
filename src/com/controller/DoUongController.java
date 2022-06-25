@@ -41,7 +41,6 @@ public class DoUongController {
 
     public boolean ThemDoUong(DoUongModel dr) {
         try {
-
             // Cau truy van SQL
             String sql = "Insert into DoUong values(?,?,?,?)";
 
@@ -99,12 +98,11 @@ public class DoUongController {
         try {
 
             // Cau truy van SQL
-            String sql = "delete from DoUong where MaDU = ";
+            String sql = "delete from DoUong where MaDU = ?";
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
-
-            ps.setString(id, sql);
+            ps.setInt(1, id);
             if (ps.executeUpdate() != 1) {
                 return false;
             }
@@ -128,7 +126,7 @@ public class DoUongController {
                 du.setMaDU(rs.getInt(1));
                 du.setTenDU(rs.getString(2));
                 du.setGia(rs.getDouble(3));
-                du.setHinhAnh(rs.getBlob(4));
+                du.setHinhAnh(ImageHandle.getInstance().createImageFromBlob(rs.getBlob(4)));
                 du.setGhiChu(rs.getString(5));
                 list.add(du);
             }

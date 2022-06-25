@@ -21,13 +21,13 @@ public class DoUongModel implements Serializable {
     private int MaDU;
     private String TenDU;
     private double Gia;
-    private Blob HinhAnh;
+    private Image HinhAnh;
     private String GhiChu;
 
     public DoUongModel() {
     }
 
-    public DoUongModel(int MaDU, String TenDU, double Gia, Blob HinhAnh, String GhiChu) {
+    public DoUongModel(int MaDU, String TenDU, double Gia, Image HinhAnh, String GhiChu) {
         this.MaDU = MaDU;
         this.TenDU = TenDU.trim();
         this.Gia = Gia;
@@ -64,22 +64,11 @@ public class DoUongModel implements Serializable {
     }
 
     public Image getHinhAnh() {
-        return ImageHandle.getInstance().createImageFromBlob(HinhAnh);
-    }
-
-    public void setHinhAnh(Blob HinhAnh) {
-        this.HinhAnh = HinhAnh;
+        return this.HinhAnh;
     }
 
     public void setHinhAnh(Image img) {
-        try {
-            this.HinhAnh.setBytes(
-                    ImageHandle.getInstance().toByteArray(img, "jpg").length,
-                    ImageHandle.getInstance().toByteArray(img, "jpg")
-            );
-        } catch (SQLException ex) {
-            Logger.getLogger(DoUongModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.HinhAnh = img;
     }
 
     public String getGhiChu() {
@@ -93,5 +82,4 @@ public class DoUongModel implements Serializable {
             this.GhiChu = null;
         }
     }
-
 }
