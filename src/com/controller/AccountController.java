@@ -92,7 +92,7 @@ public class AccountController {
         try {
 
             // Cau truy van SQL
-            String sql = "delete from Account where username = '" + Username + "'";
+            String sql = "delete from Account where username = ?";
 
             // Lay ket noi
             PreparedStatement ps = ConnectionHandle.getInstance().getConnection().prepareStatement(sql);
